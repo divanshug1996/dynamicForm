@@ -1,0 +1,20 @@
+<!-- Rendering tax-calculation component  -->
+<sly data-sly-use.Controller="pd-fee-calculator.js"></sly>
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}" />
+<sly data-sly-call="${clientLib.all @ categories='cq.pd-fee-calculator'}" />
+
+
+<div data-sly-test=${wcmmode.edit} data-sly-unwrap>
+   <!-- Default State -->
+    <div class="cq-placeholder" data-emptytext="${component.title}"></div>
+</div> 
+<div>
+    ${Controller.pdFormType}
+ <sly data-sly-test= "${Controller.pdFormType}">
+
+    <div class="${controller.spacing}" id="calculator-init" data-formType="${Controller.pdFormType}">
+    	<sly data-sly-include="view_${Controller.pdFormType ? Controller.pdFormType : 'commercial'}.html"></sly>
+    </div>
+</sly>
+</div>  
+

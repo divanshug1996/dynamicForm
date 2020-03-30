@@ -1,0 +1,10 @@
+
+<sly data-sly-use.Controller="pd-fee-calculator.js"></sly>
+<div data-sly-use.cardTemplate="pd-template.html" data-sly-unwrap></div>
+${Controller.pdFormType}
+<div id="calculator">
+<!-- Card Template -->
+
+<sly data-sly-call="${cardTemplate.basicPermit @ controller = controller}"></sly>
+<sly data-sly-call="${cardTemplate.additionalFee @ controller = controller}"></sly>
+</div>
