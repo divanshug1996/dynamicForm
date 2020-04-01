@@ -53,7 +53,7 @@ use(function () {
         controller.formValues.R4S2rateDesc = properties.get("form_commercial_step2_row4_rateDesc", "");
         controller.formValues.R4S2totalDesc = properties.get("form_commercial_step2_row4_totalDesc", "");
 
-        return controller;
+
 
 
     } else if (controller.pdFormType == "newHomes") {
@@ -124,7 +124,7 @@ use(function () {
         // step 3 remaining
 
 
-        return controller;
+
 
 
     } else if (controller.pdFormType == "multiFammilyLowRise") {
@@ -151,7 +151,7 @@ use(function () {
         controller.formValues.R2Rate = properties.get("form_multifamilylowriseForm_step2_row2_rateDesc", "");
         controller.formValues.baseFee = properties.get("form_multifamilylowriseForm_step2_baseFeeTotal", "");
 
-        return controller;
+
         //step 3 remaining
 
     } else if (controller.pdFormType == "multiFammilyHigHRise") {
@@ -174,11 +174,11 @@ use(function () {
         controller.formValues.totalDesc = properties.get("form_multifamilyhighriseForm_step2_row1_totalDesc", "");
 
 
-        controller.formValues.R2feeTypeDesc= properties.get("form_multifamilyhighriseForm_step2_row2_typeDesc", "");
+        controller.formValues.R2feeTypeDesc = properties.get("form_multifamilyhighriseForm_step2_row2_typeDesc", "");
         controller.formValues.R2Rate = properties.get("form_multifamilyhighriseForm_step2_row2_rateDesc", "");
         controller.formValues.baseFee = properties.get("form_multifamilyhighriseForm_step2_baseFeeTotal", "");
 
-        return controller;
+
         //step 3 remaining
 
     } else if (controller.pdFormType == "demolition") {
@@ -204,7 +204,7 @@ use(function () {
         controller.formValues.R2Rate = properties.get("form_demolition_step1_row2_rateDesc", "");
         controller.formValues.baseFee = properties.get("form_demolition_step1_baseFeeTotal", "");
 
-        return controller;
+
 
     } else if (controller.pdFormType == "wareHouses") {
 
@@ -231,7 +231,7 @@ use(function () {
         controller.formValues.R2Rate = properties.get("form_warehousesForm_step2_row2_rateDesc", "");
         controller.formValues.baseFee = properties.get("form_warehousesForm_step2_baseFeeTotal", "");
 
-        return controller;
+
         //step 3 remaining
 
     } else if (controller.pdFormType == "careFacilities") {
@@ -258,7 +258,7 @@ use(function () {
         controller.formValues.R2feeTypeDesc = properties.get("form_careFacilitiesForm_step2_row2_typeDesc", "");
         controller.formValues.R2Rate = properties.get("form_careFacilitiesForm_step2_row2_rateDesc", "");
         controller.formValues.baseFee = properties.get("form_careFacilitiesForm_step2_baseFeeTotal", "");
-        return controller;
+
 
         //step 3 remaining
 
@@ -286,11 +286,11 @@ use(function () {
         controller.formValues.R2feeTypeDesc = properties.get("form_hotelsForm_step2_row2_typeDesc", "");
         controller.formValues.R2Rate = properties.get("form_hotelsForm_step2_row2_rateDesc", "");
         controller.formValues.baseFee = properties.get("form_hotelsForm_step2_baseFeeTotal", "");
-        return controller;
+
 
         //step 3 remaining
 
     }
 
-
+    return controller;
 });
