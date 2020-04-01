@@ -280,4 +280,5 @@ PD_CALC.events.init = function (type) {
             $(totalEle).html(PD_CALC.methods.numberWithCommas(total.toFixed(2)));
             PD_CALC.methods.setBaseTotal();
     })
+    
 }
