@@ -158,7 +158,7 @@
                 ${controller.formValues.addR1typeDesc}
             </div>
             <div class="col-xs-12 col-sm-3">
-                $ <span class="fees-values previous-total"></span>
+                $ <span class="fees-values previous-total" id="${controller.pdFormType}_prev_BPT"></span>
                 <br>
                 <small class="text-center">${controller.formValues.addR1inputDesc}</small>
             </div>
@@ -170,8 +170,8 @@
             <div class="col-xs-12 col-sm-3">
                 $ <span class="totals fees-totals" id="safety_fee_base_total"></span>
                 <small>
-                    Minimum <span id="safety_fee_base_min">${controller.formValues.addR1minVal}</span> <br>Maximum <span
-                        id="safety_fee_base_max">${controller.formValues.addR1minVal}</span>
+                    Minimum <span id="safety_fee_base_min" data-value="112.00">${controller.formValues.addR1minVal}</span> <br>Maximum <span
+                        id="safety_fee_base_max" data-value="4665.00">${controller.formValues.addR1minVal}</span>
                 </small>
             </div>
         </div>

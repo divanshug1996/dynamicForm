@@ -13,6 +13,11 @@ PD_CALC.constants.ATTR_getFormType = "data-form-name";
 PD_CALC.methods.numberWithCommas = function (x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+PD_CALC.methods.getNum = function (str) {
+    if (str.indexOf(',') > -1)
+        return parseFloat(str.replace(/,/g, '')).toFixed(2);
+    else return parseFloat(str).toFixed(2);
+}
 PD_CALC.methods.getAddonResult = function (array) {
     var sum = 0;
     for (var i = 0; i < array.length; i++) {
@@ -44,6 +49,16 @@ PD_CALC.methods.getBasePermitFeeStd = function (PMV, rfactor, rate, dFactor = 0)
         var calculated = ((dFactorExp) * rate).toFixed(2);
         return calculated;
     }
+}
+PD_CALC.methods.getBasePermitFeeDemolition = function (area, rate, min, max) {
+    var calc = area * rate;
+    if (calc <= min)
+        calc = min;
+    else if (calc >= max)
+        calc = max;
+    else
+        calc = calc;
+    return calc;
 }
 PD_CALC.methods.calcCheckBox = function (num, ele, totalEle) {
     var checked = false,
@@ -90,7 +105,7 @@ PD_CALC.methods.getAddedResult = function (num, value) {
     $("#total0" + num).html(PD_CALC.methods.numberWithCommas(total));
 }
 PD_CALC.methods.getBasePermitFeeDemolition = function (area, rate, min, max) {
-    var calc = area * rate;
+    var calc = area * (rate);
     if (calc <= min)
         calc = min;
     else if (calc >= max)
@@ -271,14 +286,24 @@ PD_CALC.events.init = function (type) {
 
     $(".multiForm").keyup(function () {
         var entVal = this.value,
-            baseVal = $("#" + $(this).attr("id") + "_base" ).attr("data-value"),
+            baseVal = $("#" + $(this).attr("id") + "_base").attr("data-value"),
             totalEle = $("#" + $(this).attr("id") + "_total");
-            total = parseInt(entVal) * parseInt(baseVal);
-            if(entVal == "")
+        total = parseInt(entVal) * parseInt(baseVal);
+        if (entVal == "")
             $(totalEle).html("");
-            else
+        else
             $(totalEle).html(PD_CALC.methods.numberWithCommas(total.toFixed(2)));
-            PD_CALC.methods.setBaseTotal();
+        PD_CALC.methods.setBaseTotal();
     })
-    
+    $(baseFee_ele).on('DOMSubtreeModified', function () {
+        var prevBPF = PD_CALC.methods.getNum($(this).html()),
+            safetyRate = PD_CALC.methods.getNum($("#safety_fee_base").html()),
+            min = PD_CALC.methods.getNum($("#safety_fee_base_min").attr("data-value")),
+            max = PD_CALC.methods.getNum($("#safety_fee_base_max").attr("data-value")),
+            newBPF = PD_CALC.methods.getBasePermitFeeDemolition(prevBPF,safetyRate,min,max)/100;
+        $("#" + type + "_prev_BPT").html(prevBPF),
+        $("#safety_fee_base_total").html(newBPF);
+        if(type == "demolition") $("#total-fee").html(parseFloat(prevBPF)+newBPF);
+    })
+
 }
