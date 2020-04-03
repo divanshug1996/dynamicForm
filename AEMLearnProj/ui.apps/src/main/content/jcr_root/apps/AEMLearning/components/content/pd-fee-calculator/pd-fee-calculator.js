@@ -4,7 +4,9 @@ use(function () {
     var controller = {
         pdFormType: properties.get("formType", ""),
         spacing: properties.get('spacing', 'mb-responsive'),
-        formValues: {}
+        formValues: {
+            pmvArr:[]
+        }
     };
 
     if (controller.pdFormType == "commercial") {
@@ -59,7 +61,7 @@ use(function () {
         controller.formValues.addR4rateDesc = properties.get("form_commercial_step2_row4_rateDesc", "");
         controller.formValues.addR4totalText = properties.get("form_commercial_step2_row4_totalText", "");
 
-
+        return controller;
 
 
     } else if (controller.pdFormType == "newHomes") {
@@ -71,31 +73,29 @@ use(function () {
         controller.formValues.step2Title = properties.get("form_newHome_step2_title", "");
         controller.formValues.step3Title = properties.get("form_newHome_step3_title", "");
 
+        //step 1
         controller.formValues.C1S1title = properties.get("form_newHome_step1_col1_title", "");
         controller.formValues.C2S1title = properties.get("form_newHome_step1_col2_title", "");
         controller.formValues.C3S1title = properties.get("form_newHome_step1_col3_title", "");
         controller.formValues.C4S1title = properties.get("form_newHome_step1_col4_title", "");
 
 
-        // for (var i = 1; i < 5; i++) {
-        //     controller.formValues.nestedObj.feeType[i] = properties.get("form_newHome_step1_row[i]_constType", "");
-        //     controller.formValues.nestedObj.rateValue[i] = properties.get("form_newHome_step1_row[i]_inputDesc", "");
-        // }
+        for (var i = 1; i < 11; i++) {
 
-        // controller.formValues.nestedObj.R4consType = properties.get("form_newHome_step1_row4_constType", "");
-        // controller.formValues.nestedObj.R4quantDesc = properties.get("form_newHome_step1_row4_quantyDesc", "");
-        // controller.formValues.nestedObj.R4rateDesc = properties.get("form_newHome_step1_row4_inputDesc", "");
+            controller.formValues.pmvArr.push({
+                Subhead: properties.get("form_newHome_step1_row" + [i] + "_rowTitle", ""),
+                feeType: properties.get("form_newHome_step1_row" + [i] + "_constType", ""),
+                rate: properties.get("form_newHome_step1_row" + [i] + "_inputDesc", ""),
+                quantityDesc: properties.get("form_newHome_step1_row+" + [i] + "_quantyDesc", ""),
+                borderval: "Yes",
+                otherstitle: properties.get("form_newHome_step1_row" + [i] + "_otherstitle", ""),
+                othersDesc: properties.get("form_newHome_step1_row" + [i] + "_othersDesc", "")
+
+            });
 
 
-        // controller.formValues.nestedObj.R5consType = properties.get("form_newHome_step1_row5_constType", "");
-        // controller.formValues.nestedObj.R5quantDesc = properties.get("form_newHome_step1_row5_quantyDesc", "");
-        // controller.formValues.nestedObj.R5rateDesc = properties.get("form_newHome_step1_row5_inputDesc", "");
 
-
-        // for (var i = 6; i < 11; i++) {
-        //     controller.formValues.nestedObj.feeType[i] = properties.get("form_newHome_step1_row[i]_constType", "");
-        //     controller.formValues.nestedObj.rateValue[i] = properties.get("form_newHome_step1_row[i]_inputDesc", "");
-        // }
+        }
 
         controller.formValues.PMValue = properties.get("form_newHome_step1_totalValue", "");
 
@@ -157,19 +157,83 @@ use(function () {
         controller.formValues.totalGstFee = properties.get("form_newHome_step3_totalGstFee", "");
         controller.formValues.totalPermitGstFee = properties.get("form_newHome_step3_totalPermitGstFee", "");
 
-
+        return controller;
 
 
     } else if (controller.pdFormType == "multiFammilyLowRise") {
 
-
         formValues = {};
-
 
         controller.formValues.step1Title = properties.get("form_multifamilylowriseForm_step1_title", "");
         controller.formValues.step2Title = properties.get("form_multifamilylowriseForm_step2_title", "");
         controller.formValues.step3Title = properties.get("form_multifamilylowriseForm_step3_title", "");
-        //step 1 remaining
+
+        //step 1 
+        controller.formValues.C1S1title = properties.get("form_multifamilylowriseForm_step1_col1_title", "");
+        controller.formValues.C2S1title = properties.get("form_multifamilylowriseForm_step1_col2_title", "");
+        controller.formValues.C3S1title = properties.get("form_multifamilylowriseForm_step1_col3_title", "");
+        controller.formValues.C4S1title = properties.get("form_multifamilylowriseForm_step1_col4_title", "");
+
+        for (var i = 1; i < 12; i++) {
+            if (i < 4) {
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_multifamilylowriseForm_step1_row+" [i] + "_quantyDesc", ""),
+                    borderval: "",
+                    otherstitle: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+            } else if ((i > 4) && (i < 9)) {
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_multifamilylowriseForm_step1_row+" [i] + "_quantyDesc", ""),
+                    borderval: "Yes",
+                    otherstitle: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+            } else if (i == 9) {
+
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_multifamilylowriseForm_step1_row+" [i] + "_quantyDesc", ""),
+                    borderval: "",
+                    otherstitle: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+            } else if (i == 10) {
+
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_multifamilylowriseForm_step1_row+" [i] + "_quantyDesc", ""),
+                    borderval: "Yes",
+                    otherstitle: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+            }
+
+
+
+        }
+
+        controller.formValues.PMValue = properties.get("form_multifamilylowriseForm_step1_totalValue", "");
+
+
+
         //for step 2 
 
         controller.formValues.C1title = properties.get("form_multifamilylowriseForm_step2_col1_title", "");
@@ -231,7 +295,7 @@ use(function () {
         controller.formValues.addR4totalText = properties.get("form_multifamilylowriseForm_step3_row4_totalText", "");
 
 
-
+        return controller;
 
 
     } else if (controller.pdFormType == "multiFammilyHigHRise") {
@@ -241,7 +305,49 @@ use(function () {
         controller.formValues.step1Title = properties.get("form_multifamilyhighriseForm_step1_title", "");
         controller.formValues.step2Title = properties.get("form_multifamilyhighriseForm_step2_title", "");
         controller.formValues.step3Title = properties.get("form_multifamilyhighriseForm_step3_title", "");
-        //step 1 remaining
+
+        //step 1
+        controller.formValues.C1S1title = properties.get("form_multifamilyhighriseForm_step1_col1_title", "");
+        controller.formValues.C2S1title = properties.get("form_multifamilyhighriseForm_step1_col2_title", "");
+        controller.formValues.C3S1title = properties.get("form_multifamilyhighriseForm_step1_col3_title", "");
+        controller.formValues.C4S1title = properties.get("form_multifamilyhighriseForm_step1_col4_title", "");
+
+
+        for (var i = 1; i < 6; i++) {
+            if (i < 5) {
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_multifamilyhighriseForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_multifamilyhighriseForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_multifamilyhighriseForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_multifamilyhighriseForm_step1_row+" + [i] + "_quantyDesc", ""),
+                    borderval: "Yes",
+                    otherstitle: properties.get("form_multifamilyhighriseForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_multifamilyhighriseForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+
+            } else {
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_multifamilyhighriseForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_multifamilyhighriseForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_multifamilyhighriseForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_multifamilyhighriseForm_step1_row+" + [i] + "_quantyDesc", ""),
+                    borderval: "",
+                    otherstitle: properties.get("form_multifamilyhighriseForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_multifamilyhighriseForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+
+            }
+
+
+
+        }
+
+        controller.formValues.PMValue = properties.get("form_multifamilyhighriseForm_step1_totalValue", "");
+
         //for step 2 
 
         controller.formValues.C1title = properties.get("form_multifamilyhighriseForm_step2_col1_title", "");
@@ -290,7 +396,7 @@ use(function () {
         controller.formValues.addR4totalText = properties.get("form_multifamilyhighriseForm_step3_row4_totalText", "");
 
 
-
+        return controller;
 
     } else if (controller.pdFormType == "demolition") {
 
@@ -299,7 +405,6 @@ use(function () {
         controller.formValues.step1Title = properties.get("form_demolition_step1_title", "");
         controller.formValues.step3Title = properties.get("form_demolition_step2_title", "");
 
-        //step 2 remaining
         //for step 1 
 
         controller.formValues.C1title = properties.get("form_demolition_step1_col1_title", "");
@@ -316,7 +421,7 @@ use(function () {
         controller.formValues.R2Rate = properties.get("form_demolition_step1_row2_rateDesc", "");
         controller.formValues.baseFee = properties.get("form_demolition_step1_baseFeeTotal", "");
 
-        //step3
+        //step2
         controller.formValues.addC1Title = properties.get("form_demolition_step2_col1_title", "");
         controller.formValues.addC2Title = properties.get("form_demolition_step2_col2_title", "");
         controller.formValues.addC3Title = properties.get("form_demolition_step2_col3_title", "");
@@ -328,7 +433,7 @@ use(function () {
         controller.formValues.addR1maxVal = properties.get("form_demolition_step2_row1_maxVal", "");
         controller.formValues.addR4totalText = properties.get("form_demolition_step2_row4_totalText", "");
 
-
+        return controller;
 
     } else if (controller.pdFormType == "wareHouses") {
 
@@ -339,7 +444,59 @@ use(function () {
         controller.formValues.step2Title = properties.get("form_warehousesForm_step2_title", "");
         controller.formValues.step3Title = properties.get("form_warehousesForm_step3_title", "");
 
-        //step 1 remaining
+
+        //step 1
+        controller.formValues.C1S1title = properties.get("form_warehousesForm_step1_col1_title", "");
+        controller.formValues.C2S1title = properties.get("form_warehousesForm_step1_col2_title", "");
+        controller.formValues.C3S1title = properties.get("form_warehousesForm_step1_col3_title", "");
+        controller.formValues.C4S1title = properties.get("form_warehousesForm_step1_col4_title", "");
+
+
+        for (var i = 1; i < 6; i++) {
+            if (i == 1) {
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_warehousesForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_warehousesForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_warehousesForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_warehousesForm_step1_row+" + [i] + "_quantyDesc", ""),
+                    borderval: "Yes",
+                    otherstitle: properties.get("form_warehousesForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_warehousesForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+
+            } else if (i == 2) {
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_warehousesForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_warehousesForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_warehousesForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_warehousesForm_step1_row+" + [i] + "_quantyDesc", ""),
+                    borderval: "",
+                    otherstitle: properties.get("form_warehousesForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_warehousesForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+            } else if ((i == 3) || (i == 4)) {
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_warehousesForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_warehousesForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_warehousesForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_warehousesForm_step1_row+" + [i] + "_quantyDesc", ""),
+                    borderval: "Yes",
+                    otherstitle: properties.get("form_warehousesForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_warehousesForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+            }
+
+        }
+
+        controller.formValues.PMValue = properties.get("form_warehousesForm_step1_totalValue", "");
+
+
         //for step 2 
 
         controller.formValues.C1title = properties.get("form_warehousesForm_step2_col1_title", "");
@@ -388,7 +545,7 @@ use(function () {
         controller.formValues.addR4rateDesc = properties.get("form_warehousesForm_step3_row4_rateDesc", "");
         controller.formValues.addR4totalText = properties.get("form_warehousesForm_step3_row4_totalText", "");
 
-
+        return controller;
 
 
     } else if (controller.pdFormType == "careFacilities") {
@@ -400,7 +557,57 @@ use(function () {
         controller.formValues.step2Title = properties.get("form_careFacilitiesForm_step2_title", "");
         controller.formValues.step3Title = properties.get("form_careFacilitiesForm_step3_title", "");
 
-        //step 1 remaining
+        //step 1
+        controller.formValues.C1S1title = properties.get("form_careFacilitiesForm_step1_col1_title", "");
+        controller.formValues.C2S1title = properties.get("form_careFacilitiesForm_step1_col2_title", "");
+        controller.formValues.C3S1title = properties.get("form_careFacilitiesForm_step1_col3_title", "");
+        controller.formValues.C4S1title = properties.get("form_careFacilitiesForm_step1_col4_title", "");
+
+
+        for (var i = 1; i < 6; i++) {
+            if (i == 1) {
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_careFacilitiesForm_step1_row+" + [i] + "_quantyDesc", ""),
+                    borderval: "Yes",
+                    otherstitle: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+
+            } else if ((i == 2) || (i == 3)) {
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_careFacilitiesForm_step1_row+" + [i] + "_quantyDesc", ""),
+                    borderval: "",
+                    otherstitle: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+            } else if ((i == 4) || (i == 5)) {
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_careFacilitiesForm_step1_row+" + [i] + "_quantyDesc", ""),
+                    borderval: "Yes",
+                    otherstitle: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+            }
+
+        }
+
+        controller.formValues.PMValue = properties.get("form_careFacilitiesForm_step1_totalValue", "");
+
         //for step 2 
 
         controller.formValues.C1title = properties.get("form_careFacilitiesForm_step2_col1_title", "");
@@ -449,7 +656,7 @@ use(function () {
         controller.formValues.addR4rateDesc = properties.get("form_careFacilitiesForm_step3_row4_rateDesc", "");
         controller.formValues.addR4totalText = properties.get("form_careFacilitiesForm_step3_row4_totalText", "");
 
-
+        return controller;
 
 
     } else if (controller.pdFormType == "hotels") {
@@ -461,7 +668,69 @@ use(function () {
         controller.formValues.step2Title = properties.get("form_hotelsForm_step2_title", "");
         controller.formValues.step3Title = properties.get("form_hotelsForm_step3_title", "");
 
-        //step 1 remaining
+          //step 1
+          controller.formValues.C1S1title = properties.get("form_hotelsForm_step1_col1_title", "");
+          controller.formValues.C2S1title = properties.get("form_hotelsForm_step1_col2_title", "");
+          controller.formValues.C3S1title = properties.get("form_hotelsForm_step1_col3_title", "");
+          controller.formValues.C4S1title = properties.get("form_hotelsForm_step1_col4_title", "");
+  
+  
+          for (var i = 1; i < 6; i++) {
+              if (i == 1) {
+                  controller.formValues.pmvArr.push({
+                      Subhead: properties.get("form_hotelsForm_step1_row" + [i] + "_rowTitle", ""),
+                      feeType: properties.get("form_hotelsForm_step1_row" + [i] + "_constType", ""),
+                      rate: properties.get("form_hotelsForm_step1_row" + [i] + "_inputDesc", ""),
+                      quantityDesc: properties.get("form_hotelsForm_step1_row+" + [i] + "_quantyDesc", ""),
+                      borderval: "Yes",
+                      otherstitle: properties.get("form_hotelsForm_step1_row" + [i] + "_otherstitle", ""),
+                      othersDesc: properties.get("form_hotelsForm_step1_row" + [i] + "_othersDesc", "")
+  
+                  });
+  
+  
+              } else if (i == 2) {
+                  controller.formValues.pmvArr.push({
+                      Subhead: properties.get("form_hotelsForm_step1_row" + [i] + "_rowTitle", ""),
+                      feeType: properties.get("form_hotelsForm_step1_row" + [i] + "_constType", ""),
+                      rate: properties.get("form_hotelsForm_step1_row" + [i] + "_inputDesc", ""),
+                      quantityDesc: properties.get("form_hotelsForm_step1_row+" + [i] + "_quantyDesc", ""),
+                      borderval: "",
+                      otherstitle: properties.get("form_hotelsForm_step1_row" + [i] + "_otherstitle", ""),
+                      othersDesc: properties.get("form_hotelsForm_step1_row" + [i] + "_othersDesc", "")
+  
+                  });
+  
+              } else if ((i == 3) || (i == 4)) {
+                  controller.formValues.pmvArr.push({
+                      Subhead: properties.get("form_hotelsForm_step1_row" + [i] + "_rowTitle", ""),
+                      feeType: properties.get("form_hotelsForm_step1_row" + [i] + "_constType", ""),
+                      rate: properties.get("form_hotelsForm_step1_row" + [i] + "_inputDesc", ""),
+                      quantityDesc: properties.get("form_hotelsForm_step1_row+" + [i] + "_quantyDesc", ""),
+                      borderval: "Yes",
+                      otherstitle: properties.get("form_hotelsForm_step1_row" + [i] + "_otherstitle", ""),
+                      othersDesc: properties.get("form_hotelsForm_step1_row" + [i] + "_othersDesc", "")
+  
+                  });
+  
+              } else{
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_hotelsForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_hotelsForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_hotelsForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_hotelsForm_step1_row+" + [i] + "_quantyDesc", ""),
+                    borderval: "",
+                    otherstitle: properties.get("form_hotelsForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_hotelsForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+            }
+  
+          }
+  
+          controller.formValues.PMValue = properties.get("form_hotelsForm_step1_totalValue", "");
+
         //for step 2 
 
         controller.formValues.C1title = properties.get("form_hotelsForm_step2_col1_title", "");
@@ -509,8 +778,10 @@ use(function () {
         controller.formValues.addR4inputDesc = properties.get("form_hotelsForm_step3_row4_inputDesc", "");
         controller.formValues.addR4rateDesc = properties.get("form_hotelsForm_step3_row4_rateDesc", "");
         controller.formValues.addR4totalText = properties.get("form_hotelsForm_step3_row4_totalText", "");
+
+        return controller;
+
     }
 
-    return controller;
 
 });
