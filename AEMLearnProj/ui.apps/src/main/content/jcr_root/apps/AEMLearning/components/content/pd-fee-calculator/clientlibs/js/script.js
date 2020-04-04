@@ -141,7 +141,9 @@
             return false;
         }
     };
-
+    PD_CALC.methods.trimSpaces = function(str){
+        return str.replace(/ +/g, "")
+    };
     PD_CALC.additionalFeesObj = {
         basePermitFee: 0,
         safetyCouncilBasePermit: 0,
@@ -393,5 +395,14 @@
                 $("#partial_permit_totalF2").html("");
                 PD_CALC.additionalFeesObj.partialPermit = 0;
             }
+        })
+        $(".pmv").keyup(function(){
+            var input = PD_CALC.methods.getNum(this.value),
+                rate = PD_CALC.methods.getNum($(this).attr("data-rate")),
+                totalEle = document.getElementById($(this).attr("data-feeType") + "_total");
+            if(this.value == "")
+            $(totalEle).html("");
+            else
+            $(totalEle).html(PD_CALC.methods.numberWithCommas(parseFloat(input*rate).toFixed(2)));
         })
     }
