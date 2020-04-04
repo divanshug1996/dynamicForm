@@ -781,6 +781,8 @@ use(function () {
 
         return controller;
 
+    } else if(controller.pdFormType == "planningApp"){
+        return controller;
     }
 
 
