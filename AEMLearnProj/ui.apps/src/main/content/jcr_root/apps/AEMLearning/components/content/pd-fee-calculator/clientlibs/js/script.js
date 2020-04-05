@@ -1,4 +1,4 @@
-var input_ele, rate_ele, pf_ele, pfTotal_ele, baseFee_ele, PMVTotal_ele, PartialP_ele, ground_checkbox = 0, temp_checkbox = 0, hydronic_heat = 0;
+var input_ele, rate_ele, pf_ele, pfTotal_ele, baseFee_ele, PMVTotal_ele,Ftype, PartialP_ele, ground_checkbox = 0, temp_checkbox = 0, hydronic_heat = 0;
 const PD_CALC = {};
 PD_CALC.constants = {};
 PD_CALC.glob = {};
@@ -151,6 +151,7 @@ PD_CALC.additionalFeesObj = {
     safetyCouncilPartPermit: 0,
     partialPermitFee: 0,
     lotGradingFee: 0,
+    waterFee : 0,
     set basePermit(basePermit) {
         this.basePermitFee = parseFloat(basePermit);
         PD_CALC.methods.changeTotal(PD_CALC.additionalFeesObj);
@@ -171,10 +172,12 @@ PD_CALC.additionalFeesObj = {
         this.lotGradingFee = parseFloat(lotGrading);
         PD_CALC.methods.changeTotal(PD_CALC.additionalFeesObj);
     },
+    set water(water){
+        this.waterFee = parseFloat(water);
+        PD_CALC.methods.changeTotal(PD_CALC.additionalFeesObj);
+    }
 };
 PD_CALC.methods.changeTotal = function (additionalFeesObj) {
-    console.log("hello I am called here")
-    console.log("additional Fee", additionalFeesObj);
     var sum = 0;
     for (const property in additionalFeesObj) {
         if (additionalFeesObj[property] != undefined)
@@ -182,6 +185,10 @@ PD_CALC.methods.changeTotal = function (additionalFeesObj) {
     }
     console.log("sum", sum)
     $(".step3-final-total").html(PD_CALC.methods.numberWithCommas(sum.toFixed(2)));
+    if(Ftype == "newHomes"){
+        $("#gst").html(0);
+        $("#total-fee-inc-gst").html(PD_CALC.methods.numberWithCommas(sum.toFixed(2)));
+    }
 }
 
 PD_CALC.methods.calcBasePermitStep = function (num, type) {
@@ -204,7 +211,6 @@ PD_CALC.methods.calcBasePermitStep = function (num, type) {
         $(baseFee_ele).html("")
 }
 PD_CALC.methods.caclStep1Total = function () {
-    console.log("inside")
     var sum = 0;
     $(".step1Total").each(function () {
         console.log($(this).html())
@@ -226,7 +232,7 @@ PD_CALC.events.init = function (type) {
         baseFee_ele = '#' + type + '_base-fee',
         PMVTotal_ele = '#' + type + '_permit_rate_total',
         PartialP_ele = "#" + type + "_partial_permit_input";
-
+        Ftype = type;
     $('input').keypress(function (e) {
         PD_CALC.methods.isNumeric(e);
     });
@@ -369,6 +375,10 @@ PD_CALC.events.init = function (type) {
         PD_CALC.additionalFeesObj.basePermit = parseFloat(prevBPF);
         PD_CALC.additionalFeesObj.safetyCouncilBase = parseFloat(newBPF);
         if (type == "demolition") $("#total-fee").html(parseFloat(prevBPF) + newBPF);
+        if(type == "newHomes") {
+            PD_CALC.additionalFeesObj.water = parseFloat($("#water_fee").attr("data-value")).toFixed(2)
+            $("#water_fee_total").html($("#water_fee").attr("data-value"));
+        };
     });
 
     $(PartialP_ele).keyup(function () {
@@ -409,9 +419,13 @@ PD_CALC.events.init = function (type) {
         if (checked) {
             $("#partial_permit_totalF2").html(PD_CALC.methods.numberWithCommas(partialPermit));
             PD_CALC.additionalFeesObj.partialPermit = parseFloat(partialPermit);
+            PD_CALC.additionalFeesObj.water = parseFloat($("#water_fee").attr("data-value")).toFixed(2)
+            $("#water_fee_total").html($("#water_fee").attr("data-value"));
         } else {
             $("#partial_permit_totalF2").html("");
             PD_CALC.additionalFeesObj.partialPermit = 0;
+            PD_CALC.additionalFeesObj.water = 0;
+            $("#water_fee_total").html("");
         }
     })
     $(".pmv").keyup(function () {
