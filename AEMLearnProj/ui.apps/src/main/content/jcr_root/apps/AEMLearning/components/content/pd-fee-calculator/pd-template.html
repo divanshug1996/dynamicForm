@@ -180,7 +180,7 @@
         <sly data-sly-test="${controller.pdFormType=='newHomes'}">
             <div class="row ">
                 <div class="col-xs-12 col-sm-6">
-                    <input type="checkbox" class="fees-values type3" id="partial_permit_checkbox">
+                    <input type="checkbox" class="fees-values" id="partial_permit_checkbox">
                     <label for="partial_permit_checkbox">${controller.formValues.addpartialtitle}</label>
                     <small>${controller.formValues.addpartialdesc}</small>
                 </div>
@@ -227,7 +227,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-3 text-center">
                     <span class="pull-left strong">+</span>
-                    $ <span class="rates" id="water_fee">${controller.formValues.s3rateDesc}</span>
+                    $ <span class="rates" id="water_fee" data-value="26.23">${controller.formValues.s3rateDesc}</span>
                     <span class="pull-right strong">=</span>
                 </div>
                 <div class="col-xs-12 col-sm-3">
