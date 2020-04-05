@@ -483,5 +483,21 @@ PD_CALC.events.init = function (type) {
         }
         
     })
+    $(".lowRiseInput").keyup(function(){
+        var id = $(this).attr("id"),
+            rate = PD_CALC.methods.getNum($("#" + id + "_rate").html()),
+            totalEle = $("#"+id+"_total");
+            console.log(id,rate,totalEle);
+        if(this.value != ""){
+            PD_CALC.additionalFeesObj.lotGrading = rate*parseFloat(this.value);
+            $(totalEle).html(rate*parseFloat(this.value));
+        }else{
+            $(totalEle).html("")
+            PD_CALC.additionalFeesObj.lotGrading = 0;
+        }
+        if($(".step1-final-total").html() =="")
+        $(".step1-final-total").html(0)
+        
+    })
 }
  
