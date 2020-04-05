@@ -36,7 +36,7 @@
                                      controller.pdFormType=='hotels' || 
                                      controller.pdFormType=='careFacilities' ||
                                      controller.pdFormType=='wareHouses'}">
-                    $ <span class="fees-values previous-total"></span>
+                    $ <span class="fees-values previous-total baseFeePrevTotal"></span>
                     <br>
                     <small class="text-center">${controller.formValues.feeInputDesc}</small>
                 </sly>
@@ -81,11 +81,11 @@
                 </div>
                 <div class="col-xs-12 col-sm-3 text-center">
                     <span class="pull-left strong">+</span>
-                    $ <span class="rates" id="temp_heat">${controller.formValues.rateDesc2}</span>*
+                    $ <span class="rates" id="temp_heat_checkbox_rate">${controller.formValues.rateDesc2}</span>*
                     <span class="pull-right strong">=</span>
                 </div>
                 <div class="col-xs-12 col-sm-3">
-                    $ <span class="totals fees-totals" id="temp_heat_total"></span>
+                    $ <span class="totals fees-totals" id="temp_heat_checkbox_total"></span>
                 </div>
             </div>
             <div class="row add-fee">
@@ -95,11 +95,11 @@
                 </div>
                 <div class="col-xs-12 col-sm-3 text-center">
                     <span class="pull-left strong">+</span>
-                    $ <span class="rates" id="hydronic_heat">${controller.formValues.rateDesc3}</span>*
+                    $ <span class="rates" id="hydronic_heat_checkbox_rate">${controller.formValues.rateDesc3}</span>*
                     <span class="pull-right strong">=</span>
                 </div>
                 <div class="col-xs-12 col-sm-3">
-                    $ <span class="totals fees-totals" id="hydronic_heat_total"></span>
+                    $ <span class="totals fees-totals" id="hydronic_heat_checkbox_total"></span>
                 </div>
             </div>
         </sly>
@@ -501,7 +501,7 @@
                         <span class="pull-right strong">=</span>
                     </div>
                     <div class="col-xs-12 col-sm-3">
-                        $ <span class="totals fees-totals" id="${PMV.feeType}_total"></span>
+                        $ <span class="totals fees-totals step1Total" id="${PMV.feeType}_total"></span>
                     </div>
                 </div>
 
@@ -540,7 +540,7 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-3">
-                        $ <span class="totals fees-totals" id="${PMV.feeType}_total"></span>
+                        $ <span class="totals fees-totals step1Total" id="${PMV.feeType}_total"></span>
                     </div>
 
                 </div>
@@ -569,7 +569,7 @@
                         <span class="pull-right strong">=</span>
                     </div>
                     <div class="col-xs-12 col-sm-3">
-                        $ <span class="totals fees-totals" id="${PMV.feeType}_total"></span>
+                        $ <span class="totals fees-totals step1Total" id="${PMV.feeType}_total"></span>
                     </div>
                 </div>
             </sly>
@@ -584,7 +584,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-3">
                         <label class="sr-only" for="other_input">Other total</label>
-                        $ <input class="form-control construction-values long-form pmv ${controller.pdFormType}" type="text" id="other_input"
+                        $ <input class="form-control construction-values long-form pmv ${controller.pdFormType}" data-feeType="other" type="text" id="other_input"
                             pattern="[0-9]*" inputmode="numeric">
                         <span class="hidden totals" id="other_total"></span>
                     </div>
@@ -593,7 +593,7 @@
         </sly>
         <div class="row finals">
             <div class="col-sm-9 text-right">${controller.formValues.PMValue}</div>
-            <div class="col-sm-3">$ <span class="totals step-total"></span></div>
+            <div class="col-sm-3">$ <span class="totals step1-final-total step-total"></span></div>
             <div>
                 <div class="col-sm-9">
                     <p class="small text-left">
