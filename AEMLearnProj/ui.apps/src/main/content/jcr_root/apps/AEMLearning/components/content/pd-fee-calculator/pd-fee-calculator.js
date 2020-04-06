@@ -185,7 +185,10 @@ use(function () {
                     othersDesc: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_othersDesc", "")
 
                 });
-            } else if ((i > 4) && (i < 9)) {
+
+
+                
+            }else if ((i >= 4) && (i < 9)) {
                 controller.formValues.pmvArr.push({
                     Subhead: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_rowTitle", ""),
                     feeType: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_constType", ""),
@@ -467,7 +470,7 @@ use(function () {
                 });
 
 
-            } else if (i == 2) {
+            } else if ((i == 2)||(i == 3)) {
                 controller.formValues.pmvArr.push({
                     Subhead: properties.get("form_warehousesForm_step1_row" + [i] + "_rowTitle", ""),
                     feeType: properties.get("form_warehousesForm_step1_row" + [i] + "_constType", ""),
@@ -479,7 +482,7 @@ use(function () {
 
                 });
 
-            } else if ((i == 3) || (i == 4)) {
+            } else if ((i == 4)||(i == 5)) {
                 controller.formValues.pmvArr.push({
                     Subhead: properties.get("form_warehousesForm_step1_row" + [i] + "_rowTitle", ""),
                     feeType: properties.get("form_warehousesForm_step1_row" + [i] + "_constType", ""),
@@ -579,7 +582,7 @@ use(function () {
                 });
 
 
-            } else if ((i == 2) || (i == 3)) {
+            } else if (i == 2) {
                 controller.formValues.pmvArr.push({
                     Subhead: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_rowTitle", ""),
                     feeType: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_constType", ""),
@@ -591,13 +594,38 @@ use(function () {
 
                 });
 
-            } else if ((i == 4) || (i == 5)) {
+            }else if (i == 3) {
                 controller.formValues.pmvArr.push({
                     Subhead: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_rowTitle", ""),
                     feeType: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_constType", ""),
                     rate: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_inputDesc", ""),
                     quantityDesc: properties.get("form_careFacilitiesForm_step1_row+" + [i] + "_quantyDesc", ""),
                     borderval: "Yes",
+                    otherstitle: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+            } else if (i == 4) {
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_careFacilitiesForm_step1_row+" + [i] + "_quantyDesc", ""),
+                    borderval: "Yes",
+                    otherstitle: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_otherstitle", ""),
+                    othersDesc: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_othersDesc", "")
+
+                });
+
+            }
+            else if (i == 5) {
+                controller.formValues.pmvArr.push({
+                    Subhead: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_rowTitle", ""),
+                    feeType: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_constType", ""),
+                    rate: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_inputDesc", ""),
+                    quantityDesc: properties.get("form_careFacilitiesForm_step1_row+" + [i] + "_quantyDesc", ""),
+                    borderval: "",
                     otherstitle: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_otherstitle", ""),
                     othersDesc: properties.get("form_careFacilitiesForm_step1_row" + [i] + "_othersDesc", "")
 
