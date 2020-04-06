@@ -20,15 +20,15 @@
     <h2 class="expand-content"><button class="cui btn-lg primary-fluid expand-btn expand-btn-0"
             aria-expanded="false" aria-controls="expand-0"><span class="closed cicon-plus-circle left pull-left"
                 aria-hidden="true"></span><span class="open cicon-minus-circle left pull-left"
-                aria-hidden="true"></span>Residential Development Permits</button></h2>
+                aria-hidden="true"></span>${controller.formValues.resDevheadingtext}</button></h2>
     <div class="expanding-content" id="expand-0" aria-hidden="true">
         <div class="draft draft-text"></div>
         <div class="container-fluid">
             <div class="row no-border">
-                <div class="col-xs-12 strong">Additions</div>
+                <div class="col-xs-12 strong">${controller.formValues.additionsubHeadingText}</div>
             </div>
             <div class="row fees" data-total-highest-value="true">
-                <div class="col-xs-12 sub-type pad-bottom-10">Additions to Manufactured Home</div>
+                <div class="col-xs-12 sub-type pad-bottom-10">${controller.formValues.residentialR1}</div>
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input class="form-control short-form" id="input01" type="text" pattern="[0-9]*"
                         inputmode="numeric" data-switch-over="10" data-no-decimals="true">
@@ -78,8 +78,7 @@
             </div>
 
             <div class="row fees" data-total-highest-value="true">
-                <div class="col-xs-12 sub-type pad-bottom-10">Additions to Single, Semi-detached &amp; Duplex
-                    Dwellings in the Developed Area</div>
+                <div class="col-xs-12 sub-type pad-bottom-10">${controller.formValues.residentialR2}</div>
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input class="form-control short-form" id="input02" type="text" pattern="[0-9]*"
                         inputmode="numeric" data-switch-over="10" data-no-decimals="true">
@@ -151,30 +150,30 @@
             </div>
 
             <div class="row no-border header-row">
-                <div class="col-xs-12 strong">New</div>
+                <div class="col-xs-12 strong">${controller.formValues.residentialSubheading2}</div>
             </div>
 
             <div class="row fees" data-total-highest-value="true">
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="new-secondary" data-id="new_secondary_suite" data-num="3">
-                    <label for="new-secondary">Secondary Suite / Backyard Suite</label>
+                    <label for="new-secondary">${controller.formValues.newPermitR1TextLabel}/label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="new_secondary_suite">
                         <div class="col-xs-3">
-                            <span class="base_fee fee" id="base-fee3" data-value="0">$0.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee3" data-value="${controller.formValues.newPermitR1baseFeenumLabel}">$${controller.formValues.newPermitR1baseFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR1baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-3"></div>
                         <div class="col-xs-3">
-                            <span class="DCP_fee fee" id="dcp-fee3" data-value="0">$0.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee3" data-value="${controller.formValues.newPermitR1dcpnumLabel}">$${controller.formValues.newPermitR1dcpnumLabel}</span>
+                            <small>${controller.formValues.newPermitR1dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="advertising_fee fee" id="ad-fee3" data-value="0">$0.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee3" data-value="${controller.formValues.newPermitR1adnumLabel}">$${controller.formValues.newPermitR1adnumLabel}</span>
+                            <small>${controller.formValues.newPermitR1adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -189,43 +188,35 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="new_contextual" data-num="4"
                         data-id="new_contextual_dwellings_in_developed_area">
-                    <label for="new_contextual">Contextual dwellings in the Developed Area</label>
+                    <label for="new_contextual">${controller.formValues.newPermitR2TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="new_contextual_dwellings_in_developed_area">
                         <div class="col-xs-3">
-                            <span class="base_fee fee" id="base-fee4" data-value="393">$393.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee4" data-value="${controller.formValues.newPermitR2baseFeenumLabel}">$${controller.formValues.newPermitR2baseFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR2baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="grades_fee fee" id="grad-fee4" data-value="472">$472.00</span>
+                            <span class="grades_fee fee" id="grad-fee4" data-value="${controller.formValues.newPermitR2gradesFeenumLabel}">$${controller.formValues.newPermitR2gradesFeenumLabel}</span>
                             <small>
-                                Grades fee
+                                ${controller.formValues.newPermitR2gradesFeeLabel}
                                 <span><a href="#" class="pop" aria-haspopup="true"><span aria-hidden="true"
                                             class="icon cicon-question-circle"></span><span class="sr-only">What is
                                             grade fee?</span></a></span>
                                 <div class="tooltip-content">
-                                    <strong>Building Grade fee:</strong> for new Single, Semi-detached, and Duplex
-                                    Dwellings, the Building Grade fee is due at the time of Development Permit
-                                    application, unless previously paid. This fee may also be charged on Additions
-                                    to Single, Semi-detached, and Duplex Dwellings in the Developed Area - over 10
-                                    m<sup>2</sup>, dependent on the scope of the application. The Building Grades
-                                    fee for multi-residential, commercial and industrial developments is due at the
-                                    time of Development Site Servicing Plan (DSSP) application. The Building Grade
-                                    fee is set by Utility Site Servicing Bylaw 33M2005 and is listed on this
-                                    schedule for convenience only.
+                                    ${controller.formValues.newPermitR2gradesFeeDesc}
                                 </div>
                             </small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="DCP_fee fee" id="dcp-fee4" data-value="245">$245.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee4" data-value="${controller.formValues.newPermitR2dcpFeenumLabel}">$${controller.formValues.newPermitR2dcpFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR2dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="advertising_fee fee" id="ad-fee4" data-value="0">$0.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee4" data-value="${controller.formValues.newPermitR2adFeenumLabel}">$${controller.formValues.newPermitR2adFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR2adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -240,24 +231,24 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="new_home_oc" data-num="5"
                         data-id="new_home_occupation_class_2">
-                    <label for="new_home_oc">Home Occupation - Class 2</label>
+                    <label for="new_home_oc">${controller.formValues.newPermitR3TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="new_home_occupation_class_2">
                         <div class="col-xs-3">
-                            <span class="base_fee fee" id="base-fee5" data-value="449">$449.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee5" data-value="${controller.formValues.newPermitR3baseFeenumLabel}">$${controller.formValues.newPermitR3baseFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR3baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-3"></div>
                         <div class="col-xs-3">
-                            <span class="DCP_fee fee" id="dcp-fee5" data-value="0">$0.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee5" data-value="${controller.formValues.newPermitR3dcpFeenumLabel}">$${controller.formValues.newPermitR3dcpFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR3dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="advertising_fee fee" id="ad-fee5" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee5" data-value="${controller.formValues.newPermitR3adFeenumLabel}">$${controller.formValues.newPermitR3adFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR3adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -272,24 +263,24 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="dev-design" data-num="6"
                         data-id="development_design_guidelines">
-                    <label for="dev-design">Development Design Guidelines (tract housing)</label>
+                    <label for="dev-design">${controller.formValues.newPermitR4TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="development_design_guidelines">
                         <div class="col-xs-3">
-                            <span class="base_fee fee" id="base-fee6" data-value="621">$621.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee6" data-value="${controller.formValues.newPermitR4baseFeenumLabel}">$${controller.formValues.newPermitR4baseFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR4baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-3"></div>
                         <div class="col-xs-3">
-                            <span class="DCP_fee fee" id="dcp-fee6" data-value="0">$0.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee6" data-value="${controller.formValues.newPermitR4dcpFeenumLabel}">$${controller.formValues.newPermitR4dcpFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR4dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="advertising_fee fee" id="ad-fee6" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee6" data-value="${controller.formValues.newPermitR4adFeenumLabel}">$${controller.formValues.newPermitR4adFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR4adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -303,24 +294,24 @@
             <div class="row fees" data-total-highest-value="true">
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="new_man_home" data-id="new_manufactured_home" data-num="7">
-                    <label for="new_man_home">Manufactured Home</label>
+                    <label for="new_man_home">${controller.formValues.newPermitR5TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="new_manufactured_home">
                         <div class="col-xs-3">
-                            <span class="base_fee fee" id="base-fee7" data-value="592">$592.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee7" data-value="${controller.formValues.newPermitR5baseFeenumLabel}">$${controller.formValues.newPermitR5baseFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR5baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-3"></div>
                         <div class="col-xs-3">
-                            <span class="DCP_fee fee" id="dcp-fee7" data-value="245">$245.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee7" data-value="${controller.formValues.newPermitR5dcpFeenumLabel}">$${controller.formValues.newPermitR5dcpFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR5dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="advertising_fee fee" id="ad-fee7" data-value="0">$0.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee7" data-value="${controller.formValues.newPermitR5adFeenumLabel}">$${controller.formValues.newPermitR5adFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR5adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -332,8 +323,7 @@
             </div>
 
             <div class="row fees" data-total-highest-value="true">
-                <div class="col-xs-12 sub-type pad-bottom-10">Multi-residential development, townhouses, rowhouses -
-                    discretionary use or relaxations required</div>
+                <div class="col-xs-12 sub-type pad-bottom-10">${controller.formValues.newPermitR6TextLabel}</div>
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input class="form-control short-form" id="input03" type="text" pattern="[0-9]*"
                         inputmode="numeric" data-no-decimals="true">
@@ -345,20 +335,20 @@
                     <div class="row base"
                         id="new_multi-residential_development_discretionary_use_or_relaxations_required">
                         <div class="col-xs-3">
-                            <span class="base_fee fee" id="base-fee8" data-value="837">$837.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee8" data-value="${controller.formValues.newPermitR6baseFeenumLabel}">$${controller.formValues.newPermitR6baseFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR6unitFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="base_fee_per_unit fee" data-multiply="true" id="input03_rate" data-value="50">$50.00</span>
-                            <small>per unit</small>
+                            <span class="base_fee_per_unit fee" data-multiply="true" id="input03_rate" data-value="${controller.formValues.newPermitR6unitFeenumLabel}">$${controller.formValues.newPermitR6unitFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR6gradesFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="DCP_fee fee" id="dcp-fee8" data-value="245">$245.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee8" data-value="${controller.formValues.newPermitR6dcpFeenumLabel}">$${controller.formValues.newPermitR6dcpFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR6dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="advertising_fee fee" id="ad-fee8" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee8" data-value="${controller.formValues.newPermitR6adFeenumLabel}">$${controller.formValues.newPermitR6adFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR6adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -370,8 +360,7 @@
             </div>
 
             <div class="row fees" data-total-highest-value="true">
-                <div class="col-xs-12 sub-type pad-bottom-10">Multi-residential development, townhouses, rowhouses -
-                    permitted use</div>
+                <div class="col-xs-12 sub-type pad-bottom-10">${controller.formValues.newPermitR7TextLabel}</div>
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input class="form-control short-form" id="input04" type="text" pattern="[0-9]*"
                         inputmode="numeric" data-no-decimals="true">
@@ -382,20 +371,20 @@
 
                     <div class="row base" id="new_multi-residential_development_permitted_use">
                         <div class="col-xs-3">
-                            <span class="base_fee fee" id="base-fee9" data-value="837">$837.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee9" data-value="${controller.formValues.newPermitR7baseFeenumLabel}">$${controller.formValues.newPermitR7baseFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR7baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="base_fee_per_unit fee" id="input04_rate" data-multiply="true" data-value="50">$50.00</span>
-                            <small>per unit</small>
+                            <span class="base_fee_per_unit fee" id="input04_rate" data-multiply="true" data-value="${controller.formValues.newPermitR7gradesFeenumLabel}">$${controller.formValues.newPermitR7gradesFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR7gradesFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="DCP_fee fee" id="dcp-fee9" data-value="245">$245.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee9" data-value="${controller.formValues.newPermitR7dcpFeenumLabel}">$${controller.formValues.newPermitR7dcpFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR7dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="advertising_fee fee" id="ad-fee9" data-value="0">$0.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee9" data-value="${controller.formValues.newPermitR7adFeenumLabel}">$${controller.formValues.newPermitR7adFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR7adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -410,45 +399,36 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="new_single_detach" data-num="10"
                         data-id="new_single_detached_semi-detached_duplex_in_developed_area">
-                    <label for="new_single_detach">Single Detached, Semi-detached &amp; Duplex Dwellings in the
-                        Developed Area</label>
+                    <label for="new_single_detach">${controller.formValues.newPermitR8TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="new_single_detached_semi-detached_duplex_in_developed_area">
                         <div class="col-xs-3">
-                            <span class="base_fee fee" id="base-fee10" data-value="1183">$1,183.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee10" data-value="${controller.formValues.newPermitR8baseFeenumLabel}">$${controller.formValues.newPermitR8baseFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR8baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="grades_fee fee" id="grad-fee10" data-value="472">$472.00</span>
+                            <span class="grades_fee fee" id="grad-fee10" data-value="${controller.formValues.newPermitR8gradesFeenumLabel}">$${controller.formValues.newPermitR8gradesFeenumLabel}</span>
                             <small>
-                                Grades fee
+                                ${controller.formValues.newPermitR8gradesFeeLabel}
                                 <span><a href="#" class="pop" aria-haspopup="true"><span aria-hidden="true"
                                             class="icon cicon-question-circle"></span><span class="sr-only">What is
                                             grade fee?</span></a></span>
                                 <div class="tooltip-content">
-                                    <strong>Building Grade fee:</strong> for new Single, Semi-detached, and Duplex
-                                    Dwellings, the Building Grade fee is due at the time of Development Permit
-                                    application, unless previously paid. This fee may also be charged on Additions
-                                    to Single, Semi-detached, and Duplex Dwellings in the Developed Area - over 10
-                                    m<sup>2</sup>, dependent on the scope of the application. The Building Grades
-                                    fee for multi-residential, commercial and industrial developments is due at the
-                                    time of Development Site Servicing Plan (DSSP) application. The Building Grade
-                                    fee is set by Utility Site Servicing Bylaw 33M2005 and is listed on this
-                                    schedule for convenience only.
+                                  ${controller.formValues.newPermitR8gradesFeeMessage}
                                 </div>
                             </small>
 
                         </div>
                         <div class="col-xs-3">
-                            <span class="DCP_fee fee" id="dcp-fee10" data-value="245">$245.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee10" data-value="${controller.formValues.newPermitR8dcpFeenumLabel}">$${controller.formValues.newPermitR8dcpFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR8dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="advertising_fee fee" id="ad-fee10" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee10" data-value="${controller.formValues.newPermitR8adFeenumLabel}">$${controller.formValues.newPermitR8adFeenumLabel}</span>
+                            <small>${controller.formValues.newPermitR8adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -460,32 +440,31 @@
             </div>
 
             <div class="row no-border header-row">
-                <div class="col-xs-12 strong">Relaxations</div>
+                <div class="col-xs-12 strong">${controller.formValues.relaxationsSubHeadingText}</div>
             </div>
 
             <div class="row fees" data-total-highest-value="true">
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="relaxed-proposed" data-num="11"
                         data-id="relaxations_proposed_structures">
-                    <label for="relaxed-proposed">Proposed structures that do not meet all rules of Land Use Bylaw
-                        1P2007</label>
+                    <label for="relaxed-proposed">${controller.formValues.relaxationsR1TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="relaxations_proposed_structures">
                         <div class="col-xs-3">
-                            <span class="base_fee fee" id="base-fee11" data-value="384">$384.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee11" data-value="${controller.formValues.relaxationsR1baseFeenumLabel}">$${controller.formValues.relaxationsR1baseFeenumLabel}</span>
+                            <small>${controller.formValues.relaxationsR1baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-3"></div>
                         <div class="col-xs-3">
-                            <span class="DCP_fee fee" id="dcp-fee11" data-value="163">$163.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee11" data-value="${controller.formValues.relaxationsR1dcpFeenumLabel}">$${controller.formValues.relaxationsR1dcpFeenumLabel}</span>
+                            <small>${controller.formValues.relaxationsR1dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="advertising_fee fee" id="ad-fee11" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee11" data-value="${controller.formValues.relaxationsR1adFeenumLabel}">$${controller.formValues.relaxationsR1adFeenumLabel}</span>
+                            <small>${controller.formValues.relaxationsR1adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -500,25 +479,24 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="relaxed-existing" data-num="12"
                         data-id="relaxations_existing_structures">
-                    <label for="relaxed-existing">Existing structures that do not meet all rules of Land Use Bylaw
-                        1P2007</label>
+                    <label for="relaxed-existing">${controller.formValues.relaxationsR2TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="relaxations_existing_structures">
                         <div class="col-xs-3">
-                            <span class="base_fee fee" id="base-fee12"  data-value="167">$167.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee12"  data-value="${controller.formValues.relaxationsR2baseFeenumLabel}">$${controller.formValues.relaxationsR2baseFeenumLabel}</span>
+                            <small>${controller.formValues.relaxationsR2baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-3"></div>
                         <div class="col-xs-3">
-                            <span class="DCP_fee fee" id="dcp-fee12" data-value="0">$0.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee12" data-value="${controller.formValues.relaxationsR2dcpFeenumLabel}">$${controller.formValues.relaxationsR2dcpFeenumLabel}</span>
+                            <small>${controller.formValues.relaxationsR2dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="advertising_fee fee" id="ad-fee12" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee12" data-value="${controller.formValues.relaxationsR2adFeenumLabel}">$${controller.formValues.relaxationsR2adFeenumLabel}</span>
+                            <small>${controller.formValues.relaxationsR2adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -530,32 +508,31 @@
             </div>
 
             <div class="row no-border header-row">
-                <div class="col-xs-12 strong">Renovations</div>
+                <div class="col-xs-12 strong">${controller.formValues.renovationsSubHeadingText}</div>
             </div>
 
             <div class="row fees" data-total-highest-value="true">
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="renos-permitted" data-num="13"
                         data-id="renovations_permitted_use">
-                    <label for="renos-permitted">Multi-residential development, townhouses, rowhouses - permitted
-                        use</label>
+                    <label for="renos-permitted">${controller.formValues.renovationsR1TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="renovations_permitted_use">
                         <div class="col-xs-3">
-                            <span class="base_fee fee"id="base-fee13" data-value="690">$690.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee"id="base-fee13" data-value="${controller.formValues.renovationsR1baseFeenumLabel}">$${controller.formValues.renovationsR1baseFeenumLabel}</span>
+                            <small>${controller.formValues.renovationsR1baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-3"></div>
                         <div class="col-xs-3">
-                            <span class="DCP_fee fee" id="dcp-fee13" data-value="163">$163.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee13" data-value="${controller.formValues.renovationsR1dcpFeenumLabel}">$${controller.formValues.renovationsR1dcpFeenumLabel}</span>
+                            <small>${controller.formValues.renovationsR1dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="advertising_fee fee" id="ad-fee13" data-value="0">$0.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee13" data-value="${controller.formValues.renovationsR1adFeenumLabel}">$${controller.formValues.renovationsR1adFeenumLabel}</span>
+                            <small>${controller.formValues.renovationsR1adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -571,25 +548,24 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="renos-discretionary" data-num="14"
                         data-id="renovations_discretionary_use">
-                    <label for="renos-discretionary">Multi-residential development, townhouses, rowhouses -
-                        discretionary use or relaxations</label>
+                    <label for="renos-discretionary">${controller.formValues.renovationsR2TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="renovations_discretionary_use">
                         <div class="col-xs-3">
-                            <span class="base_fee fee" id="base-fee14" data-value="690">$690.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee14" data-value="${controller.formValues.renovationsR2baseFeenumLabel}">$${controller.formValues.renovationsR2baseFeenumLabel}</span>
+                            <small>${controller.formValues.renovationsR2baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-3"></div>
                         <div class="col-xs-3">
-                            <span class="DCP_fee fee" id="dcp-fee14" data-value="163">$163.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee14" data-value="${controller.formValues.renovationsR2dcpFeenumLabel}">$${controller.formValues.renovationsR2dcpFeenumLabel}</span>
+                            <small>${controller.formValues.renovationsR2dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-3">
-                            <span class="advertising_fee fee" id="ad-fee14" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee14" data-value="${controller.formValues.renovationsR2adFeenumLabel}">$${controller.formValues.renovationsR2adFeenumLabel}</span>
+                            <small>${controller.formValues.renovationsR2adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -608,17 +584,17 @@
     <h2 class="expand-content"><button class="cui btn-lg primary-fluid expand-btn expand-btn-0"
             aria-expanded="false" aria-controls="expand-1"><span class="closed cicon-plus-circle left pull-left"
                 aria-hidden="true"></span><span class="open cicon-minus-circle left pull-left"
-                aria-hidden="true"></span>Commercial / Industrial / Mixed Use Development Permits</button></h2>
+                aria-hidden="true"></span>${controller.formValues.commercialDevheadingtext}</button></h2>
     <div class="expanding-content" id="expand-1" aria-hidden="true">
         <div class="draft draft-text"></div>
         <div class="container-fluid">
 
             <div class="row no-border">
-                <div class="col-xs-12 strong">Additions / New</div>
+                <div class="col-xs-12 strong">${controller.formValues.commercialDevsubheadingtext}div>
             </div>
 
             <div class="row fees" data-total-highest-value="true">
-                <div class="col-xs-12 col-sm-2 sub-type">Commercial buildings</div>
+                <div class="col-xs-12 col-sm-2 sub-type">${controller.formValues.commercialDevR1TextLabel}</div>
                 <div class="col-xs-12 col-sm-2">
                     <input class="form-control short-form" id="input05" type="text" pattern="[0-9]*"
                         inputmode="numeric" data-no-decimals="true">
@@ -629,18 +605,18 @@
 
                     <div class="row base" id="additions_commercial_buildings">
                         <div class="col-xs-4">
-                            <span class="base_fee_per_metre fee" id="input05_rate" data-multiply="true" data-min="1823"
-                                data-value="0.8">$0.80</span>
-                            <small>per m<sup>2</sup> of GFA </small>
-                            <small>Min: <span class="min">$1,823.00</span></small>
+                            <span class="base_fee_per_metre fee" id="input05_rate" data-multiply="true" data-min="${controller.formValues.commercialDevR1MinNumLabel}"
+                                data-value="${controller.formValues.commercialDevR1gfaFeenumLabel}">$${controller.formValues.commercialDevR1gfaFeenumLabel}</span>
+                            <small>${controller.formValues.commercialDevR1gfaFeeLabel @context= "html"}</small>
+                            <small>Min: <span class="min">$${controller.formValues.commercialDevR1MinNumLabel}</span></small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee" id="input05_DCP_fee" data-value="245">$245.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="input05_DCP_fee" data-value="${controller.formValues.commercialDevR1dcpFeenumLabel}">$${controller.formValues.commercialDevR1dcpFeenumLabel}</span>
+                            <small>${controller.formValues.commercialDevR1dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee" id="input05_ad_fee" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="input05_ad_fee" data-value="${controller.formValues.commercialDevR1adFeenumLabel}">$${controller.formValues.commercialDevR1adFeenumLabel}</span>
+                            <small>${controller.formValues.commercialDevR1adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -652,7 +628,7 @@
             </div>
 
             <div class="row fees" data-total-highest-value="true">
-                <div class="col-xs-12 col-sm-2 sub-type">Mixed use buildings </div>
+                <div class="col-xs-12 col-sm-2 sub-type">${controller.formValues.commercialDevR2TextLabel} </div>
                 <div class="col-xs-12 col-sm-2">
                     <input class="form-control short-form" id="input06" type="text" pattern="[0-9]*"
                         inputmode="numeric" data-no-decimals="true" data-multi-input="first">
@@ -660,7 +636,7 @@
                     <br><br>
                     <input class="form-control short-form" id="input07" type="text" pattern="[0-9]*"
                         inputmode="numeric" data-no-decimals="true">
-                    <label for="input07">dwelling units</label>
+                    <label for="input07">${controller.formValues.commercialDevR2inputDesc}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
@@ -668,26 +644,26 @@
                     <div class="row base" id="additions_mixed_use_buildings">
                         <div class="col-xs-6 col-sm-3">
                             <span class="base_fee_per_metre fee" data-multiply="true" id="input06_per_metre" data-id="input06"
-                                data-min="1823" data-value="0.8">$0.80</span>
-                            <small>per m<sup>2</sup> of GFA </small>
-                            <small>Min: <span class="min" id="input06_min_fee" data-value="1823">$1,823.00</span></small>
+                                data-min="${controller.formValues.commercialDevR2MinNumLabel}" data-value="${controller.formValues.commercialDevR2gfaFeenumLabel}">$${controller.formValues.commercialDevR2gfaFeenumLabel}</span>
+                            <small>${controller.formValues.commercialDevR2gfaFeeLabel @context= "html"}</small>
+                            <small>Min: <span class="min" id="input06_min_fee" data-value="${controller.formValues.commercialDevR2MinNumLabel}">$${controller.formValues.commercialDevR2MinNumLabel}</span></small>
                         </div>
                         <div class="col-xs-6 col-sm-2">
-                            <span class="base_fee fee" id="input07_base" data-value="837">$837.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="input07_base" data-value="${controller.formValues.commercialDevR2baseFeenumLabel}">$${controller.formValues.commercialDevR2baseFeenumLabel}</span>
+                            <small>${controller.formValues.commercialDevR2baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-6 col-sm-3">
                             <span class="base_fee_per_unit fee" id="input07_dRate" data-multiply="true" data-id="input07"
-                                data-value="50">$50.00</span>
-                            <small>per dwelling unit</small>
+                                data-value="${controller.formValues.commercialDevR2dwellingumLabel}">$${controller.formValues.commercialDevR2dwellingumLabel}</span>
+                            <small>${controller.formValues.commercialDevR2dwellingFeeLabel}</small>
                         </div>
                         <div class="col-xs-6 col-sm-2">
-                            <span class="DCP_fee fee" id="input07_dcp" data-value="245">$245.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="input07_dcp" data-value="${controller.formValues.commercialDevR2dcpFeenumLabel}">$${controller.formValues.commercialDevR2dcpFeenumLabel}</span>
+                            <small>${controller.formValues.commercialDevR2dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-6 col-sm-2">
-                            <span class="advertising_fee fee" id="input07_ad" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="input07_ad" data-value="${controller.formValues.commercialDevR2adFeenumLabel}">$${controller.formValues.commercialDevR2adFeenumLabel}</span>
+                            <small>${controller.formValues.commercialDevR2adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -702,24 +678,23 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="renos-mezz-permitted" data-num="15"
                         data-id="renovations_mezzanine_permitted_use">
-                    <label for="renos-mezz-permitted">Mezzanine / interior second floor addition - permitted use (no
-                        relaxations)</label>
+                    <label for="renos-mezz-permitted">${controller.formValues.commercialDevR3TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="renovations_mezzanine_permitted_use">
                         <div class="col-xs-4">
-                            <span class="base_fee fee" id="base-fee15" data-value="621">$621.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee15" data-value="${controller.formValues.commercialDevR3baseFeenumLabel}">$${controller.formValues.commercialDevR3baseFeenumLabel}</span>
+                            <small>${controller.formValues.commercialDevR3baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee" id="dcp-fee15" data-value="163">$163.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee15" data-value="${controller.formValues.commercialDevR3dcpFeenumLabel}">$${controller.formValues.commercialDevR3dcpFeenumLabel}</span>
+                            <small>${controller.formValues.commercialDevR3dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee" id="ad-fee15" data-value="0">$0.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee15" data-value="${controller.formValues.commercialDevR3adFeenumLabel}">$${controller.formValues.commercialDevR3adFeenumLabel}</span>
+                            <small>${controller.formValues.commercialDevR3adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -734,24 +709,23 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="renos-mezz-discretionary" data-num="16"
                         data-id="renovations_mezzanine_discretionary_use">
-                    <label for="renos-mezz-discretionary">Mezzanine / interior second floor addition - discretionary
-                        use or relaxations required</label>
+                    <label for="renos-mezz-discretionary">${controller.formValues.commercialDevR4TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="renovations_mezzanine_discretionary_use">
                         <div class="col-xs-4">
-                            <span class="base_fee fee" id="base-fee16" data-value="621">$621.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee16" data-value="${controller.formValues.commercialDevR4baseFeenumLabel}">$${controller.formValues.commercialDevR4baseFeenumLabel}</span>
+                            <small>${controller.formValues.commercialDevR4baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee" id="dcp-fee16" data-value="163">$163.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee16" data-value="${controller.formValues.commercialDevR4dcpFeenumLabel}">$${controller.formValues.commercialDevR4dcpFeenumLabel}</span>
+                            <small>${controller.formValues.commercialDevR4dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee" id="ad-fee16" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee16" data-value="${controller.formValues.commercialDevR4adFeenumLabel}">$${controller.formValues.commercialDevR4adFeenumLabel}</span>
+                            <small>${controller.formValues.commercialDevR4adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -763,30 +737,30 @@
             </div>
 
             <div class="row no-border header-row">
-                <div class="col-xs-12 strong">Change of use</div>
+                <div class="col-xs-12 strong">${controller.formValues.changeUsesubHeadingTitle}</div>
             </div>
 
             <div class="row fees" data-total-highest-value="true">
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="change-permitted" data-num="17"
                         data-id="change_of_use_permitted_use">
-                    <label for="change-permitted">Permitted use (no relaxations, no changes to site plan)</label>
+                    <label for="change-permitted">${controller.formValues.changeUseR1TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="change_of_use_permitted_use">
                         <div class="col-xs-4">
-                            <span class="base_fee fee" id="base-fee17" data-value="200">$200.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee17" data-value="${controller.formValues.changeUseR1baseFeenumLabel}">$${controller.formValues.changeUseR1baseFeenumLabel}</span>
+                            <small>${controller.formValues.changeUseR1baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee" id="dcp-fee17" data-value="0">$0.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee17" data-value="${controller.formValues.changeUseR1dcpFeenumLabel}">$${controller.formValues.changeUseR1dcpFeenumLabel}</span>
+                            <small>${controller.formValues.changeUseR1dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee" id="ad-fee17" data-value="0">$0.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee17" data-value="${controller.formValues.changeUseR1adFeenumLabel}">$${controller.formValues.changeUseR1adFeenumLabel}</span>
+                            <small>${controller.formValues.changeUseR1adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -801,24 +775,23 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="change-discret" data-num="18"
                         data-id="change_of_use_discretionary_use">
-                    <label for="change-discret">Discretionary use or relaxations required (no changes to site
-                        plan)</label>
+                    <label for="change-discret">${controller.formValues.changeUseR2TextLabel}/label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="change_of_use_discretionary_use">
                         <div class="col-xs-4">
-                            <span class="base_fee fee" id="base-fee18" data-value="625">$625.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee18" data-value="${controller.formValues.changeUseR2baseFeenumLabel}">$${controller.formValues.changeUseR2baseFeenumLabel}</span>
+                            <small>${controller.formValues.changeUseR2baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee" id="dcp-fee18" data-value="0">$0.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee18" data-value="${controller.formValues.changeUseR2dcpFeenumLabel}">$${controller.formValues.changeUseR2dcpFeenumLabel}</span>
+                            <small>${controller.formValues.changeUseR2dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee" id="ad-fee18" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee18" data-value="${controller.formValues.changeUseR2adFeenumLabel}">$${controller.formValues.changeUseR2adFeenumLabel}</span>
+                            <small>${controller.formValues.changeUseR2adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -830,30 +803,30 @@
             </div>
 
             <div class="row no-border header-row">
-                <div class="col-xs-12 strong">General</div>
+                <div class="col-xs-12 strong">${controller.formValues.generalFeesubHeadingTitle}</div>
             </div>
 
             <div class="row fees" data-total-highest-value="true">
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="general-excavating" data-num="19"
                         data-id="general_excavating_stripping_and_grading">
-                    <label for="general-excavating">Excavating, stripping &amp; grading</label>
+                    <label for="general-excavating">${controller.formValues.generalFeeR1TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="general_excavating_stripping_and_grading">
                         <div class="col-xs-4">
-                            <span class="base_fee fee"id="base-fee19" data-value="1173">$1,173.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee"id="base-fee19" data-value="${controller.formValues.generalFeeR1baseFeenumLabel}">$${controller.formValues.generalFeeR1baseFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR1baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee"id="dcp-fee19" data-value="0">$0.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee"id="dcp-fee19" data-value="${controller.formValues.generalFeeR1dcpFeenumLabel}">${controller.formValues.generalFeeR1dcpFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR1dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee"id="ad-fee19" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee"id="ad-fee19" data-value="${controller.formValues.generalFeeR1adFeenumLabel}">$${controller.formValues.generalFeeR1adFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR1adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -867,23 +840,23 @@
             <div class="row fees" data-total-highest-value="true">
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="general-cafe"data-num="19" data-id="general_outdoor_cafes">
-                    <label for="general-cafe">Outdoor cafes</label>
+                    <label for="general-cafe">${controller.formValues.generalFeeR2TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="general_outdoor_cafes">
                         <div class="col-xs-4">
-                            <span class="base_fee fee"id="base-fee20" data-value="621">$621.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee"id="base-fee20" data-value="${controller.formValues.generalFeeR2baseFeenumLabel}">$${controller.formValues.generalFeeR2baseFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR2baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee" id="dcp-fee20"data-value="245">$245.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee20"data-value="${controller.formValues.generalFeeR2dcpFeenumLabel}">$${controller.formValues.generalFeeR2dcpFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR2dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee"id="ad-fee20" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee"id="ad-fee20" data-value="${controller.formValues.generalFeeR2adFeenumLabel}">$${controller.formValues.generalFeeR2adFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR2adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -897,24 +870,23 @@
             <div class="row fees" data-total-highest-value="true">
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values"data-num="21" id="general-walls" data-id="general_retaining_walls">
-                    <label for="general-walls">Retaining walls (commercial / industrial sites and those that span
-                        multiple parcels)</label>
+                    <label for="general-walls">${controller.formValues.generalFeeR3TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="general_retaining_walls">
                         <div class="col-xs-4">
-                            <span class="base_fee fee"id="base-fee21" data-value="980">$980.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee"id="base-fee21" data-value="${controller.formValues.generalFeeR3baseFeenumLabel}">$${controller.formValues.generalFeeR3baseFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR3baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee"id="dcp-fee21" data-value="163">$163.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee"id="dcp-fee21" data-value="${controller.formValues.generalFeeR3dcpFeenumLabel}">$${controller.formValues.generalFeeR3dcpFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR3dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee"id="ad-fee21" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee"id="ad-fee21" data-value="${controller.formValues.generalFeeR3adFeenumLabel}">$${controller.formValues.generalFeeR3adFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR3adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -929,23 +901,23 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values"data-num="22" id="general-event"
                         data-id="general_special_function">
-                    <label for="general-event">Special function / event</label>
+                    <label for="general-event">${controller.formValues.generalFeeR4TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="general_special_function">
                         <div class="col-xs-4">
-                            <span class="base_fee fee"id="base-fee22" data-value="380">$380.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee"id="base-fee22" data-value="${controller.formValues.generalFeeR4baseFeenumLabel}">$${controller.formValues.generalFeeR4baseFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR4baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee"id="dcp-fee22" data-value="245">$245.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee"id="dcp-fee22" data-value="${controller.formValues.generalFeeR4dcpFeenumLabel}">$${controller.formValues.generalFeeR4dcpFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR4dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee"id="ad-fee22" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee"id="ad-fee22" data-value="${controller.formValues.generalFeeR4adFeenumLabel}">$${controller.formValues.generalFeeR4adFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR4adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -960,23 +932,23 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="general-parking"data-num="23"
                         data-id="general_surface_parking_lots">
-                    <label for="general-parking">Surface parking lots</label>
+                    <label for="general-parking">${controller.formValues.generalFeeR5TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="general_surface_parking_lots">
                         <div class="col-xs-4">
-                            <span class="base_fee fee"id="base-fee23" data-value="1173">$1,173.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee"id="base-fee23" data-value="${controller.formValues.generalFeeR5baseFeenumLabel}">${controller.formValues.generalFeeR5baseFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR5baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee"id="dcp-fee23" data-value="245">$245.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee"id="dcp-fee23" data-value="${controller.formValues.generalFeeR5dcpFeenumLabel}">$${controller.formValues.generalFeeR5dcpFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR5dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee"id="ad-fee23" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee"id="ad-fee23" data-value="${controller.formValues.generalFeeR5adFeenumLabel}">$${controller.formValues.generalFeeR5adFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR5adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -991,24 +963,23 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" data-num="24" id="general-temp-structures"
                         data-id="general_temporary_structures">
-                    <label for="general-temp-structures">Temporary structures (including portable
-                        classrooms)</label>
+                    <label for="general-temp-structures">${controller.formValues.generalFeeR6TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="general_temporary_structures">
                         <div class="col-xs-4">
-                            <span class="base_fee fee"id="base-fee24" data-value="980">$980.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee"id="base-fee24" data-value="${controller.formValues.generalFeeR6baseFeenumLabel}">$${controller.formValues.generalFeeR6baseFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR6baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee"id="dcp-fee24" data-value="0">$0.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee"id="dcp-fee24" data-value="${controller.formValues.generalFeeR6dcpFeenumLabel}">$${controller.formValues.generalFeeR6dcpFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR6dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee" id="ad-fee24"data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee24"data-value="${controller.formValues.generalFeeR6adFeenumLabel}">$${controller.formValues.generalFeeR6adFeenumLabel}</span>
+                            <small>${controller.formValues.generalFeeR6adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -1020,30 +991,30 @@
             </div>
 
             <div class="row no-border header-row">
-                <div class="col-xs-12 strong">Renovations</div>
+                <div class="col-xs-12 strong">${controller.formValues.renovationsSubHeadingTitle}</div>
             </div>
 
             <div class="row fees" data-total-highest-value="true">
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="renos-change" data-num="25"
                         data-id="renovations_changes_to_site_plan">
-                    <label for="renos-change">Change(s) to site plan (i.e. landscaping, parking, access)</label>
+                    <label for="renos-change">${controller.formValues.renovationsR1TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="renovations_changes_to_site_plan">
                         <div class="col-xs-4">
-                            <span class="base_fee fee"id="base-fee25" data-value="1634">$1,634.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee"id="base-fee25" data-value="${controller.formValues.renovationsR1baseFeenumLabel}">$${controller.formValues.renovationsR1baseFeenumLabel}</span>
+                            <small>${controller.formValues.renovationsR1baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee"id="dcp-fee25" data-value="163">$163.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee"id="dcp-fee25" data-value="${controller.formValues.renovationsR1dcpFeenumLabel}">$${controller.formValues.renovationsR1dcpFeenumLabel}</span>
+                            <small>${controller.formValues.renovationsR1dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee"id="ad-fee25" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee"id="ad-fee25" data-value="${controller.formValues.renovationsR1adFeenumLabel}">$${controller.formValues.renovationsR1adFeenumLabel}</span>
+                            <small>${controller.formValues.renovationsR1adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -1058,23 +1029,23 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="renos-exterior"data-num="26"
                         data-id="renovations_exterior_renovations">
-                    <label for="renos-exterior">Exterior renovations</label>
+                    <label for="renos-exterior">${controller.formValues.renovationsR2TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="renovations_exterior_renovations">
                         <div class="col-xs-4">
-                            <span class="base_fee fee"id="base-fee26" data-value="621">$621.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee"id="base-fee26" data-value="${controller.formValues.renovationsR2baseFeenumLabel}">$${controller.formValues.renovationsR2baseFeenumLabel}</span>
+                            <small>${controller.formValues.renovationsR2baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee"id="dcp-fee26"data-value="163">$163.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee"id="dcp-fee26"data-value="${controller.formValues.renovationsR2dcpFeenumLabel}">$${controller.formValues.renovationsR2dcpFeenumLabel}</span>
+                            <small>${controller.formValues.renovationsR2dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee"id="ad-fee26" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee"id="ad-fee26" data-value="${controller.formValues.renovationsR2adFeenumLabel}">$${controller.formValues.renovationsR2adFeenumLabel}</span>
+                            <small>${controller.formValues.renovationsR2adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -1087,29 +1058,29 @@
 
 
             <div class="row no-border header-row">
-                <div class="col-xs-12 strong">Signs</div>
+                <div class="col-xs-12 strong">${controller.formValues.commercialSignSubHeadingTitle}</div>
             </div>
 
             <div class="row fees" data-total-highest-value="true">
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="signs_permitted"data-num="27" data-id="signs_permitted_use">
-                    <label for="signs_permitted">Permitted use (no relaxations) </label>
+                    <label for="signs_permitted">${controller.formValues.commercialSignR1TextLabel} </label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="signs_permitted_use">
                         <div class="col-xs-4">
-                            <span class="base_fee fee"id="base-fee27" data-value="100">$100.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee"id="base-fee27" data-value="${controller.formValues.commercialSignR1baseFeenumLabel}">$${controller.formValues.commercialSignR1baseFeenumLabel}</span>
+                            <small>${controller.formValues.commercialSignR1baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee"id="dcp-fee27" data-value="0">$0.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee"id="dcp-fee27" data-value="${controller.formValues.commercialSignR1dcpFeenumLabel}">$${controller.formValues.commercialSignR1dcpFeenumLabel}</span>
+                            <small>${controller.formValues.commercialSignR1dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee"id="ad-fee27" data-value="0">$0.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee"id="ad-fee27" data-value="${controller.formValues.commercialSignR1adFeenumLabel}">$${controller.formValues.commercialSignR1adFeenumLabel}</span>
+                            <small>${controller.formValues.commercialSignR1adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -1124,23 +1095,23 @@
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" data-num="28" id="signs_discretionary"
                         data-id="signs_discretionary_use">
-                    <label for="signs_discretionary">Discretionary use or relaxations required</label>
+                    <label for="signs_discretionary">${controller.formValues.commercialSignR2TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
 
 
                     <div class="row base" id="signs_discretionary_use">
                         <div class="col-xs-4">
-                            <span class="base_fee fee" id="base-fee28" data-value="669">$669.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee28" data-value="${controller.formValues.commercialSignR2baseFeenumLabel}">$${controller.formValues.commercialSignR2baseFeenumLabel}</span>
+                            <small>${controller.formValues.commercialSignR2baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee" id="dcp-fee28" data-value="163">$163.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee28" data-value="${controller.formValues.commercialSignR2dcpFeenumLabel}">$${controller.formValues.commercialSignR2dcpFeenumLabel}</span>
+                            <small>${controller.formValues.commercialSignR2dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee" id="ad-fee28" data-value="32">$32.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee28" data-value="${controller.formValues.commercialSignR2adFeenumLabel}">$${controller.formValues.commercialSignR2adFeenumLabel}</span>
+                            <small>${controller.formValues.commercialSignR2adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -1159,42 +1130,25 @@
     <h2 class="expand-content"><button class="cui btn-lg primary-fluid expand-btn expand-btn-0"
             aria-expanded="false" aria-controls="expand-2"><span class="closed cicon-plus-circle left pull-left"
                 aria-hidden="true"></span><span class="open cicon-minus-circle left pull-left"
-                aria-hidden="true"></span>Additional Fees</button></h2>
+                aria-hidden="true"></span>${controller.formValues.additionalFeesheadingtext}</button></h2>
     <div class="expanding-content" id="expand-2" aria-hidden="true">
         <div class="draft draft-text"></div>
         <div class="container-fluid">
 
             <div class="row no-border">
-                <div class="col-xs-12 strong">Additions / New</div>
+                <div class="col-xs-12 strong">${controller.formValues.additionalFeesSubheadingtext}</div>
             </div>
 
             <div class="row fees" id="cpc-div">
                 <div class="col-xs-12 col-sm-4 sub-type">
                     <input type="checkbox" class="fees-values" id="additional-cpc" data-num="29"  data-id="CPC_fee">
-                    <label for="additional-cpc">Calgary Planning Commission (CPC) fee </label>
+                    <label for="additional-cpc">${controller.formValues.additionalFeesR1TextLabel} </label>
 
                     <span><a href="#" class="pop" aria-haspopup="true"><span aria-hidden="true"
                                 class="icon cicon-question-circle"></span><span class="sr-only">What is the CPC
                                 fee?</span></a></span>
                     <div class="tooltip-content">
-                        The Calgary Planning Commission (CPC) fee may apply to this application if it listed on the
-                        Calgary Planning Commission List. Some examples of when the CPC fee may be required
-                        include:<br>
-                        <ul>
-                            <li>Developments which require the use of bonus provisions</li>
-                            <li>Shopping centres over 7000m<sup>2</sup></li>
-                            <li>Direct Control sites where specific Council guidelines require CPC approval</li>
-                            <li>Proposed Place(s) of Worship - Large</li>
-                            <li>Addiction Treatment and Custodial Care developments with more than ten residents
-                            </li>
-                            <li>Prominent sites in entranceways or gateways, as defined in the MDP</li>
-                            <li>Developments which, in the opinion of the Development Officer, should be reviewed by
-                                CPC</li>
-                        </ul>
-                        <p>The examples above are provided on this schedule for convenience only. For the official
-                            complete listing, please see the <a
-                                href="/PDA/pd/Documents/calgary_planning_commission/calgary-planning-commission-list.pdf"
-                                target="_blank">Calgary Planning Commission List (PDF)</a>.</p>
+                       ${controller.formValues.additionalFeesR1descLabel @ context = "html"}
                     </div>
 
                 </div>
@@ -1204,16 +1158,16 @@
 
                     <div class="row base" id="CPC_fee">
                         <div class="col-xs-4">
-                            <span class="base_fee fee" id="base-fee29" data-value="653">$653.00</span>
-                            <small>Base fee</small>
+                            <span class="base_fee fee" id="base-fee29" data-value="${controller.formValues.additionalFeesR1baseFeenumLabel}">$${controller.formValues.additionalFeesR1baseFeenumLabel}</span>
+                            <small>${controller.formValues.additionalFeesR1baseFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="DCP_fee fee" id="dcp-fee29" data-value="0">$0.00</span>
-                            <small>DCP fee</small>
+                            <span class="DCP_fee fee" id="dcp-fee29" data-value="${controller.formValues.additionalFeesR1dcpFeenumLabel}">$${controller.formValues.additionalFeesR1dcpFeenumLabel}</span>
+                            <small>${controller.formValues.additionalFeesR1dcpFeeLabel}</small>
                         </div>
                         <div class="col-xs-4">
-                            <span class="advertising_fee fee" id="ad-fee29" data-value="0">$0.00</span>
-                            <small>Ad fee</small>
+                            <span class="advertising_fee fee" id="ad-fee29" data-value="${controller.formValues.additionalFeesR1adFeenumLabel}">$${controller.formValues.additionalFeesR1adFeenumLabel}</span>
+                            <small>${controller.formValues.additionalFeesR1adFeeLabel}</small>
                         </div>
                     </div>
 
@@ -1232,25 +1186,24 @@
     <h2 class="expand-content"><button class="cui btn-lg primary-fluid expand-btn expand-btn-0"
             aria-expanded="false" aria-controls="expand-3"><span class="closed cicon-plus-circle left pull-left"
                 aria-hidden="true"></span><span class="open cicon-minus-circle left pull-left"
-                aria-hidden="true"></span>Other Applications</button></h2>
+                aria-hidden="true"></span>${controller.formValues.antennasheadingtext}</button></h2>
     <div class="expanding-content" id="expand-3" aria-hidden="true">
         <div class="draft draft-text"></div>
         <div class="container-fluid">
 
             <div class="row no-border">
-                <div class="col-xs-12 strong">Antennas</div>
+                <div class="col-xs-12 strong">${controller.formValues.antennasSubheadingtext}</div>
             </div>
 
             <div class="row fees">
                 <div class="col-xs-12 col-sm-7 sub-type">
                     <input type="checkbox" class="fees-values type2"  id="antenna-A" data-id="antennas_type_A">
-                    <label for="antenna-A">Type A - new cell tower or height increase of more than 25% to existing
-                        tower</label>
+                    <label for="antenna-A">${controller.formValues.antennasR1TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-3">
                     <div class="base" id="antennas_type_A">
-                        <span class="base_fee fee" id="antenna-A_base" data-value="3266">$3,266.00</span>
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="antenna-A_base" data-value="${controller.formValues.antennasR1baseFeenumLabel}">$${controller.formValues.antennasR1baseFeenumLabel}</span>
+                        <small>${controller.formValues.antennasR1baseFeeLabel}</small>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-2">
@@ -1261,14 +1214,14 @@
             <div class="row fees">
                 <div class="col-xs-12 col-sm-7 sub-type">
                     <input type="checkbox" class="fees-values type2" id="antenna-B" data-id="antennas_type_B">
-                    <label for="antenna-B">Type B - roof top or pole mount</label>
+                    <label for="antenna-B">${controller.formValues.antennasR2TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-3">
 
 
                     <div class="base" id="antennas_type_B">
-                        <span class="base_fee fee" id="antenna-B_base" data-value="817">$817.00</span>
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="antenna-B_base" data-value="${controller.formValues.antennasR2baseFeenumLabel}">$${controller.formValues.antennasR2baseFeenumLabel}</span>
+                        <small>${controller.formValues.antennasR2baseFeeLabel}</small>
                     </div>
 
 
@@ -1281,14 +1234,14 @@
             <div class="row fees">
                 <div class="col-xs-12 col-sm-7 sub-type">
                     <input type="checkbox" class="fees-values type2" id="antenna-C" data-id="antennas_type_C">
-                    <label for="antenna-C">Type C - co-located or temporary up to 3 months</label>
+                    <label for="antenna-C">${controller.formValues.antennasR3TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-3">
 
 
                     <div class="base" id="antennas_type_C">
-                        <span class="base_fee fee" id="antenna-C_base" data-value="124">$124.00</span>
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="antenna-C_base" data-value="${controller.formValues.antennasR3baseFeenumLabe}">$${controller.formValues.antennasR3baseFeenumLabe}</span>
+                        <small>${controller.formValues.antennasR3baseFeeLabel}</small>
                     </div>
 
 
@@ -1302,14 +1255,14 @@
                 <div class="col-xs-12 col-sm-7 sub-type">
                     <input type="checkbox" class="fees-values type2" id="antenna-radio"
                         data-id="antennas_amateur_radio_towers">
-                    <label for="antenna-radio">Amateur radio towers</label>
+                    <label for="antenna-radio">${controller.formValues.antennasR4TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-3">
 
 
                     <div class="base" id="antennas_amateur_radio_towers">
-                        <span class="base_fee fee" id="antenna-radio_base" data-value="311">$311.00</span>
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="antenna-radio_base" data-value="${controller.formValues.antennasR4baseFeenumLabel}">$${controller.formValues.antennasR4baseFeenumLabel}</span>
+                        <small>${controller.formValues.antennasR4baseFeeLabel}</small>
                     </div>
 
 
@@ -1320,11 +1273,11 @@
             </div>
 
             <div class="row no-border header-row">
-                <div class="col-xs-12 strong">Certificates of Compliance</div>
+                <div class="col-xs-12 strong">${controller.formValues.certificatesSubheadingtext}</div>
             </div>
 
             <div class="row fees">
-                <div class="col-xs-12 col-sm-4 sub-type">Residential - single, semi-detached, duplex</div>
+                <div class="col-xs-12 col-sm-4 sub-type">${controller.formValues.certificatesR1TextLabel}</div>
                 <div class="col-xs-12 col-sm-3">
                     <input class="form-control short-form multiForm" id="compliance-res" type="text" pattern="[0-9]*"
                         inputmode="numeric" data-no-decimals="true">
@@ -1334,8 +1287,8 @@
 
 
                     <div class="base" id="certificate_of_compliance_residential">
-                        <span class="base_fee fee" id="compliance-res_base" data-multiply="true" data-value="199">$199.00</span> per parcel
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="compliance-res_base" data-multiply="true" data-value="${controller.formValues.certificatesR1baseFeenumLabel}">$${controller.formValues.certificatesR1baseFeenumLabel}</span> per parcel
+                        <small>${controller.formValues.certificatesR1baseFeeLabel}</small>
                     </div>
 
 
@@ -1346,7 +1299,7 @@
             </div>
 
             <div class="row fees">
-                <div class="col-xs-12 col-sm-4 sub-type">Multi-residential, commercial, industrial - (14 day review)
+                <div class="col-xs-12 col-sm-4 sub-type">${controller.formValues.certificatesR2TextLabel}
                 </div>
                 <div class="col-xs-12 col-sm-3">
                     <input class="form-control short-form multiForm" id="compliance-14" type="text" pattern="[0-9]*"
@@ -1357,8 +1310,8 @@
 
 
                     <div class="base" id="certificate_of_compliance_other_14_day">
-                        <span class="base_fee fee" id="compliance-14_base" data-multiply="true" data-value="296">$296.00</span> per parcel
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="compliance-14_base" data-multiply="true" data-value="${controller.formValues.certificatesR2baseFeenumLabel}">$${controller.formValues.certificatesR2baseFeenumLabel}</span> per parcel
+                        <small>${controller.formValues.certificatesR2baseFeeLabel}</small>
                     </div>
 
 
@@ -1369,7 +1322,7 @@
             </div>
 
             <div class="row fees">
-                <div class="col-xs-12 col-sm-4 sub-type">Multi-residential, commercial, industrial - (7 day review)
+                <div class="col-xs-12 col-sm-4 sub-type">${controller.formValues.certificatesR3TextLabel}
                 </div>
                 <div class="col-xs-12 col-sm-3">
                     <input class="form-control short-form multiForm" id="compliance-7" type="text" pattern="[0-9]*"
@@ -1380,8 +1333,8 @@
 
 
                     <div class="base" id="certificate_of_compliance_other_7_day">
-                        <span class="base_fee fee" id="compliance-7_base" data-multiply="true" data-value="455">$455.00</span> per parcel
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="compliance-7_base" data-multiply="true" data-value="${controller.formValues.certificatesR3baseFeenumLabel}">$${controller.formValues.certificatesR3baseFeenumLabel}</span> per parcel
+                        <small>${controller.formValues.certificatesR3baseFeeLabel}</small>
                     </div>
 
 
@@ -1393,11 +1346,11 @@
 
 
             <div class="row no-border header-row">
-                <div class="col-xs-12 strong">General</div>
+                <div class="col-xs-12 strong">${controller.formValues.generalFeesOASubheadingtext}</div>
             </div>
 
             <div class="row fees">
-                <div class="col-xs-12 col-sm-4 sub-type ">Condominium application</div>
+                <div class="col-xs-12 col-sm-4 sub-type ">${controller.formValues.generalFeesOAR1TextLabel}</div>
                 <div class="col-xs-12 col-sm-3">
                     <input class="form-control short-form multiForm" id="input08" type="text" pattern="[0-9]*"
                         inputmode="numeric" data-no-decimals="true">
@@ -1407,8 +1360,8 @@
 
 
                     <div class="base" id="condominium_application">
-                        <span class="base_fee fee" id="input08_base" data-multiply="true" data-value="40">$40.00</span> per unit
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="input08_base" data-multiply="true" data-value="${controller.formValues.generalFeesOAR1baseFeenumLabel}">$${controller.formValues.generalFeesOAR1baseFeenumLabel}</span> per unit
+                        <small>${controller.formValues.generalFeesOAR1baseFeeLabel}</small>
                     </div>
 
 
@@ -1419,7 +1372,7 @@
             </div>
 
             <div class="row fees">
-                <div class="col-xs-12 col-sm-4 sub-type">Confirmation of land use (zoning letter)</div>
+                <div class="col-xs-12 col-sm-4 sub-type">${controller.formValues.generalFeesOAR2TextLabel}</div>
                 <div class="col-xs-12 col-sm-3">
                     <input class="form-control short-form multiForm" id="input09" type="text" pattern="[0-9]*"
                         inputmode="numeric" data-no-decimals="true">
@@ -1429,8 +1382,8 @@
 
 
                     <div class="base" id="confirmation_of_land_use">
-                        <span class="base_fee fee" id="input09_base" data-multiply="true" data-value="77">$77.00</span> per parcel
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="input09_base" data-multiply="true" data-value="${controller.formValues.generalFeesOAR2baseFeenumLabel}">$${controller.formValues.generalFeesOAR2baseFeenumLabel}</span> per parcel
+                        <small>${controller.formValues.generalFeesOAR2baseFeeLabel}</small>
                     </div>
 
 
@@ -1443,14 +1396,14 @@
             <div class="row fees">
                 <div class="col-xs-12 col-sm-7 sub-type">
                     <input type="checkbox" class="fees-values type2" id="CPAG-app" data-id="CPAG_pre_application">
-                    <label for="CPAG-app">CPAG pre-application/Explore Meeting</label>
+                    <label for="CPAG-app">${controller.formValues.generalFeesOAR4TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-3">
 
 
                     <div class="base" id="CPAG_pre_application">
-                        <span class="base_fee fee" id="CPAG-app_base" data-value="1000">$1,000.00</span>
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="CPAG-app_base" data-value="${controller.formValues.generalFeesOAR4baseFeenumLabel}">$${controller.formValues.generalFeesOAR4baseFeenumLabel}</span>
+                        <small>${controller.formValues.generalFeesOAR4baseFeeLabel}</small>
                     </div>
 
 
@@ -1464,14 +1417,14 @@
                 <div class="col-xs-12 col-sm-7 sub-type">
                     <input type="checkbox" class="fees-values type2" id="status_letter"
                         data-id="development_agreement_status_letter">
-                    <label for="status_letter">Development agreement status letter</label>
+                    <label for="status_letter">${controller.formValues.generalFeesOAR5TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-3">
 
 
                     <div class="base" id="development_agreement_status_letter">
-                        <span class="base_fee fee" id="status_letter_base" data-value="491">$491.00</span>
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="status_letter_base" data-value="${controller.formValues.generalFeesOAR5baseFeenumLabel}">$${controller.formValues.generalFeesOAR5baseFeenumLabel}</span>
+                        <small>${controller.formValues.generalFeesOAR5baseFeeLabel}</small>
                     </div>
 
 
@@ -1484,14 +1437,14 @@
             <div class="row fees">
                 <div class="col-xs-12 col-sm-7 sub-type">
                     <input type="checkbox" class="fees-values type2" id="home-occ" data-id="home_occupation_class_1">
-                    <label for="home-occ">Home Occupation - Class 1</label>
+                    <label for="home-occ">${controller.formValues.generalFeesOAR6TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-3">
 
 
                     <div class="base" id="home_occupation_class_1">
-                        <span class="base_fee fee" id="home-occ_base" data-value="0">$0.00</span>
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="home-occ_base" data-value="${controller.formValues.generalFeesOAR6baseFeenumLabel}">$${controller.formValues.generalFeesOAR6baseFeenumLabel}</span>
+                        <small>${controller.formValues.generalFeesOAR6baseFeeLabel}</small>
                     </div>
 
 
@@ -1502,20 +1455,20 @@
             </div>
 
             <div class="row no-border header-row">
-                <div class="col-xs-12 strong">Pushcarts</div>
+                <div class="col-xs-12 strong">${controller.formValues.pushcartsFeesSubheadingtext}</div>
             </div>
 
             <div class="row fees">
                 <div class="col-xs-12 col-sm-7 sub-type">
                     <input type="checkbox" class="fees-values type2" id="pushcarts-no-food" data-id="pushcarts_non-food">
-                    <label for="pushcarts-no-food">Non-food (per cart, per year)</label>
+                    <label for="pushcarts-no-food">${controller.formValues.pushcartsFeesR1TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-3">
 
 
                     <div class="base" id="pushcarts_non-food">
-                        <span class="base_fee fee" id="pushcarts-no-food_base" data-value="547">$547.00</span>
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="pushcarts-no-food_base" data-value="${controller.formValues.pushcartsFeesR1baseFeenumLabel}">$${controller.formValues.pushcartsFeesR1baseFeenumLabel}</span>
+                        <small>${controller.formValues.pushcartsFeesR1baseFeeLabel}</small>
                     </div>
 
 
@@ -1528,14 +1481,14 @@
             <div class="row fees">
                 <div class="col-xs-12 col-sm-7 sub-type">
                     <input type="checkbox" class="fees-values type2" id="pushcarts-food" data-id="pushcarts_food">
-                    <label for="pushcarts-food">Food (per cart, per year)</label>
+                    <label for="pushcarts-food">${controller.formValues.pushcartsFeesR2TextLabel}</label>
                 </div>
                 <div class="col-xs-12 col-sm-3">
 
 
                     <div class="base" id="pushcarts_food">
-                        <span class="base_fee fee" id="pushcarts-food_base" data-value="817">$817.00</span>
-                        <small>Base fee</small>
+                        <span class="base_fee fee" id="pushcarts-food_base" data-value="${controller.formValues.pushcartsFeesR2baseFeenumLabel}">$${controller.formValues.pushcartsFeesR2baseFeenumLabel}</span>
+                        <small>${controller.formValues.pushcartsFeesR2baseFeeLabel}</small>
                     </div>
 
 
@@ -1554,7 +1507,7 @@
     <div id="finals-container" class="container-fluid end-expand">
 
         <div class="row finals">
-            <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-right">TOTAL PERMIT FEE</div>
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-right">${controller.formValues.totalFeesText}</div>
             <div class="col-xs-12 col-sm-3">$ <span id="final-fee-x" class="total-fee"></span> </div>
         </div>
 
