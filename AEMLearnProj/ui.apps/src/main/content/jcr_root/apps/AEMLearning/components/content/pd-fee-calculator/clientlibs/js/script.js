@@ -326,7 +326,6 @@
                 $("#input07_total").html("");
             PD_CALC.methods.setBaseTotal();
         });
-
         $(".multiForm").keyup(function () {
             var entVal = this.value,
                 baseVal = $("#" + $(this).attr("id") + "_base").attr("data-value"),
@@ -350,7 +349,6 @@
                 PD_CALC.additionalFeesObj.safetyCouncilBase = parseFloat(newBPF);
             if (type == "demolition") $("#total-fee").html(parseFloat(prevBPF) + newBPF);
         });
-
         $(PartialP_ele).keyup(function () {
             if ($(input_ele).val() == "")
                 PD_CALC.methods.calcBasePermitStep("0", type);
@@ -371,7 +369,6 @@
             PD_CALC.additionalFeesObj.partialPermit = parseFloat(total);
             PD_CALC.additionalFeesObj.safetyCouncilPart = parseFloat(total2);
         });
-
         $("#lot_grading_input").keyup(function(){
             var lotInput = parseFloat(this.value),
                 rate = $("#lot_grading_rate_value").attr("data-value");
@@ -393,5 +390,8 @@
                 $("#partial_permit_totalF2").html("");
                 PD_CALC.additionalFeesObj.partialPermit = 0;
             }
+        })
+        $(document).on('change','#units',function(){
+            console.log("changed",this.value);
         })
     }
