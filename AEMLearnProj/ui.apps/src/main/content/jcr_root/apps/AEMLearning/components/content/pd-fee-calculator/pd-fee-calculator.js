@@ -86,7 +86,7 @@ use(function () {
                 Subhead: properties.get("form_newHome_step1_row" + [i] + "_rowTitle", ""),
                 feeType: properties.get("form_newHome_step1_row" + [i] + "_constType", ""),
                 rate: properties.get("form_newHome_step1_row" + [i] + "_inputDesc", ""),
-                quantityDesc: properties.get("form_newHome_step1_row+" + [i] + "_quantyDesc", ""),
+                quantityDesc: properties.get("form_newHome_step1_row" + [i] + "_quantyDesc", ""),
                 borderval: "Yes",
                 otherstitle: properties.get("form_newHome_step1_row" + [i] + "_otherstitle", ""),
                 othersDesc: properties.get("form_newHome_step1_row" + [i] + "_othersDesc", "")
@@ -146,7 +146,6 @@ use(function () {
         controller.formValues.addR1partialrateDesc = properties.get("form_newHome_step3_row2_rateDesc", "");
 
         controller.formValues.feeTypeTitle = properties.get("form_newHome_step3_row3_typeDesc", "");
-        controller.formValues.feeTypeDesc = properties.get("form_newHome_step2_row3_subDesc", "");
         controller.formValues.inputDesc = properties.get("form_newHome_step3_row3_inputDesc", "");
         controller.formValues.ratePerPrice = properties.get("form_newHome_step3_row3_rateDesc", "");
 
@@ -414,7 +413,9 @@ use(function () {
         controller.formValues.feeTypeDesc = properties.get("form_demolition_step1_row1_typeDesc", "");
         controller.formValues.feeInputDesc = properties.get("form_demolition_step1_row1_inputDesc", "");
         controller.formValues.ratePercent = properties.get("form_demolition_step1_row1_rateDesc", "");
-        controller.formValues.totalDesc = properties.get("form_demolition_step1_row1_totalDesc", "");
+
+        controller.formValues.demoS1minVal = properties.get("form_demolition_step1_row1_minVal", "");
+        controller.formValues.demoS1maxVal = properties.get("form_demolition_step1_row1_maxVal", "");
 
 
         controller.formValues.R2feeTypeDesc = properties.get("form_demolition_step1_row2_typeDesc", "");
