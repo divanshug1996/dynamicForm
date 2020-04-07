@@ -1,6 +1,6 @@
 "use strict";
-use(function () {
- 
+use(["structure-content.js"],function (structure) {
+    log.info("The structural object is ::"+structure);
     var controller = {
         pdFormType: properties.get("formType", ""),
         spacing: properties.get('spacing', 'mb-responsive'),

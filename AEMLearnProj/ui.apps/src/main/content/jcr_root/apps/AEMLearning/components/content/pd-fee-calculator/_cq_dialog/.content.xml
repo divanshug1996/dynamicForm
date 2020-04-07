@@ -441,13 +441,13 @@
                                         name="./form_newHome_step3_row1_rateDesc"/>
                                     <form_newHome_step3_row1_minVal
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/numberfield"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
                                         fieldDescription="Please enter step 3 row 1 min text dedscription  (eg.Minimum 4.50 Maximum 560)"
                                         fieldLabel="Min  text description"
                                         name="./form_newHome_step3_row1_minVal"/>
                                     <form_newHome_step3_row1_maxVal
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/numberfield"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
                                         fieldDescription="Please enter step 3 row 1 max text dedscription  (eg.Minimum 4.50 Maximum 560)"
                                         fieldLabel="Max  text description"
                                         name="./form_newHome_step3_row1_maxVal"/>
@@ -597,19 +597,19 @@
                                         name="./form_demolition_step1_row1_inputDesc"/>
                                     <form_demolition_step1_row1_rateDesc
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/numberfield"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
                                         fieldDescription="Please enter step 1 row 1 rate dedscription  (eg. 10.67 per $1000)"
                                         fieldLabel="Rate percentages value"
                                         name="./form_demolition_step1_row1_rateDesc"/>
                                     <form_demolition_step1_row1_minVal
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/numberfield"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
                                         fieldDescription="Please enter step 1 row 1 min value description  ( eg. Minimum 4.50 Maximum 560.00)"
                                         fieldLabel="Min value Description"
                                         name="./form_demolition_step1_row1_minVal"/>
                                     <form_demolition_step1_row1_maxVal
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/numberfield"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
                                         fieldDescription="Please enter step 1 row 1 max value description  ( eg. Minimum 4.50 Maximum 560.00)"
                                         fieldLabel="Max value Description"
                                         name="./form_demolition_step1_row1_maxVal"/>
@@ -625,7 +625,7 @@
                                         name="./form_demolition_step1_row2_typeDesc"/>
                                     <form_demolition_step1_row2_rateDesc
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/numberfield"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
                                         fieldDescription="Please enter step 1 row 2 rate dedscription  (eg. 112.00 )"
                                         fieldLabel="Rate percentages value"
                                         name="./form_demolition_step1_row2_rateDesc"/>
@@ -675,19 +675,19 @@
                                         name="./form_demolition_step2_row1_inputDesc"/>
                                     <form_demolition_step2_row1_rateDesc
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/numberfield"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
                                         fieldDescription="Please enter step 2 row 1 rate value  (eg. 4)"
                                         fieldLabel="Rate percentages value"
                                         name="./form_demolition_step2_row1_rateDesc"/>
                                     <form_demolition_step2_row1_minVal
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/numberfield"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
                                         fieldDescription="Please enter step 2 row 1 min value description  ( eg. Minimum 4.50 Maximum 560.00)"
                                         fieldLabel="Min value Description"
                                         name="./form_demolition_step2_row1_minVal"/>
                                     <form_demolition_step2_row1_maxVal
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/numberfield"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
                                         fieldDescription="Please enter step 2 row 1 max value description  ( eg. Minimum 4.50 Maximum 560.00)"
                                         fieldLabel="Max value Description"
                                         name="./form_demolition_step2_row1_maxVal"/>
