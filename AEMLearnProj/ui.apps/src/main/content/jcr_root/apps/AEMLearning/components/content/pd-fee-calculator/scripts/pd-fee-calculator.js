@@ -1,65 +1,62 @@
 "use strict";
-use(["structure-content.js"],function (structure) {
-    log.info("The structural object is ::"+structure);
+use(["main.js"], function (json) {
+    // log.info("The structural object is ::" + json.step2[0].id);
     var controller = {
         pdFormType: properties.get("formType", ""),
         spacing: properties.get('spacing', 'mb-responsive'),
-        formValues: {
-            pmvArr: []
-        }
+        formValues: json
     };
-
     if (controller.pdFormType == "commercial") {
 
         formValues = {};
 
-        controller.formValues.step1Title = properties.get("form_commercial_step1_title", "");
-        controller.formValues.step3Title = properties.get("form_commercial_step2_title", "");
+        controller.formValues.step1Title = json.config.step2_title; 
+        controller.formValues.step3Title = json.config.step3_title;
         //for step 1 title
-        controller.formValues.C1title = properties.get("form_commercial_step1_col1_title", "");
-        controller.formValues.C2title = properties.get("form_commercial_step1_col2_title", "");
-        controller.formValues.C3title = properties.get("form_commercial_step1_col3_title", "");
+        controller.formValues.C1title = "Fee type";
+        controller.formValues.C2title = "Rate"; 
+        controller.formValues.C3title = "Total";
 
 
-        controller.formValues.feeTypeDesc = properties.get("form_commercial_step1_row1_typeDesc", "");
-        controller.formValues.feeInputDesc = properties.get("form_commercial_step1_row1_inputDesc", "");
-        controller.formValues.ratePercent = properties.get("form_commercial_step1_row1_ratePerc", "");
-        controller.formValues.ratePerPrice = properties.get("form_commercial_step1_row1_ratePerPrice", "");
-        controller.formValues.totalDesc = properties.get("form_commercial_step1_row1_totalDesc", "");
+        controller.formValues.feeTypeDesc = json.step2[0].title;
+        controller.formValues.feeInputDesc = json.step2[0].label; 
+        controller.formValues.ratePercent = json.step2[0].value;
+        controller.formValues.ratePerPrice = json.step2[0].per; 
+        controller.formValues.totalDesc = "N/A if PMV is $1000 or less."; 
 
-        controller.formValues.R2feeTypeDesc = properties.get("form_commercial_step1_row2_typeDesc", "");
-        controller.formValues.R2Rate = properties.get("form_commercial_step1_row2_rateDesc", "");
-        controller.formValues.baseFee = properties.get("form_commercial_step1_baseFeeTotal", "");
+        controller.formValues.R2feeTypeDesc = json.step2[1].title; 
+        controller.formValues.R2Rate = json.step2[1].value; 
+        controller.formValues.baseFee = "BASE PERMIT FEE";
         //for step 2 title
-        controller.formValues.addC1Title = properties.get("form_commercial_step2_col1_title", "");
-        controller.formValues.addC2Title = properties.get("form_commercial_step2_col2_title", "");
-        controller.formValues.addC3Title = properties.get("form_commercial_step2_col3_title", "");
+        controller.formValues.addC1Title = "Fee type";
+        controller.formValues.addC2Title = "Rate" 
+        controller.formValues.addC3Title = "Total" 
 
-        controller.formValues.addR1typeDesc = properties.get("form_commercial_step2_row1_typeDesc", "");
-        controller.formValues.addR1inputDesc = properties.get("form_commercial_step2_row1_inputDesc", "");
-        controller.formValues.addR1rateDesc = properties.get("form_commercial_step2_row1_rateDesc", "");
-        controller.formValues.addR1minVal = properties.get("form_commercial_step2_row1_minVal", "");
-        controller.formValues.addR1maxVal = properties.get("form_commercial_step2_row1_maxVal", "");
+        controller.formValues.addR1typeDesc = json.step3[0].title; 
+        controller.formValues.addR1inputDesc = json.step3[0].label; 
+        controller.formValues.addR1rateDesc = json.step3[0].value;
+        controller.formValues.addR1minVal = json.step3[0].min; 
+        controller.formValues.addR1maxVal = json.step3[0].max; 
 
-        controller.formValues.addR2typeDesc = properties.get("form_commercial_step2_row2_typeDesc", "");
-        controller.formValues.addR2subDesc = properties.get("form_commercial_step2_row2_subDesc", "");
-        controller.formValues.addR2inputDesc = properties.get("form_commercial_step2_row2_inputDesc", "");
-        controller.formValues.addR2rateDesc = properties.get("form_commercial_step2_row2_rateDesc", "");
-        controller.formValues.addR2minVal = properties.get("form_commercial_step2_row2_minVal", "");
-        controller.formValues.addR2maxVal = properties.get("form_commercial_step2_row2_maxVal", "");
+        controller.formValues.addR2typeDesc = json.step3[1].title; 
+        controller.formValues.addR2subDesc = "optional";
+        controller.formValues.addR2inputDesc = json.step3[1].label; 
+        controller.formValues.addR2rateDesc = json.step3[1].value;
+        controller.formValues.addR2minVal = json.step3[1].min;
+        controller.formValues.addR2maxVal = json.step3[1].max;
 
-        controller.formValues.addR3typeDesc = properties.get("form_commercial_step2_row3_typeDesc", "");
-        controller.formValues.addR3subDesc = properties.get("form_commercial_step2_row3_subDesc", "");
-        controller.formValues.addR3inputDesc = properties.get("form_commercial_step2_row3_inputDesc", "");
-        controller.formValues.addR3rateDesc = properties.get("form_commercial_step2_row3_rateDesc", "");
-        controller.formValues.addR3minVal = properties.get("form_commercial_step2_row3_minVal", "");
-        controller.formValues.addR3maxVal = properties.get("form_commercial_step2_row3_maxVal", "");
+        controller.formValues.addR3typeDesc = json.step3[2].title;
+        controller.formValues.addR3subDesc = json.step3[2].description;
+        controller.formValues.addR3inputDesc = json.step3[2].label;
+        controller.formValues.addR3rateDesc = json.step3[2].value;
+        controller.formValues.addR3minVal = json.step3[2].min;
+        controller.formValues.addR3maxVal = json.step3[2].max;
 
-        controller.formValues.addR4typeDesc = properties.get("form_commercial_step2_row4_typeDesc", "");
-        controller.formValues.addR4subDesc = properties.get("form_commercial_step2_row4_subDesc", "");
-        controller.formValues.addR4inputDesc = properties.get("form_commercial_step2_row4_inputDesc", "");
-        controller.formValues.addR4rateDesc = properties.get("form_commercial_step2_row4_rateDesc", "");
-        controller.formValues.addR4totalText = properties.get("form_commercial_step2_row4_totalText", "");
+        controller.formValues.addR4typeDesc = json.step3[3].title;
+        controller.formValues.addR4subDesc = json.step3[3].description; 
+        controller.formValues.addR4inputDesc = json.step3[3].label;
+        controller.formValues.addR4rateDesc = json.step3[3].value;
+        controller.formValues.addR4totalText = json.step3[3].total;
 
         return controller;
 

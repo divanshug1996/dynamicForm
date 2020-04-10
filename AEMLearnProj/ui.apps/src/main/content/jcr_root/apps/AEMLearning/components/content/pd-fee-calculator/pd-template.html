@@ -179,7 +179,7 @@
                 $ <span class="totals fees-totals" id="safety_fee_base_total"></span>
                 <small>
                     Minimum <span id="safety_fee_base_min"
-                        data-value="${controller.formValues.addR1maxVal}">${controller.formValues.addR1minVal}</span>
+                        data-value="${controller.formValues.addR1minVal}">${controller.formValues.addR1minVal}</span>
                     <br>Maximum <span id="safety_fee_base_max"
                         data-value="${controller.formValues.addR1maxVal}">${controller.formValues.addR1maxVal}</span>
                 </small>
@@ -264,7 +264,7 @@
                         inputmode="numeric">
 
                     <label for="partial_permit_input">
-                        m<sup>2</sup><br> <small>${controller.formValues.addR2inputDesc}</small>
+                        ${controller.formValues.addR2inputDesc @  context = 'html'}
                     </label>
                 </div>
                 <div class="col-xs-12 col-sm-3 text-center">
@@ -319,7 +319,7 @@
                                               controller.pdFormType=='multiFammilyHigHRise' || 
                                               controller.pdFormType=='careFacilities' ||
                                               controller.pdFormType=='wareHouses'}">
-                            <small>${controller.formValues.addR4subDesc}</small>
+                            ${controller.formValues.addR4subDesc}
                         </sly>
                     </div>
                     <div class="col-xs-12 col-sm-3">
@@ -327,7 +327,7 @@
                             pattern="[0-9]*" inputmode="numeric" data-no-decimals="true">
 
                         <label for="lot_grading_input">
-                            <small>${controller.formValues.addR4inputDesc}</small>
+                            ${controller.formValues.addR4inputDesc @ context='html'}
                         </label>
                     </div>
                     <div class="col-xs-12 col-sm-3 text-center">
