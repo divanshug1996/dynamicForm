@@ -177,7 +177,7 @@
             </div>
         </div>
 
-        <sly data-sly-test="${controller.pdFormType=='newHomes'}">
+        <sly data-sly-test="${controller.pdFormType=='new_home'}">
             <div class="row ">
                 <div class="col-xs-12 col-sm-6">
                     <input type="checkbox" class="fees-values" id="partial_permit_checkbox">
@@ -205,7 +205,7 @@
                         pattern="[0-9]*" inputmode="numeric">
 
                     <label for="lot_grading_input">
-                        <small>${controller.formValues.inputDesc}</small>
+                        ${controller.formValues.inputDesc @ context = 'html'}
                     </label>
                 </div>
                 <div class="col-xs-12 col-sm-3 text-center">

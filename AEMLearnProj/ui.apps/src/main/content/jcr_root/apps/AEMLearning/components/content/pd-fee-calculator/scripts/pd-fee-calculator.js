@@ -120,34 +120,34 @@ use(["main.js"], function (json) {
         controller.formValues.R2Rate = json.step2[4].value;
 
         controller.formValues.baseFee = "BASE PERMIT FEE";
-        controller.formValues.baseFeeDesc = "Minimum $112";
+        controller.formValues.baseFeeDesc = 112;
 
         // step 3 
 
-        controller.formValues.addC1Title = properties.get("form_newHome_step3_col1_title", "");
-        controller.formValues.addC2Title = properties.get("form_newHome_step3_col2_title", "");
-        controller.formValues.addC3Title = properties.get("form_newHome_step3_col3_title", "");
+        controller.formValues.addC1Title = "Fee type";
+        controller.formValues.addC2Title = "Rate";
+        controller.formValues.addC3Title = "Total";
 
-        controller.formValues.addR1typeDesc = properties.get("form_newHome_step3_row1_typeDesc", "");
-        controller.formValues.addR1inputDesc = properties.get("form_newHome_step3_row1_inputDesc", "");
-        controller.formValues.addR1rateDesc = properties.get("form_newHome_step3_row1_rateDesc", "");
-        controller.formValues.addR1minVal = properties.get("form_newHome_step3_row1_minVal", "");
-        controller.formValues.addR1maxVal = properties.get("form_newHome_step3_row1_maxVal", "");
+        controller.formValues.addR1typeDesc = json.step3[0].title;
+        controller.formValues.addR1inputDesc = json.step3[0].label;
+        controller.formValues.addR1rateDesc = json.step3[0].value;
+        controller.formValues.addR1minVal = json.step3[0].min;
+        controller.formValues.addR1maxVal = json.step3[0].max;
 
-        controller.formValues.addpartialtitle = properties.get("form_newHome_step3_row2_typeDesc", "");
-        controller.formValues.addpartialdesc = properties.get("form_newHome_step2_row1_subDesc", "");
-        controller.formValues.addR1partialrateDesc = properties.get("form_newHome_step3_row2_rateDesc", "");
+        controller.formValues.addpartialtitle = json.step3[1].title;
+        controller.formValues.addpartialdesc = json.step3[1].label;
+        controller.formValues.addR1partialrateDesc = json.step3[1].value;
 
-        controller.formValues.feeTypeTitle = properties.get("form_newHome_step3_row3_typeDesc", "");
-        controller.formValues.inputDesc = properties.get("form_newHome_step3_row3_inputDesc", "");
-        controller.formValues.ratePerPrice = properties.get("form_newHome_step3_row3_rateDesc", "");
+        controller.formValues.feeTypeTitle = json.step3[2].title;
+        controller.formValues.inputDesc = json.step3[2].label;
+        controller.formValues.ratePerPrice = json.step3[2].value;
 
-        controller.formValues.s3typeDesc = properties.get("form_newHome_step3_row4_typeDesc", "");
-        controller.formValues.s3rateDesc = properties.get("form_newHome_step3_row4_rateDesc", "");
+        controller.formValues.s3typeDesc = json.step3[3].title;
+        controller.formValues.s3rateDesc = json.step3[3].value;
 
-        controller.formValues.addR4totalText = properties.get("form_newHome_step3_totalPermitFee", "");
-        controller.formValues.totalGstFee = properties.get("form_newHome_step3_totalGstFee", "");
-        controller.formValues.totalPermitGstFee = properties.get("form_newHome_step3_totalPermitGstFee", "");
+        controller.formValues.addR4totalText = "TOTAL PERMIT FEE";
+        controller.formValues.totalGstFee = "GST";
+        controller.formValues.totalPermitGstFee = "TOTAL PERMIT FEE"
 
         return controller;
 
