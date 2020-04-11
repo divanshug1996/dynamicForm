@@ -22,8 +22,8 @@
                     </label>
                 </sly>
                 <sly data-sly-test="${controller.pdFormType=='new_home' || 
-                                     controller.pdFormType=='multiFammilyLowRise' || 
-                                     controller.pdFormType=='multiFammilyHigHRise' || 
+                                     controller.pdFormType=='low_rise' || 
+                                     controller.pdFormType=='low_rise' || 
                                      controller.pdFormType=='hotels' || 
                                      controller.pdFormType=='careFacilities' ||
                                      controller.pdFormType=='wareHouses'}">
@@ -117,7 +117,7 @@
                 $ <span class="totals fees-totals" id="${controller.pdFormType}_min_processing_fee_total"></span>
             </div>
         </div>
-        <sly data-sly-test="${controller.pdFormType=='newHomes'}">
+        <sly data-sly-test="${controller.pdFormType=='new_home'}">
 
             <div class="row">
                 <div class="col-xs-12">
@@ -177,7 +177,7 @@
             </div>
         </div>
 
-        <sly data-sly-test="${controller.pdFormType=='newHomes'}">
+        <sly data-sly-test="${controller.pdFormType=='new_home'}">
             <div class="row ">
                 <div class="col-xs-12 col-sm-6">
                     <input type="checkbox" class="fees-values" id="partial_permit_checkbox">
@@ -205,7 +205,7 @@
                         pattern="[0-9]*" inputmode="numeric">
 
                     <label for="lot_grading_input">
-                        <small>${controller.formValues.inputDesc}</small>
+                        ${controller.formValues.inputDesc @ context = 'html'}
                     </label>
                 </div>
                 <div class="col-xs-12 col-sm-3 text-center">
@@ -227,7 +227,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-3 text-center">
                     <span class="pull-left strong">+</span>
-                    $ <span class="rates" id="water_fee" data-value="26.23">${controller.formValues.s3rateDesc}</span>
+                    $ <span class="rates" id="water_fee" data-value="${controller.formValues.s3rateDesc}">${controller.formValues.s3rateDesc}</span>
                     <span class="pull-right strong">=</span>
                 </div>
                 <div class="col-xs-12 col-sm-3">
@@ -238,10 +238,10 @@
 
 
         <sly data-sly-test="${controller.pdFormType=='commercial' || 
-                                controller.pdFormType=='multiFammilyHigHRise' || 
+                                controller.pdFormType=='low_rise' || 
                                 controller.pdFormType=='hotels' || 
                                 controller.pdFormType=='careFacilities' ||
-                                controller.pdFormType=='multiFammilyLowRise' ||
+                                controller.pdFormType=='low_rise' ||
                                 controller.pdFormType=='wareHouses'}">
 
             <div class="row ">
@@ -260,7 +260,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-3 text-center">
                     <span class="pull-left strong">×</span>
-                    $ <span class="rates" id="${controller.pdFormType}_partial_permit_rate" data-value="4">
+                    $ <span class="rates" id="${controller.pdFormType}_partial_permit_rate" data-value="${controller.formValues.addR2rateDesc}">
                         ${controller.formValues.addR2rateDesc}
                     </span>
                     <span class="pull-right strong">=</span>
@@ -268,8 +268,8 @@
                 <div class="col-xs-12 col-sm-3">
                     $ <span class="totals fees-totals" id="${controller.pdFormType}_partial_permit_total"></span>
                     <small>
-                        Minimum <span id="${controller.pdFormType}_partial_permit_min" data-min="112.00"
-                            data-max="4665">${controller.formValues.addR2minVal}</span> <br>Maximum
+                        Minimum <span id="${controller.pdFormType}_partial_permit_min" data-min="${controller.formValues.addR2minVal}"
+                            data-max="${controller.formValues.addR2maxVal}">${controller.formValues.addR2minVal}</span> <br>Maximum
                         <span id="partial_permit_max">${controller.formValues.addR2maxVal}</span>
                     </small>
                 </div>
@@ -287,7 +287,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-3 text-center">
                     <span class="pull-left strong">×</span>
-                    <span class="rates" data-value="4"
+                    <span class="rates" data-value="${controller.formValues.addR3rateDesc}"
                         id="safety_fee_partial_rate">${controller.formValues.addR3rateDesc}%</span>
                     <span class="pull-right strong">=</span>
                 </div>
@@ -295,19 +295,19 @@
                 <div class="col-xs-12 col-sm-3">
                     $ <span class="totals fees-totals" id="safety_fee_partial_total"></span>
                     <small>
-                        Minimum <span id="safety_fee_partial_min" data-min="4.50"
-                            data-max="560.00">${controller.formValues.addR3minVal}</span>
+                        Minimum <span id="safety_fee_partial_min" data-min=${controller.formValues.addR3minVal}
+                            data-max="${controller.formValues.addR3maxVal}">${controller.formValues.addR3minVal}</span>
                         <br>Maximum <span id="safety_fee_partial_max">${controller.formValues.addR3maxVal}</span>
                     </small>
                 </div>
             </div>
 
-            <sly data-sly-test="${controller.pdFormType!='multiFammilyLowRise'}">
+            <sly data-sly-test="${controller.pdFormType!='low_rise'}">
                 <div class="row ">
                     <div class="col-xs-12 col-sm-3 title">
                         ${controller.formValues.addR4typeDesc}
                         <sly data-sly-test="${controller.pdFormType=='commercial' || 
-                                              controller.pdFormType=='multiFammilyHigHRise' || 
+                                              controller.pdFormType=='low_rise' || 
                                               controller.pdFormType=='careFacilities' ||
                                               controller.pdFormType=='wareHouses'}">
                             ${controller.formValues.addR4subDesc}
@@ -323,9 +323,9 @@
                     </div>
                     <div class="col-xs-12 col-sm-3 text-center">
                         <span class="pull-left strong">×</span>
-                        $ <span class="rates" id="lot_grading_rate_value" data-value="80.00">
+                        $ <span class="rates" id="lot_grading_rate_value" data-value="${controller.formValues.addR4rateDesc}">
                             ${controller.formValues.addR4rateDesc}
-                            <sly data-sly-test="${ controller.pdFormType=='multiFammilyHigHRise' || 
+                            <sly data-sly-test="${ controller.pdFormType=='low_rise' || 
                                                     controller.pdFormType=='hotels' || 
                                                     controller.pdFormType=='careFacilities' ||
                                                     controller.pdFormType=='wareHouses'}">
@@ -341,7 +341,7 @@
                 </div>
             </sly>
 
-            <sly data-sly-test="${controller.pdFormType=='multiFammilyLowRise'}">
+            <sly data-sly-test="${controller.pdFormType=='low_rise'}">
 
                 <div class="row">
                     <div class="col-xs-12">${controller.formValues.addR4subHead}</div>
@@ -356,7 +356,7 @@
                             maxlength="1" pattern="[0-9]*" inputmode="numeric">
 
                         <label for="lot_grading_input">
-                            <small>${controller.formValues.addR4inputDesc1}</small>
+                            <small>${controller.formValues.addR4inputDesc1 @context='html'}</small>
                         </label>
                     </div>
                     <div class="col-xs-12 col-sm-3 text-center">
@@ -373,8 +373,6 @@
                         $ <span class="totals fees-totals" id="lot_grading_input1_total"></span>
                     </div>
                 </div>
-
-
                 <div class="row no-border">
 
                     <div class="col-xs-12 col-sm-3 title">
@@ -385,7 +383,7 @@
                             maxlength="" pattern="[0-9]*" inputmode="numeric">
 
                         <label for="lot_grading2_input">
-                            <small>${controller.formValues.addR4inputDesc2}</small>
+                            <small>${controller.formValues.addR4inputDesc2 @ context='html'}</small>
                         </label>
                     </div>
                     <div class="col-xs-12 col-sm-3 text-center">
@@ -412,7 +410,7 @@
                             maxlength="" pattern="[0-9]*" inputmode="numeric" data-no-decimals="true">
 
                         <label for="lot_grading3_input">
-                            <small>${controller.formValues.addR4inputDesc3}</small>
+                            <small>${controller.formValues.addR4inputDesc3 @ context='html'}</small>
                         </label>
                     </div>
                     <div class="col-xs-12 col-sm-3 text-center">
@@ -442,7 +440,7 @@
             </div>
         </div>
 
-        <sly data-sly-test="${controller.pdFormType=='newHomes'}">
+        <sly data-sly-test="${controller.pdFormType=='new_home'}">
             <div class="row finals">
                 <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-right">${controller.formValues.totalGstFee}</div>
                 <div class="col-xs-12 col-sm-3">$ <span id="gst" class="totals total-fee"></span> </div>
