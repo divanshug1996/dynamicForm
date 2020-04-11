@@ -5,6 +5,7 @@ use(["structure-content.js", "planning-app.js"], function (formsJson, planningAp
         calcJson,
         view = {},
         isLive;
+        log.debug(formType)
     function checkDates(dates) {
         var q = new Date(),
             m = q.getMonth(),

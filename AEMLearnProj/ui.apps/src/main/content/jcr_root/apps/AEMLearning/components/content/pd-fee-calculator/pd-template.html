@@ -13,24 +13,15 @@
                 ${controller.formValues.feeTypeDesc}
             </div>
             <div class="col-xs-12 col-sm-3">
-                <sly data-sly-test="${controller.pdFormType=='commercial'}">
+                <sly data-sly-test="${controller.pdFormType=='commercial' || controller.pdFormType=='demolition'}">
                     $ <input class="form-control long-form" type="text" id="${controller.pdFormType}_input"
                         pattern="[0-9]*" inputmode="numeric">
                     <br>
                     <label for="permit_rate_input">
-                        <small>${controller.formValues.feeInputDesc}</small>
+                        <small data-round="${controller.formValues.round}">${controller.formValues.feeInputDesc @ context='html'}</small>
                     </label>
                 </sly>
-                <sly data-sly-test="${controller.pdFormType=='demolition'}">
-                    <input class="form-control  long-form" type="text" id="${controller.pdFormType}_input" maxlength=""
-                        pattern="[0-9]*" inputmode="numeric">
-                    <label for="bldg_demo_input">
-                        m<sup>2</sup>
-                        <br>
-                        <small>${controller.formValues.feeInputDesc}</small>
-                    </label>
-                </sly>
-                <sly data-sly-test="${controller.pdFormType=='newHomes' || 
+                <sly data-sly-test="${controller.pdFormType=='new_home' || 
                                      controller.pdFormType=='multiFammilyLowRise' || 
                                      controller.pdFormType=='multiFammilyHigHRise' || 
                                      controller.pdFormType=='hotels' || 
@@ -38,7 +29,7 @@
                                      controller.pdFormType=='wareHouses'}">
                     $ <span class="fees-values previous-total baseFeePrevTotal"></span>
                     <br>
-                    <small class="text-center">${controller.formValues.feeInputDesc}</small>
+                    <small class="text-center" data-round="${controller.formValues.round}">${controller.formValues.feeInputDesc}</small>
                 </sly>
 
             </div>
@@ -68,7 +59,7 @@
             </div>
         </div>
 
-        <sly data-sly-test="${controller.pdFormType=='newHomes'}">
+        <sly data-sly-test="${controller.pdFormType=='new_home'}">
             <div class="row add-fee">
                 <div class="col-xs-12 col-sm-6">
                     <input type="checkbox" class="fees-values type3" id="ground_work_checkbox">
@@ -130,7 +121,7 @@
 
             <div class="row">
                 <div class="col-xs-12">
-                    <small><strong>*</strong>${controller.formValues.msgDesc}</small>
+                    <small><strong>*</strong>5% GST is charged on inspections. GST will be added to the TOTAL PERMIT FEE in Step 3 below.</small>
                 </div>
             </div>
         </sly>
@@ -140,7 +131,7 @@
             <div class="col-xs-12 col-sm-3">$
 
                 <span id="${controller.pdFormType}_base-fee" class="totals total-fee step-total highlight-row"></span>
-                <sly data-sly-test="${controller.pdFormType=='newHomes'}">
+                <sly data-sly-test="${controller.pdFormType=='new_home'}">
                     <small>
                         Minimum $<span class="min_processing_fee"
                             id="${controller.pdFormType}_procFee">${controller.formValues.baseFeeDesc}</span>

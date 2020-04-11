@@ -37,7 +37,6 @@ PD_CALC.methods.setBaseTotal = function () {
     $("#final-fee-x").html(PD_CALC.methods.numberWithCommas(sum));
 }
 PD_CALC.methods.getBasePermitFeeStd = function (PMV, rfactor, rate, dFactor = 0) {
-    // console.log("PMV is", PMV)
     var roundOff = Math.ceil(PMV / rfactor) * rfactor;
     if (roundOff <= dFactor) {
         return 0;
@@ -48,10 +47,7 @@ PD_CALC.methods.getBasePermitFeeStd = function (PMV, rfactor, rate, dFactor = 0)
     }
 }
 PD_CALC.methods.getBasePermitFeeDemolition = function (area, rate, min, max) {
-    // console.log("inside the method call")
-    // console.log("here we are", area, rate, min, max)
     var calc = area * rate;
-    console.log("calc value is", calc);
     if (calc <= min)
         calc = min;
     else if (calc >= max)
@@ -103,16 +99,6 @@ PD_CALC.methods.getAddedResult = function (num, value) {
             total = total + parseFloat($("#grade_fee_max2").attr("data-value"));
     }
     $("#total0" + num).html(PD_CALC.methods.numberWithCommas(total));
-}
-PD_CALC.methods.getBasePermitFeeDemolition = function (area, rate, min, max) {
-    var calc = area * (rate);
-    if (calc <= min)
-        calc = min;
-    else if (calc >= max)
-        calc = max;
-    else
-        calc = calc;
-    return calc;
 }
 PD_CALC.methods.minMaxCalc = function (area, rate, min, max) {
     var calc;
@@ -180,14 +166,12 @@ PD_CALC.additionalFeesObj = {
 };
 PD_CALC.methods.changeTotal = function (additionalFeesObj) {
     var sum = 0;
-    // console.log(additionalFeesObj)
     for (const property in additionalFeesObj) {
         if (additionalFeesObj[property] != undefined)
             sum = sum + parseFloat(additionalFeesObj[property]);
     }
-    // console.log("sum", sum)
     if(!isNaN(sum))
-    $(".step3-final-total").html(PD_CALC.methods.numberWithCommas(sum.toFixed(2)));
+    $(".step3-final-total").html(PD_CALC.methods.numberWithCommas(parseFloat(sum).toFixed(2)));
     else
     $(".step3-final-total").html("");
     if(Ftype == "new_home"){
@@ -201,24 +185,30 @@ PD_CALC.methods.calcBasePermitStep = function (num, type) {
         dFactor = parseInt($(rate_ele).attr('data-attr-dfactor')),
         procFee = $(pf_ele).html() == "" ? 0 : PD_CALC.methods.getNum($(pf_ele).html()),
         num = isNaN(num) ? 0 : num,
+        min = $("#bldg_demo_min").attr("data-value"),
+        max = $("#bldg_demo_max").attr("data-value"),
         numMult,
         total;
-        // console.log("calculated value is :: ", PD_CALC.methods.getBasePermitFeeStd(parseFloat(num), 1000, rate, dFactor))
-    if (type == "demolition")
-        total = PD_CALC.methods.getBasePermitFeeDemolition(parseInt(num), rate, 112, 4665)
-    else if (type == "new_home")
-        total = parseFloat(PD_CALC.methods.getBasePermitFeeStd(parseFloat(num), 1000, rate, dFactor)) + parseFloat(ground_checkbox) + parseFloat(temp_checkbox) + parseFloat(hydronic_heat);
-    else
+    if (type == "demolition"){
+        total = PD_CALC.methods.getBasePermitFeeDemolition(parseFloat(num), parseFloat(rate), parseFloat(min), parseFloat(max));
+        if(isNaN(total)) total = 0
+        else total = parseFloat(total).toFixed(2);
+    }
+    else if (type == "new_home"){
+        numMult = parseFloat(PD_CALC.methods.getBasePermitFeeStd(parseFloat(num), 1000, rate, dFactor));
+        total = numMult + parseFloat(ground_checkbox) + parseFloat(temp_checkbox) + parseFloat(hydronic_heat);
+    }
+    else{
         total = PD_CALC.methods.getBasePermitFeeStd(parseInt(num), 100, rate, dFactor) == "NaN" ? 0 : PD_CALC.methods.getBasePermitFeeStd(parseInt(num), 100, rate, dFactor);
-        numMult = PD_CALC.methods.getBasePermitFeeStd(parseFloat(num), 1000, rate, dFactor);
-    $(PMVTotal_ele).html(isNaN(numMult) ? 0 : parseFloat(numMult).toFixed(2));
+    }
+      
+    $(PMVTotal_ele).html(isNaN(total) ? 0 : parseFloat(total).toFixed(2));
     $(pfTotal_ele).html(PD_CALC.methods.numberWithCommas(parseFloat($(pf_ele).html()).toFixed(2)));
-        $(baseFee_ele).html(PD_CALC.methods.numberWithCommas(parseFloat(total) + parseFloat(procFee)));
+    $(baseFee_ele).html(PD_CALC.methods.numberWithCommas(parseFloat(total) + parseFloat(procFee)));
 }
 PD_CALC.methods.caclStep1Total = function () {
     var sum = 0;
     $(".step1Total").each(function () {
-        // console.log($(this).html())
         var num = PD_CALC.methods.getNum($(this).html());
         if (isNaN(parseFloat(num))) {
             sum = sum + 0;
@@ -370,18 +360,15 @@ PD_CALC.events.init = function (type) {
         PD_CALC.methods.setBaseTotal();
     })
     $(baseFee_ele).on('DOMSubtreeModified', function () {
-        // console.log("inside right method call ")
         var prevBPF = PD_CALC.methods.getNum($(this).html()),
             safetyRate = PD_CALC.methods.getNum($("#safety_fee_base").html()),
             min = PD_CALC.methods.getNum($("#safety_fee_base_min").attr("data-value")),
             max = PD_CALC.methods.getNum($("#safety_fee_base_max").attr("data-value")),
             newBPF = PD_CALC.methods.getBasePermitFeeDemolition(prevBPF, safetyRate/100, min, max);
-            // console.log("newBPF",newBPF)
             $("#" + type + "_prev_BPT").html(prevBPF),
             $("#safety_fee_base_total").html(parseFloat(newBPF).toFixed(2));
         PD_CALC.additionalFeesObj.basePermit = parseFloat(prevBPF);
         PD_CALC.additionalFeesObj.safetyCouncilBase = parseFloat(newBPF);
-        if (type == "demolition") $("#total-fee").html(parseFloat(prevBPF) + newBPF);
         if(type == "new_home") {
             PD_CALC.additionalFeesObj.water = parseFloat($("#water_fee").attr("data-value")).toFixed(2)
             $("#water_fee_total").html($("#water_fee").attr("data-value"));
@@ -397,7 +384,6 @@ PD_CALC.events.init = function (type) {
             min = $("#" + type + "_partial_permit_min").attr("data-min"),
             max = $("#" + type + "_partial_permit_min").attr("data-max"),
             min2, max2, rate2, total2;
-            console.log(ppfInput,rate, totalEle, min, max)
         total = PD_CALC.methods.getBasePermitFeeDemolition(parseFloat(ppfInput), parseFloat(rate), parseFloat(min), parseFloat(max));
         if(!isNaN(total))
         $(totalEle).html(PD_CALC.methods.numberWithCommas(total));
@@ -407,9 +393,8 @@ PD_CALC.events.init = function (type) {
         min2 = $("#safety_fee_partial_min").attr("data-min"),
             max2 = $("#safety_fee_partial_min").attr("data-max"),
             rate2 = $("#safety_fee_partial_rate").attr("data-value"),
-            total2 = PD_CALC.methods.getBasePermitFeeDemolition(parseFloat(total), parseFloat(rate2), parseFloat(min2), parseFloat(max2)) / 100;
-            // console.log()
-        $("#safety_fee_partial_total").html(PD_CALC.methods.numberWithCommas(total2));
+            total2 = PD_CALC.methods.getBasePermitFeeDemolition(parseFloat(total), parseFloat(rate2)/100, parseFloat(min2), parseFloat(max2));
+        $("#safety_fee_partial_total").html(isNaN(total2) ? 0 :PD_CALC.methods.numberWithCommas(total2));
         PD_CALC.additionalFeesObj.partialPermit = parseFloat(total);
         PD_CALC.additionalFeesObj.safetyCouncilPart = parseFloat(total2);
     });
@@ -420,7 +405,6 @@ PD_CALC.events.init = function (type) {
         var lotInput = parseFloat(this.value),
             rate = $("#lot_grading_rate_value").attr("data-value");
         total = lotInput * rate;
-        // console.log("lotINPUTS", rate, total);
         if(this.value != "")
         $("#lot_grading_total_value").html(PD_CALC.methods.numberWithCommas(total));
         else
@@ -496,16 +480,13 @@ PD_CALC.events.init = function (type) {
         if(PMVele.html() == ""){
             $(PMVele).html(0);
             PD_CALC.methods.calcBasePermitStep(0, "new_home");
-        }else{
+        }else
             PD_CALC.methods.calcBasePermitStep(PMVele.html(), "new_home");
-        }
-        
     })
     $(".lowRiseInput").keyup(function(){
         var id = $(this).attr("id"),
             rate = PD_CALC.methods.getNum($("#" + id + "_rate").html()),
             totalEle = $("#"+id+"_total");
-            console.log(id,rate,totalEle);
         if(this.value != ""){
             PD_CALC.additionalFeesObj.lotGrading = rate*parseFloat(this.value);
             $(totalEle).html(rate*parseFloat(this.value));
