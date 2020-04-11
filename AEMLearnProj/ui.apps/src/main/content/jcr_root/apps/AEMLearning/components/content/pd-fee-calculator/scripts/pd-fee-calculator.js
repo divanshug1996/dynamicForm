@@ -247,46 +247,46 @@ use(["main.js"], function (json) {
 
 
         //step 3 
-        controller.formValues.addC1Title = properties.get("form_multifamilylowriseForm_step3_col1_title", "");
-        controller.formValues.addC2Title = properties.get("form_multifamilylowriseForm_step3_col2_title", "");
-        controller.formValues.addC3Title = properties.get("form_multifamilylowriseForm_step3_col3_title", "");
+        controller.formValues.addC1Title = "Fee type";
+        controller.formValues.addC2Title = "Rate";
+        controller.formValues.addC3Title = "Total";
 
-        controller.formValues.addR1typeDesc = properties.get("form_multifamilylowriseForm_step3_row1_typeDesc", "");
-        controller.formValues.addR1inputDesc = properties.get("form_multifamilylowriseForm_step3_row1_inputDesc", "");
-        controller.formValues.addR1rateDesc = properties.get("form_multifamilylowriseForm_step3_row1_rateDesc", "");
-        controller.formValues.addR1minVal = properties.get("form_multifamilylowriseForm_step3_row1_minVal", "");
-        controller.formValues.addR1maxVal = properties.get("form_multifamilylowriseForm_step3_row1_maxVal", "");
+        controller.formValues.addR1typeDesc = json.step3[0].title; 
+        controller.formValues.addR1inputDesc = json.step3[0].label; 
+        controller.formValues.addR1rateDesc = json.step3[0].value; 
+        controller.formValues.addR1minVal = json.step3[0].min;
+        controller.formValues.addR1maxVal = json.step3[0].max;
 
-        controller.formValues.addR2typeDesc = properties.get("form_multifamilylowriseForm_step3_row2_typeDesc", "");
-        controller.formValues.addR2subDesc = properties.get("form_multifamilylowriseForm_step3_row2_subDesc", "");
-        controller.formValues.addR2inputDesc = properties.get("form_multifamilylowriseForm_step3_row2_inputDesc", "");
-        controller.formValues.addR2rateDesc = properties.get("form_multifamilylowriseForm_step3_row2_rateDesc", "");
-        controller.formValues.addR2minVal = properties.get("form_multifamilylowriseForm_step3_row2_minVal", "");
-        controller.formValues.addR2maxVal = properties.get("form_multifamilylowriseForm_step3_row2_maxVal", "");
+        controller.formValues.addR2typeDesc = json.step3[1].title;
+        controller.formValues.addR2subDesc = "(optional)";
+        controller.formValues.addR2inputDesc = json.step3[1].label; 
+        controller.formValues.addR2rateDesc = json.step3[1].value;
+        controller.formValues.addR2minVal = json.step3[1].min;
+        controller.formValues.addR2maxVal = json.step3[1].max;
 
-        controller.formValues.addR3typeDesc = properties.get("form_multifamilylowriseForm_step3_row3_typeDesc", "");
-        controller.formValues.addR3subDesc = properties.get("form_multifamilylowriseForm_step3_row3_subDesc", "");
-        controller.formValues.addR3inputDesc = properties.get("form_multifamilylowriseForm_step3_row3_inputDesc", "");
-        controller.formValues.addR3rateDesc = properties.get("form_multifamilylowriseForm_step3_row3_rateDesc", "");
-        controller.formValues.addR3minVal = properties.get("form_multifamilylowriseForm_step3_row3_minVal", "");
-        controller.formValues.addR3maxVal = properties.get("form_multifamilylowriseForm_step3_row3_maxVal", "");
+        controller.formValues.addR3typeDesc = json.step3[2].title;
+        controller.formValues.addR3subDesc = "(added if partial permit rate is requested)";
+        controller.formValues.addR3inputDesc = json.step3[2].label;
+        controller.formValues.addR3rateDesc = json.step3[2].value;
+        controller.formValues.addR3minVal = json.step3[2].min;
+        controller.formValues.addR3maxVal = json.step3[2].max;
 
-        controller.formValues.addR4subHead = properties.get("form_multifamilylowriseForm_step3_row4_subHeading", "");
+        controller.formValues.addR4subHead = json.step3[3].header; 
 
-        controller.formValues.addR4typeDesc1 = properties.get("form_multifamilylowriseForm_step3_row4_typeDesc1", "");
-        controller.formValues.addR4inputDesc1 = properties.get("form_multifamilylowriseForm_step3_row4_inputDesc1", "");
-        controller.formValues.addR4rateDesc1 = properties.get("form_multifamilylowriseForm_step3_row4_rateDesc1", "");
+        controller.formValues.addR4typeDesc1 = json.step3[4].title;
+        controller.formValues.addR4inputDesc1 = json.step3[4].label;
+        controller.formValues.addR4rateDesc1 = json.step3[4].value;
 
-        controller.formValues.addR4typeDesc2 = properties.get("form_multifamilylowriseForm_step3_row4_typeDesc2", "");
-        controller.formValues.addR4inputDesc2 = properties.get("form_multifamilylowriseForm_step3_row4_inputDesc2", "");
-        controller.formValues.addR4rateDesc2 = properties.get("form_multifamilylowriseForm_step3_row4_rateDesc2", "");
-        controller.formValues.addR2addedRate = properties.get("form_multifamilylowriseForm_step3_row4_addedRate", "");
+        controller.formValues.addR4typeDesc2 = json.step3[5].title;
+        controller.formValues.addR4inputDesc2 = json.step3[5].label;
+        controller.formValues.addR4rateDesc2 = json.step3[5].value;
+        controller.formValues.addR2addedRate = json.step3[5].extra;
 
-        controller.formValues.addR4typeDesc3 = properties.get("form_multifamilylowriseForm_step3_row4_typeDesc3", "");
-        controller.formValues.addR4inputDesc3 = properties.get("form_multifamilylowriseForm_step3_row4_inputDesc3", "");
-        controller.formValues.addR4rateDesc3 = properties.get("form_multifamilylowriseForm_step3_row4_rateDesc3", "");
+        controller.formValues.addR4typeDesc3 = json.step3[6].title;
+        controller.formValues.addR4inputDesc3 = json.step3[6].label;
+        controller.formValues.addR4rateDesc3 = json.step3[6].value;
 
-        controller.formValues.addR4totalText = properties.get("form_multifamilylowriseForm_step3_row4_totalText", "");
+        controller.formValues.addR4totalText = "TOTAL PERMIT FEE";
 
 
         return controller;
