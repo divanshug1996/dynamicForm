@@ -585,7 +585,7 @@ use(function () {
           "step3_title" : "Step 3: add additional fees and surcharges"
         },
         "live": {
-          "step1": [{
+          "step1": [{ 
             "header": "Living Area and Mixed Uses"
           }, {
             "id": "living_area1",
@@ -847,7 +847,10 @@ use(function () {
             "draft_available": "2018-12-01",
             "draft_effective": "2019-01-01"
           },
-          "units": "metric"
+          "units": "metric",
+          "step1_title" : "Step 1: calculate prevailing market value",
+          "step2_title" : "Step 2: calculate base permit fee",
+          "step3_title" : "Step 3: add additional fees and surcharges"
         },
         "live": {
           "step1": [{
@@ -1356,6 +1359,9 @@ use(function () {
             "draft_available": "2018-12-01",
             "draft_effective": "2019-01-01"
           },
+          "step1_title" : "Step 1: calculate prevailing market value",
+          "step2_title" : "Step 2: calculate base permit fee",
+          "step3_title" : "Step 3: add additional fees and surcharges",
           "units": "metric"
         },
         "live": {
