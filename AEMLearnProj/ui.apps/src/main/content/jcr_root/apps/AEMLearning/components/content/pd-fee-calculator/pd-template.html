@@ -23,7 +23,7 @@
                 </sly>
                 <sly data-sly-test="${controller.pdFormType=='new_home' || 
                                      controller.pdFormType=='multiFammilyLowRise' || 
-                                     controller.pdFormType=='multiFammilyHigHRise' || 
+                                     controller.pdFormType=='low_rise' || 
                                      controller.pdFormType=='hotels' || 
                                      controller.pdFormType=='careFacilities' ||
                                      controller.pdFormType=='wareHouses'}">
@@ -117,7 +117,7 @@
                 $ <span class="totals fees-totals" id="${controller.pdFormType}_min_processing_fee_total"></span>
             </div>
         </div>
-        <sly data-sly-test="${controller.pdFormType=='newHomes'}">
+        <sly data-sly-test="${controller.pdFormType=='new_home'}">
 
             <div class="row">
                 <div class="col-xs-12">
@@ -238,7 +238,7 @@
 
 
         <sly data-sly-test="${controller.pdFormType=='commercial' || 
-                                controller.pdFormType=='multiFammilyHigHRise' || 
+                                controller.pdFormType=='low_rise' || 
                                 controller.pdFormType=='hotels' || 
                                 controller.pdFormType=='careFacilities' ||
                                 controller.pdFormType=='multiFammilyLowRise' ||
@@ -307,7 +307,7 @@
                     <div class="col-xs-12 col-sm-3 title">
                         ${controller.formValues.addR4typeDesc}
                         <sly data-sly-test="${controller.pdFormType=='commercial' || 
-                                              controller.pdFormType=='multiFammilyHigHRise' || 
+                                              controller.pdFormType=='low_rise' || 
                                               controller.pdFormType=='careFacilities' ||
                                               controller.pdFormType=='wareHouses'}">
                             ${controller.formValues.addR4subDesc}
@@ -325,7 +325,7 @@
                         <span class="pull-left strong">×</span>
                         $ <span class="rates" id="lot_grading_rate_value" data-value="80.00">
                             ${controller.formValues.addR4rateDesc}
-                            <sly data-sly-test="${ controller.pdFormType=='multiFammilyHigHRise' || 
+                            <sly data-sly-test="${ controller.pdFormType=='low_rise' || 
                                                     controller.pdFormType=='hotels' || 
                                                     controller.pdFormType=='careFacilities' ||
                                                     controller.pdFormType=='wareHouses'}">
@@ -442,7 +442,7 @@
             </div>
         </div>
 
-        <sly data-sly-test="${controller.pdFormType=='newHomes'}">
+        <sly data-sly-test="${controller.pdFormType=='new_home'}">
             <div class="row finals">
                 <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-right">${controller.formValues.totalGstFee}</div>
                 <div class="col-xs-12 col-sm-3">$ <span id="gst" class="totals total-fee"></span> </div>

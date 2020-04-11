@@ -152,99 +152,98 @@ use(["main.js"], function (json) {
         return controller;
 
 
-    } else if (controller.pdFormType == "multiFammilyLowRise") {
+    } else if (controller.pdFormType == "low_rise") {
 
         formValues = {};
 
-        controller.formValues.step1Title = properties.get("form_multifamilylowriseForm_step1_title", "");
-        controller.formValues.step2Title = properties.get("form_multifamilylowriseForm_step2_title", "");
-        controller.formValues.step3Title = properties.get("form_multifamilylowriseForm_step3_title", "");
+        controller.formValues.step1Title = json.config.step1_title,
+        controller.formValues.step2Title = json.config.step2_title,
+        controller.formValues.step3Title = json.config.step3_title,
 
         //step 1 
-        controller.formValues.C1S1title = properties.get("form_multifamilylowriseForm_step1_col1_title", "");
-        controller.formValues.C2S1title = properties.get("form_multifamilylowriseForm_step1_col2_title", "");
-        controller.formValues.C3S1title = properties.get("form_multifamilylowriseForm_step1_col3_title", "");
-        controller.formValues.C4S1title = properties.get("form_multifamilylowriseForm_step1_col4_title", "");
+        controller.formValues.C1S1title = "Construction Type";
+        controller.formValues.C2S1title = "Area / Quantity";
+        controller.formValues.C3S1title = "Rate";
+        controller.formValues.C4S1title = "Total";
 
-        for (var i = 1; i < 12; i++) {
-            if (i < 4) {
-                controller.formValues.pmvArr.push({
-                    Subhead: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_rowTitle", ""),
-                    feeType: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_constType", ""),
-                    rate: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_inputDesc", ""),
-                    quantityDesc: properties.get("form_multifamilylowriseForm_step1_row+" [i] + "_quantyDesc", ""),
-                    borderval: "",
-                    otherstitle: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_otherstitle", ""),
-                    othersDesc: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_othersDesc", "")
+        // for (var i = 1; i < 12; i++) {
+        //     if (i < 4) {
+        //         controller.formValues.pmvArr.push({
+        //             Subhead: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_rowTitle", ""),
+        //             feeType: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_constType", ""),
+        //             rate: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_inputDesc", ""),
+        //             quantityDesc: properties.get("form_multifamilylowriseForm_step1_row+" [i] + "_quantyDesc", ""),
+        //             borderval: "",
+        //             otherstitle: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_otherstitle", ""),
+        //             othersDesc: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_othersDesc", "")
 
-                });
+        //         });
 
 
                 
-            }else if ((i >= 4) && (i < 9)) {
-                controller.formValues.pmvArr.push({
-                    Subhead: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_rowTitle", ""),
-                    feeType: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_constType", ""),
-                    rate: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_inputDesc", ""),
-                    quantityDesc: properties.get("form_multifamilylowriseForm_step1_row+" [i] + "_quantyDesc", ""),
-                    borderval: "Yes",
-                    otherstitle: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_otherstitle", ""),
-                    othersDesc: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_othersDesc", "")
+        //     }else if ((i >= 4) && (i < 9)) {
+        //         controller.formValues.pmvArr.push({
+        //             Subhead: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_rowTitle", ""),
+        //             feeType: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_constType", ""),
+        //             rate: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_inputDesc", ""),
+        //             quantityDesc: properties.get("form_multifamilylowriseForm_step1_row+" [i] + "_quantyDesc", ""),
+        //             borderval: "Yes",
+        //             otherstitle: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_otherstitle", ""),
+        //             othersDesc: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_othersDesc", "")
 
-                });
+        //         });
 
-            } else if (i == 9) {
+        //     } else if (i == 9) {
 
-                controller.formValues.pmvArr.push({
-                    Subhead: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_rowTitle", ""),
-                    feeType: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_constType", ""),
-                    rate: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_inputDesc", ""),
-                    quantityDesc: properties.get("form_multifamilylowriseForm_step1_row+" [i] + "_quantyDesc", ""),
-                    borderval: "",
-                    otherstitle: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_otherstitle", ""),
-                    othersDesc: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_othersDesc", "")
+        //         controller.formValues.pmvArr.push({
+        //             Subhead: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_rowTitle", ""),
+        //             feeType: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_constType", ""),
+        //             rate: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_inputDesc", ""),
+        //             quantityDesc: properties.get("form_multifamilylowriseForm_step1_row+" [i] + "_quantyDesc", ""),
+        //             borderval: "",
+        //             otherstitle: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_otherstitle", ""),
+        //             othersDesc: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_othersDesc", "")
 
-                });
+        //         });
 
-            } else if (i == 10) {
+        //     } else if (i == 10) {
 
-                controller.formValues.pmvArr.push({
-                    Subhead: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_rowTitle", ""),
-                    feeType: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_constType", ""),
-                    rate: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_inputDesc", ""),
-                    quantityDesc: properties.get("form_multifamilylowriseForm_step1_row+" [i] + "_quantyDesc", ""),
-                    borderval: "Yes",
-                    otherstitle: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_otherstitle", ""),
-                    othersDesc: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_othersDesc", "")
+        //         controller.formValues.pmvArr.push({
+        //             Subhead: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_rowTitle", ""),
+        //             feeType: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_constType", ""),
+        //             rate: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_inputDesc", ""),
+        //             quantityDesc: properties.get("form_multifamilylowriseForm_step1_row+" [i] + "_quantyDesc", ""),
+        //             borderval: "Yes",
+        //             otherstitle: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_otherstitle", ""),
+        //             othersDesc: properties.get("form_multifamilylowriseForm_step1_row" + [i] + "_othersDesc", "")
 
-                });
+        //         });
 
-            }
+        //     }
 
 
 
-        }
+        // }
 
-        controller.formValues.PMValue = properties.get("form_multifamilylowriseForm_step1_totalValue", "");
+        controller.formValues.PMValue = "PREVAILING MARKET VALUE";
 
 
 
         //for step 2 
 
-        controller.formValues.C1title = properties.get("form_multifamilylowriseForm_step2_col1_title", "");
-        controller.formValues.C2title = properties.get("form_multifamilylowriseForm_step2_col2_title", "");
-        controller.formValues.C3title = properties.get("form_multifamilylowriseForm_step2_col3_title", "");
+        controller.formValues.C1title = "Fee type";
+        controller.formValues.C2title = "Rate";
+        controller.formValues.C3title = "Total";
 
-        controller.formValues.feeTypeDesc = properties.get("form_multifamilylowriseForm_step2_row1_typeDesc", "");
-        controller.formValues.feeInputDesc = properties.get("form_multifamilylowriseForm_step2_row1_inputDesc", "");
-        controller.formValues.ratePercent = properties.get("form_multifamilylowriseForm_step2_row1_ratePerc", "");
-        controller.formValues.ratePerPrice = properties.get("form_multifamilylowriseForm_step2_row1_ratePerPrice", "");
-        controller.formValues.totalDesc = properties.get("form_multifamilylowriseForm_step2_row1_totalDesc", "");
+        controller.formValues.feeTypeDesc = json.step2[0].title;
+        controller.formValues.feeInputDesc = json.step2[0].label;
+        controller.formValues.ratePercent = json.step2[0].value;
+        controller.formValues.ratePerPrice = json.step2[0].per;
 
 
-        controller.formValues.R2feeTypeDesc = properties.get("form_multifamilylowriseForm_step2_row2_typeDesc", "");
-        controller.formValues.R2Rate = properties.get("form_multifamilylowriseForm_step2_row2_rateDesc", "");
-        controller.formValues.baseFee = properties.get("form_multifamilylowriseForm_step2_baseFeeTotal", "");
+        controller.formValues.R2feeTypeDesc = json.step2[1].title;
+        controller.formValues.R2Rate = json.step2[1].value;
+        controller.formValues.baseFee = "BASE PERMIT FEE";
 
 
         //step 3 
