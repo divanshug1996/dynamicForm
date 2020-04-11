@@ -4,7 +4,7 @@ use(["main.js"], function (json) {
     var controller = {
         pdFormType: properties.get("formType", ""),
         spacing: properties.get('spacing', 'mb-responsive'),
-        formValues: json
+        formValues: {}
     };
     if (controller.pdFormType == "commercial") {
 
@@ -798,5 +798,8 @@ use(["main.js"], function (json) {
         controller.formValues.addR4totalText = "TOTAL PERMIT FEE";
 
         return controller;
+    } else if (controller.pdFormType == "planningApp"){
+       controller.formValues = json.fees;
+       return controller;   
     }
 });
