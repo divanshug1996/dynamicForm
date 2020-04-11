@@ -1,5 +1,5 @@
 
-<sly data-sly-use.Controller="pd-fee-calculator.js"></sly>
+<sly data-sly-use.Controller="./scripts/pd-fee-calculator.js"></sly>
 <div data-sly-use.cardTemplate="pd-template.html" data-sly-unwrap></div>
 <!-- Card Template -->
 <sly data-sly-call="${cardTemplate.prevailingmarketValue @ controller = controller}"></sly>
