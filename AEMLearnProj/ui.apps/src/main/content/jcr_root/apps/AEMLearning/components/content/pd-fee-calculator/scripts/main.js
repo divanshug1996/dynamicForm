@@ -32,6 +32,7 @@ use(["structure-content.js", "planning-app.js"], function (formsJson, planningAp
         }
     }
     if (formType == "planningApp") {
+        log.debug("inside relevant if block");
         calcJson = planningAppJson.DP 
         isLive = checkDates(calcJson.dates)
     } else {
@@ -44,6 +45,7 @@ use(["structure-content.js", "planning-app.js"], function (formsJson, planningAp
     } else {
         view = calcJson.draft;
     }
+    if(formType != "planningApp")
     view.config = calcJson.config;
     return view;
 })
