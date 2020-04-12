@@ -44,15 +44,15 @@
                                 fieldLabel="Type of form"
                                 name="./formType">
                                 <items jcr:primaryType="nt:unstructured">
-                                    <default
+                                     <default
                                         jcr:primaryType="nt:unstructured"
-                                        text="<----Please select form type---->"
+                                        text="Please select form type"
                                         value="default"/>
                                     <commercial
                                         jcr:primaryType="nt:unstructured"
                                         text="Commercial"
                                         value="commercial"/>
-                                    <new_home
+                                    <newhome
                                         jcr:primaryType="nt:unstructured"
                                         text="New Homes"
                                         value="new_home"/>
@@ -65,9 +65,9 @@
                                         text="Multi Fammily Low Rise"
                                         value="low_rise"/>
                                     <multiFammilyHighRise
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Multi Fammily High Rise"
-                                        value="high_rise"/>
+                                        jcr:primaryType="nily High Rise"
+                                        value="high_rist:unstructured"
+                                        text="Multi Famme"/>
                                     <demolition
                                         jcr:primaryType="nt:unstructured"
                                         text="Demolition"
@@ -90,38 +90,6 @@
                     </column>
                 </items>
             </variationTab>
-            <spacingTab
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Spacing"
-                sling:resourceType="granite/ui/components/foundation/section">
-                <layout
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <spacing
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/foundation/form/select"
-                                fieldLabel="Spacing"
-                                name="./spacing">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <mb-responsive
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Add white space on the bottom ( default )"
-                                        value="mb-responsive"/>
-                                    <mb-0
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Remove white space on the bottom "
-                                        value="mb-0"/>
-                                </items>
-                            </spacing>
-                        </items>
-                    </column>
-                </items>
-            </spacingTab>
         </items>
     </content>
 </jcr:root>

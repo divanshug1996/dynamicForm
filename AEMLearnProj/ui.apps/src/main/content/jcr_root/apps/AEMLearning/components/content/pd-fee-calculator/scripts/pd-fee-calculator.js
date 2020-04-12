@@ -162,9 +162,9 @@ use(["main.js"], function (json) {
 
             //step 1 
             controller.formValues.C1S1title = "Construction Type";
-            controller.formValues.C2S1title = "Area / Quantity";
-            controller.formValues.C3S1title = "Rate";
-            controller.formValues.C4S1title = "Total";
+        controller.formValues.C2S1title = "Area / Quantity";
+        controller.formValues.C3S1title = "Rate";
+        controller.formValues.C4S1title = "Total";
 
         var pmvArr = [];
         for (var i = 0; i < json.step1.length; i++) {
@@ -191,7 +191,7 @@ use(["main.js"], function (json) {
                     subRow: json.subRow
                 });
 
-            } else if ((i == 9) || (i==10)) {
+            } else if ((i == 9) || (i == 10)) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
@@ -308,7 +308,7 @@ use(["main.js"], function (json) {
                     subRow: json.subRow
                 });
 
-            } else if ((i >= 4)&&(i<6)) {
+            } else if ((i >= 4) && (i < 6)) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
@@ -319,7 +319,7 @@ use(["main.js"], function (json) {
                     subRow: json.subRow
                 });
 
-               }
+            }
         }
 
         controller.formValues.pmvArr = pmvArr;
@@ -445,7 +445,7 @@ use(["main.js"], function (json) {
                     subRow: json.subRow
                 });
 
-            } else if ((i >= 4)&&(i<6)) {
+            } else if ((i >= 4) && (i < 6)) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
@@ -456,7 +456,7 @@ use(["main.js"], function (json) {
                     subRow: json.subRow
                 });
 
-               }
+            }
 
 
         }
@@ -556,7 +556,7 @@ use(["main.js"], function (json) {
                     subRow: json.subRow
                 });
 
-               }else if ((i >= 4)&&(i<7)) {
+            } else if ((i >= 4) && (i < 7)) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
@@ -567,7 +567,7 @@ use(["main.js"], function (json) {
                     subRow: json.subRow
                 });
 
-               }
+            }
         }
 
         controller.formValues.pmvArr = pmvArr;
@@ -663,7 +663,7 @@ use(["main.js"], function (json) {
                     subRow: json.subRow
                 });
 
-               }else if ((i >= 4)&&(i<7)) {
+            } else if ((i >= 4) && (i < 7)) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
@@ -673,7 +673,7 @@ use(["main.js"], function (json) {
                     otherstitle: json.step1[i].customDescription,
                     subRow: json.subRow
                 });
-               }
+            }
 
         }
 
@@ -728,6 +728,9 @@ use(["main.js"], function (json) {
         controller.formValues.addR4rateDesc = json.step3[3].value;
         controller.formValues.addR4totalText = "TOTAL PERMIT FEE";
 
+        return controller;
+    } else if (controller.pdFormType == "planningApp") {
+        controller.formValues = json.fees;
         return controller;
     }
 });
