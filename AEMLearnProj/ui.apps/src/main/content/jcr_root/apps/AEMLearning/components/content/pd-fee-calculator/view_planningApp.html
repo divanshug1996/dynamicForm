@@ -615,7 +615,7 @@
                     <div class="col-xs-12 col-sm-4 sub-type">
                         <input type="checkbox" class="fees-values" id="renos-discretionary" data-num="14"
                             data-id="renovations_discretionary_use">
-                        <label for="renos-discretionary">${controller.formValues.renovationsR2TextLabel}</label>
+                        <label for="renos-discretionary">Multi-residential development, townhouses, rowhouses - discretionary use or relaxations</label>
                     </div>
                     <div class="col-xs-12 col-sm-6">
 
@@ -623,19 +623,19 @@
                         <div class="row base" id="renovations_discretionary_use">
                             <div class="col-xs-3">
                                 <span class="base_fee fee" id="base-fee14"
-                                    data-value="${controller.formValues.renovationsR2baseFeenumLabel}">$${controller.formValues.renovationsR2baseFeenumLabel}</span>
-                                <small>${controller.formValues.renovationsR2baseFeeLabel}</small>
+                                    data-value="${controller.formValues['renovations_discretionary_use'].base_fee}">$${controller.formValues['renovations_discretionary_use'].base_fee}</span>
+                                <small>Base fee</small>
                             </div>
                             <div class="col-xs-3"></div>
                             <div class="col-xs-3">
                                 <span class="DCP_fee fee" id="dcp-fee14"
-                                    data-value="${controller.formValues.renovationsR2dcpFeenumLabel}">$${controller.formValues.renovationsR2dcpFeenumLabel}</span>
-                                <small>${controller.formValues.renovationsR2dcpFeeLabel}</small>
+                                    data-value="${controller.formValues['renovations_discretionary_use'].DCP_fee}">$${controller.formValues['renovations_discretionary_use'].DCP_fee}</span>
+                                <small>DCP fee</small>
                             </div>
                             <div class="col-xs-3">
                                 <span class="advertising_fee fee" id="ad-fee14"
-                                    data-value="${controller.formValues.renovationsR2adFeenumLabel}">$${controller.formValues.renovationsR2adFeenumLabel}</span>
-                                <small>${controller.formValues.renovationsR2adFeeLabel}</small>
+                                    data-value="${controller.formValues['renovations_discretionary_use'].advertising_fee}">$${controller.formValues['renovations_discretionary_use'].advertising_fee}</span>
+                                <small>Ad fee</small>
                             </div>
                         </div>
 
@@ -654,47 +654,42 @@
         <h2 class="expand-content"><button class="cui btn-lg primary-fluid expand-btn expand-btn-0"
                 aria-expanded="false" aria-controls="expand-1"><span class="closed cicon-plus-circle left pull-left"
                     aria-hidden="true"></span><span class="open cicon-minus-circle left pull-left"
-                    aria-hidden="true"></span>${controller.formValues.commercialDevheadingtext}</button></h2>
+                    aria-hidden="true"></span>Commercial / Industrial / Mixed Use Development Permits</button></h2>
         <div class="expanding-content" id="expand-1" aria-hidden="true">
             <div class="draft draft-text"></div>
             <div class="container-fluid">
 
                 <div class="row no-border">
-                    <div class="col-xs-12 strong">${controller.formValues.commercialDevsubheadingtext}div>
+                    <div class="col-xs-12 strong">Additions / New</div>
                     </div>
 
                     <div class="row fees" data-total-highest-value="true">
-                        <div class="col-xs-12 col-sm-2 sub-type">${controller.formValues.commercialDevR1TextLabel}</div>
+                        <div class="col-xs-12 col-sm-2 sub-type">Commercial buildings</div>
                         <div class="col-xs-12 col-sm-2">
                             <input class="form-control short-form" id="input05" type="text" pattern="[0-9]*"
                                 inputmode="numeric" data-no-decimals="true">
                             <label for="input05">m<sup>2</sup></label>
                         </div>
                         <div class="col-xs-12 col-sm-6">
-
-
                             <div class="row base" id="additions_commercial_buildings">
                                 <div class="col-xs-4">
                                     <span class="base_fee_per_metre fee" id="input05_rate" data-multiply="true"
-                                        data-min="${controller.formValues.commercialDevR1MinNumLabel}"
-                                        data-value="${controller.formValues.commercialDevR1gfaFeenumLabel}">$${controller.formValues.commercialDevR1gfaFeenumLabel}</span>
-                                    <small>${controller.formValues.commercialDevR1gfaFeeLabel @context= "html"}</small>
-                                    <small>Min: <span
-                                            class="min">$${controller.formValues.commercialDevR1MinNumLabel}</span></small>
+                                        data-min="${controller.formValues['additions_commercial_buildings'].base_fee_per_metre.min}"
+                                        data-value="${controller.formValues['additions_commercial_buildings'].base_fee_per_metre.fee}">$${controller.formValues['additions_commercial_buildings'].base_fee_per_metre.fee}</span>
+                                    <small>per m<sup>2</sup> of GFA</small>
+                                    <small>Min: <span class="min">$${controller.formValues['additions_commercial_buildings'].base_fee_per_metre.min}</span></small>
                                 </div>
                                 <div class="col-xs-4">
                                     <span class="DCP_fee fee" id="input05_DCP_fee"
-                                        data-value="${controller.formValues.commercialDevR1dcpFeenumLabel}">$${controller.formValues.commercialDevR1dcpFeenumLabel}</span>
-                                    <small>${controller.formValues.commercialDevR1dcpFeeLabel}</small>
+                                        data-value="${controller.formValues['additions_commercial_buildings'].DCP_fee}">$${controller.formValues['additions_commercial_buildings'].DCP_fee}</span>
+                                    <small>DCP fee</small>
                                 </div>
                                 <div class="col-xs-4">
                                     <span class="advertising_fee fee" id="input05_ad_fee"
-                                        data-value="${controller.formValues.commercialDevR1adFeenumLabel}">$${controller.formValues.commercialDevR1adFeenumLabel}</span>
-                                    <small>${controller.formValues.commercialDevR1adFeeLabel}</small>
+                                        data-value="${controller.formValues['additions_mixed_use_buildings'].advertising_fee}">$${controller.formValues['additions_mixed_use_buildings'].advertising_fee}</span>
+                                    <small>Ad fee</small>
                                 </div>
                             </div>
-
-
                         </div>
                         <div class="col-xs-12 col-sm-2">
                             $ <span class="totals" id="input05_total"></span>
@@ -702,7 +697,7 @@
                     </div>
 
                     <div class="row fees" data-total-highest-value="true">
-                        <div class="col-xs-12 col-sm-2 sub-type">${controller.formValues.commercialDevR2TextLabel}
+                        <div class="col-xs-12 col-sm-2 sub-type">Mixed use buildings 
                         </div>
                         <div class="col-xs-12 col-sm-2">
                             <input class="form-control short-form" id="input06" type="text" pattern="[0-9]*"
@@ -711,19 +706,17 @@
                             <br><br>
                             <input class="form-control short-form" id="input07" type="text" pattern="[0-9]*"
                                 inputmode="numeric" data-no-decimals="true">
-                            <label for="input07">${controller.formValues.commercialDevR2inputDesc}</label>
+                            <label for="input07">dwelling units</label>
                         </div>
                         <div class="col-xs-12 col-sm-6">
-
-
                             <div class="row base" id="additions_mixed_use_buildings">
                                 <div class="col-xs-6 col-sm-3">
                                     <span class="base_fee_per_metre fee" data-multiply="true" id="input06_per_metre"
-                                        data-id="input06" data-min="${controller.formValues.commercialDevR2MinNumLabel}"
-                                        data-value="${controller.formValues.commercialDevR2gfaFeenumLabel}">$${controller.formValues.commercialDevR2gfaFeenumLabel}</span>
+                                        data-id="input06" data-min="${controller.formValues['additions_mixed_use_buildings'].base_fee_per_metre.min}"
+                                        data-value="${controller.formValues['additions_mixed_use_buildings'].base_fee_per_metre.fee}">$${controller.formValues['additions_mixed_use_buildings'].base_fee_per_metre.fee}</span>
                                     <small>${controller.formValues.commercialDevR2gfaFeeLabel @context= "html"}</small>
                                     <small>Min: <span class="min" id="input06_min_fee"
-                                            data-value="${controller.formValues.commercialDevR2MinNumLabel}">$${controller.formValues.commercialDevR2MinNumLabel}</span></small>
+                                            data-value="${controller.formValues['additions_mixed_use_buildings'].base_fee_per_metre.min}">$${controller.formValues['additions_mixed_use_buildings'].base_fee_per_metre.min}</span></small>
                                 </div>
                                 <div class="col-xs-6 col-sm-2">
                                     <span class="base_fee fee" id="input07_base"
