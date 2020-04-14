@@ -37,10 +37,10 @@
             </div>
             <div class="col-xs-12 col-sm-3 text-center">
                 <span class="pull-left strong">×</span>
-                $ <span class="rates" id="${controller.pdFormType}_rate"
-                    data-attr-dfactor="${controller.formValues.ratePerPrice}">${controller.formValues.ratePercent}</span>
+                $ <span class="rates" id="${controller.pdFormType}_rate" data-round="${controller.formValues.round}"
+                    data-attr-dfactor="${controller.formValues.ratePerPrice2}">${controller.formValues.ratePercent}</span>
                 per
-                ${controller.formValues.ratePerPrice}
+                ${controller.formValues.ratePerPrice2}
                 <span class="pull-right strong">=</span>
             </div>
 
@@ -215,14 +215,14 @@
                 </div>
                 <div class="col-xs-12 col-sm-3 text-center">
                     <span class="pull-left strong">×</span>
-                    $ <span class="rates" id="lot_grading_rate" data-value="${controller.formValues.ratePerPrice}">
-                        ${controller.formValues.ratePerPrice}
+                    $ <span class="rates" id="lot_grading_rate_value" data-value="${controller.formValues.ratePerPrice3}">
+                        ${controller.formValues.ratePerPrice3}
                         / unit
                     </span>
                     <span class="pull-right strong">=</span>
                 </div>
                 <div class="col-xs-12 col-sm-3">
-                    $ <span class="totals fees-totals" id="lot_grading_total"></span>
+                    $ <span class="totals fees-totals" id="lot_grading_total_value"></span>
                 </div>
             </div>
 
@@ -366,7 +366,7 @@
                         <input class="form-control lowRiseInput long-form" type="text" id="lot_grading_input1"
                             maxlength="1" pattern="[0-9]*" inputmode="numeric">
 
-                        <label for="lot_grading_input">
+                        <label for="lot_grading_input1">
                             <small>${controller.formValues.addR4inputDesc1 @context='html'}</small>
                         </label>
                     </div>
@@ -393,7 +393,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-3">
                         <input class="form-control lowRiseInput  long-form" type="text" id="lot_grading2_input"
-                            maxlength="" pattern="[0-9]*" inputmode="numeric">
+                            maxlength="" pattern="[0-9]*" inputmode="numeric" data-extra="${controller.formValues.addR2addedRate}">
 
                         <label for="lot_grading2_input">
                             <small>${controller.formValues.addR4inputDesc2 @ context='html'}</small>
@@ -496,7 +496,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-3">
                     <input class="form-control construction-values pmv ${controller.pdFormType}"
-                        data-feeType="${PMV.feeType}" data-rate="${PMV.rate}" type="text" id="${PMV.feeType}_input"
+                        data-feeType="${PMV.feeType}" data-rate="${PMV.rate}"  type="text" id="${PMV.feeType}_input"
                         maxlength="" pattern="[0-9]*" inputmode="numeric">
 
                     <label for="${PMV.feeType}_input">

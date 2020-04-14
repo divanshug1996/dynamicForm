@@ -1,4 +1,4 @@
-var input_ele, rate_ele, pf_ele, pfTotal_ele, baseFee_ele, PMVTotal_ele, Ftype, PartialP_ele, ground_checkbox = 0, temp_checkbox = 0, hydronic_heat = 0, other = 0;
+var input_ele, rate_ele, pf_ele, pfTotal_ele, baseFee_ele, PMVTotal_ele, Ftype, PartialP_ele, ground_checkbox = 0, temp_checkbox = 0, hydronic_heat = 0, other = 0, round = 0,gst=0;
 const PD_CALC = {};
 PD_CALC.constants = {};
 PD_CALC.glob = {};
@@ -9,6 +9,51 @@ PD_CALC.methods.utils = {};
 PD_CALC.glob.formName = "";
 PD_CALC.constants.CLASS_getFormType = '.pd-formType';
 PD_CALC.constants.ATTR_getFormType = "data-form-name";
+PD_CALC.methods.changeUnits = function (val, changeVal) {
+    if (val == "metric") {
+        $('.pmv').each(function () {
+            if ($(this).attr("id") != "other_input") {
+                var dataFee = $(this).attr('data-feetype'),
+                    dataRate = PD_CALC.methods.getNum($(this).attr('data-rate')),
+                    ele = document.getElementById(dataFee);
+
+                if (!dataFee.includes("Fireplace") && changeVal == true) {
+                    var convRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.fTom(dataRate));
+                    $(this).attr('data-rate', convRate);
+                    $(ele).html('');
+                    $(ele).html(convRate);
+                }
+            }
+
+        })
+        $('.feet').each(function () {
+            $(this).hide();
+        })
+        $('.metres').each(function () {
+            $(this).show();
+        })
+    } else {
+        $('.pmv').each(function () {
+            if ($(this).attr("id") != "other_input") {
+                var dataFee = $(this).attr('data-feetype'),
+                    dataRate = PD_CALC.methods.getNum($(this).attr('data-rate')),
+                    ele = document.getElementById(dataFee),
+                    convRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.mToF(PD_CALC.methods.getNum(dataRate)));
+                if (!dataFee.includes("Fireplace") && changeVal === true) {
+                    $(this).attr('data-rate', convRate);
+                    $(ele).html('');
+                    $(ele).html(convRate);
+                }
+            }
+        })
+        $('.metres').each(function () {
+            $(this).hide();
+        })
+        $('.feet').each(function () {
+            $(this).show();
+        })
+    }
+}
 PD_CALC.methods.numberWithCommas = function (x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -31,7 +76,8 @@ PD_CALC.methods.getAddonResult = function (array) {
     return sum == "NaN" ? 0 : sum;
 }
 PD_CALC.methods.setBaseTotal = function () {
-    var sum = 0
+    var sum = 0,
+        highest = 0
     $('.totals').each(function () {
         var input = $(this).html(),
             repInput = input.replace(/,/g, '');
@@ -181,7 +227,7 @@ PD_CALC.methods.changeTotal = function (additionalFeesObj) {
     else
         $(".step3-final-total").html("");
     if (Ftype == "new_home") {
-        $("#gst").html(0);
+        $("#gst").html(parseFloat(gst).toFixed(2));
         $("#total-fee-inc-gst").html(PD_CALC.methods.numberWithCommas(sum.toFixed(2)));
     }
 }
@@ -195,27 +241,31 @@ PD_CALC.methods.calcBasePermitStep = function (num, type) {
         max = $("#bldg_demo_max").attr("data-value"),
         numMult,
         total;
+
     if (type == "demolition") {
         total = PD_CALC.methods.getBasePermitFeeDemolition(parseFloat(num), parseFloat(rate), parseFloat(min), parseFloat(max));
         if (isNaN(total)) total = 0
         else total = parseFloat(total).toFixed(2);
-        $(PMVTotal_ele).html(isNaN(total) ? 0 : parseFloat(total).toFixed(2));
+        $(PMVTotal_ele).html(isNaN(total) ? 0.00 : PD_CALC.methods.numberWithCommas(parseFloat(total).toFixed(2)));
     }
     else if (type == "new_home") {
-        numMult = parseFloat(PD_CALC.methods.getBasePermitFeeStd(parseFloat(num), 1000, rate, dFactor));
+        console.log("inside here ")
+        numMult = parseFloat(PD_CALC.methods.getBasePermitFeeStd(parseFloat(num), parseFloat(round), parseFloat(rate), dFactor));
         total = numMult + parseFloat(ground_checkbox) + parseFloat(temp_checkbox) + parseFloat(hydronic_heat);
-        $(PMVTotal_ele).html(isNaN(total) ? 0 : parseFloat(numMult).toFixed(2));
+        console.log(total)
+        $(PMVTotal_ele).html(isNaN(total) ? 0.00 : PD_CALC.methods.numberWithCommas(parseFloat(numMult).toFixed(2)));
     }
     else {
-        total = PD_CALC.methods.getBasePermitFeeStd(parseInt(num), 100, rate, dFactor) == "NaN" ? 0 : PD_CALC.methods.getBasePermitFeeStd(parseInt(num), 100, rate, dFactor);
-        $(PMVTotal_ele).html(isNaN(total) ? 0 : parseFloat(total).toFixed(2));
+        total = PD_CALC.methods.getBasePermitFeeStd(parseInt(num), round, rate, dFactor) == "NaN" ? 0 : PD_CALC.methods.getBasePermitFeeStd(parseInt(num), round, rate, dFactor);
+        $(PMVTotal_ele).html(isNaN(total) ? 0.00 : parseFloat(total).toFixed(2));
     }
+    var newTotal = parseFloat(total) + parseFloat(procFee)
     $(pfTotal_ele).html(PD_CALC.methods.numberWithCommas(parseFloat($(pf_ele).html()).toFixed(2)));
-    $(baseFee_ele).html(PD_CALC.methods.numberWithCommas(parseFloat(total) + parseFloat(procFee)));
+    $(baseFee_ele).html(PD_CALC.methods.numberWithCommas(parseFloat(newTotal).toFixed(2)));
 }
 PD_CALC.methods.caclStep1Total = function () {
-    if(isNaN(other))
-    other = 0
+    if (isNaN(other))
+        other = 0
     var sum = 0;
     $(".step1Total").each(function () {
         var num = PD_CALC.methods.getNum($(this).html());
@@ -225,19 +275,26 @@ PD_CALC.methods.caclStep1Total = function () {
             sum = sum + parseFloat(num);
         }
     });
-    sum = sum+ other
+    sum = sum + other
     $(".step1-final-total").html(PD_CALC.methods.numberWithCommas(sum.toFixed(2)));
 }
 
-PD_CALC.events.init = function (type) {
+PD_CALC.events.init = function (type, unit) {
     input_ele = '#' + type + '_input',
         rate_ele = '#' + type + '_rate',
         pf_ele = '#' + type + '_min_processing_fee',
         pfTotal_ele = '#' + type + '_min_processing_fee_total',
         baseFee_ele = '#' + type + '_base-fee',
         PMVTotal_ele = '#' + type + '_permit_rate_total',
+        round = $(rate_ele).attr('data-round'),
         PartialP_ele = "#" + type + "_partial_permit_input";
     Ftype = type;
+    if (type != 'planningApp') {
+        $("#units").val(unit);
+        PD_CALC.methods.changeUnits(unit, false);
+    }
+
+
     $('input').keypress(function (e) {
         PD_CALC.methods.isNumeric(e);
     });
@@ -375,7 +432,7 @@ PD_CALC.events.init = function (type) {
             min = PD_CALC.methods.getNum($("#safety_fee_base_min").attr("data-value")),
             max = PD_CALC.methods.getNum($("#safety_fee_base_max").attr("data-value")),
             newBPF = PD_CALC.methods.getBasePermitFeeDemolition(prevBPF, safetyRate / 100, min, max);
-        $("#" + type + "_prev_BPT").html(prevBPF),
+        $("#" + type + "_prev_BPT").html(PD_CALC.methods.numberWithCommas(parseFloat(prevBPF).toFixed(2))),
             $("#safety_fee_base_total").html(parseFloat(newBPF).toFixed(2));
         PD_CALC.additionalFeesObj.basePermit = parseFloat(prevBPF);
         PD_CALC.additionalFeesObj.safetyCouncilBase = parseFloat(newBPF);
@@ -386,8 +443,13 @@ PD_CALC.events.init = function (type) {
     });
 
     $(PartialP_ele).keyup(function () {
-        if ($(input_ele).val() == "")
-            PD_CALC.methods.calcBasePermitStep("0", type);
+        if (type == 'commercial') {
+            if ($(input_ele).val() == "")
+                PD_CALC.methods.calcBasePermitStep("0.00", type);
+        } else {
+            if($('.step1-final-total').html()=="")
+            $('.step1-final-total').html("0.00");
+        }
         var ppfInput = isNaN(this.value) ? 0 : this.value,
             rate = isNaN($("#" + type + "_partial_permit_rate").attr("data-value")) ? 0 : $("#" + type + "_partial_permit_rate").attr("data-value"),
             totalEle = $("#" + type + "_partial_permit_total"),
@@ -396,39 +458,52 @@ PD_CALC.events.init = function (type) {
             min2, max2, rate2, total2;
         total = PD_CALC.methods.getBasePermitFeeDemolition(parseFloat(ppfInput), parseFloat(rate), parseFloat(min), parseFloat(max));
         if (!isNaN(total))
-            $(totalEle).html(PD_CALC.methods.numberWithCommas(total));
+            $(totalEle).html(PD_CALC.methods.numberWithCommas(parseFloat(total).toFixed(2)));
         else
             $(totalEle).html("");
-        $("#" + type + "_PPF_total").html(total);
+        $("#" + type + "_PPF_total").html(PD_CALC.methods.numberWithCommas(parseFloat(total).toFixed(2)));
         min2 = $("#safety_fee_partial_min").attr("data-min"),
             max2 = $("#safety_fee_partial_min").attr("data-max"),
             rate2 = $("#safety_fee_partial_rate").attr("data-value"),
             total2 = PD_CALC.methods.getBasePermitFeeDemolition(parseFloat(total), parseFloat(rate2) / 100, parseFloat(min2), parseFloat(max2));
-        $("#safety_fee_partial_total").html(isNaN(total2) ? 0 : PD_CALC.methods.numberWithCommas(total2));
+        $("#safety_fee_partial_total").html(isNaN(total2) ? 0 : PD_CALC.methods.numberWithCommas(parseFloat(total2).toFixed(2)));
         PD_CALC.additionalFeesObj.partialPermit = parseFloat(total);
         PD_CALC.additionalFeesObj.safetyCouncilPart = parseFloat(total2);
     });
 
     $("#lot_grading_input").keyup(function () {
-        if ($(input_ele).val() == "")
-            PD_CALC.methods.calcBasePermitStep("0", type);
+        if (type == 'commercial') {
+            if ($(input_ele).val() == "")
+                PD_CALC.methods.calcBasePermitStep("0.00", type);
+        } else {
+            if($('.step1-final-total').html()=="")
+            $('.step1-final-total').html("0.00");
+        }
         var lotInput = parseFloat(this.value),
-            rate = $("#lot_grading_rate_value").attr("data-value");
+            rate = parseFloat($("#lot_grading_rate_value").attr("data-value"));
+            console.log(lotInput,rate)
         total = lotInput * rate;
-        if (this.value != "")
-            $("#lot_grading_total_value").html(PD_CALC.methods.numberWithCommas(total));
-        else
+        console.log(total)
+        console.log(this.value);
+        if (this.value != ""){
+            console.log("inside this")
+            $("#lot_grading_total_value").html(PD_CALC.methods.numberWithCommas(parseFloat(total).toFixed(2)));
+        }else{
             $("#lot_grading_total_value").html("")
+        }
         PD_CALC.additionalFeesObj.lotGrading = total;
     })
     $("#partial_permit_checkbox").change(function () {
         var checked = false,
-            partialPermit = $("#partial_permit_F2").attr("data-value");
+            partialPermit = $("#partial_permit_F2").attr("data-value"),
+            step1Val = $('.step1-final-total').html();
         if ($(this).is(":checked"))
             $(this).attr("checked", true);
         checked = $(this).is(':checked');
         if (checked) {
-            $("#partial_permit_totalF2").html(PD_CALC.methods.numberWithCommas(partialPermit));
+            if(step1Val == "")
+            $('.step1-final-total').html("0.00")
+            $("#partial_permit_totalF2").html(PD_CALC.methods.numberWithCommas(parseFloat(partialPermit).toFixed(2)));
             PD_CALC.additionalFeesObj.partialPermit = parseFloat(partialPermit);
             PD_CALC.additionalFeesObj.water = parseFloat($("#water_fee").attr("data-value")).toFixed(2)
             $("#water_fee_total").html($("#water_fee").attr("data-value"));
@@ -441,7 +516,6 @@ PD_CALC.events.init = function (type) {
     })
     $(".pmv").keyup(function () {
         if ($(this).attr("data-feeType") == "other") {
-            console.log("inside relevent if condition",this.value)
             other = parseFloat(this.value);
             $('#other_total').html(parseFloat(other).toFixed(2));
             PD_CALC.methods.caclStep1Total();
@@ -457,8 +531,11 @@ PD_CALC.events.init = function (type) {
         }
     });
     $(".step1-final-total").on('DOMSubtreeModified', function () {
-        $(".baseFeePrevTotal").html(Math.ceil(PD_CALC.methods.getNum($(this).html()) / 1000) * 1000);
-        PD_CALC.methods.calcBasePermitStep(PD_CALC.methods.getNum($(this).html()), "new_home");
+        if (round == undefined || round == "undefined")
+            $(".baseFeePrevTotal").html(PD_CALC.methods.numberWithCommas($(this).html()))
+        else
+            $(".baseFeePrevTotal").html(PD_CALC.methods.numberWithCommas(parseFloat(Math.ceil(PD_CALC.methods.getNum($(this).html()) / round) * round).toFixed(2)));
+        PD_CALC.methods.calcBasePermitStep(PD_CALC.methods.getNum($(this).html()), type);
     });
     $(".type3").change(function () {
         var checked = false,
@@ -470,38 +547,53 @@ PD_CALC.events.init = function (type) {
         if (checked) {
             if (id.includes("ground")) {
                 ground_checkbox = PD_CALC.methods.getNum($("#" + id + "_rate").html());
+                gst = gst + parseFloat(ground_checkbox).toFixed(2)*0.05;
                 $("#" + id + "_total").html(ground_checkbox);
             } else if (id.includes("temp_heat")) {
                 temp_checkbox = PD_CALC.methods.getNum($("#" + id + "_rate").html());
+                gst = gst + parseFloat(ground_checkbox).toFixed(2)*0.05;
                 $("#" + id + "_total").html(temp_checkbox);
             } else {
                 hydronic_heat = PD_CALC.methods.getNum($("#" + id + "_rate").html());
+                gst = gst + parseFloat(ground_checkbox).toFixed(2)*0.05;
                 $("#" + id + "_total").html(hydronic_heat);
             }
         } else {
             if (id.includes("ground")) {
+                gst = gst- (ground_checkbox*0.05) ;
                 ground_checkbox = 0;
+                
             } else if (id.includes("temp_heat")) {
-                temp_checkbox = 0
+                gst = gst- (temp_checkbox*0.05) ;
+                temp_checkbox = 0;
+                
             } else {
+                gst = gst - (temp_checkbox*0.05);
                 hydronic_heat = 0
+               
             }
             $("#" + id + "_total").html("");
         }
 
         if (PMVele.html() == "") {
             $(PMVele).html(0);
-            PD_CALC.methods.calcBasePermitStep(0, "new_home");
-        } else
-            PD_CALC.methods.calcBasePermitStep(PMVele.html(), "new_home");
+            PD_CALC.methods.calcBasePermitStep(0.00, "new_home");
+        } else {
+            PD_CALC.methods.calcBasePermitStep(parseFloat(PD_CALC.methods.getNum(PMVele.html())), "new_home");
+        }
     })
     $(".lowRiseInput").keyup(function () {
         var id = $(this).attr("id"),
             rate = PD_CALC.methods.getNum($("#" + id + "_rate").html()),
-            totalEle = $("#" + id + "_total");
+            totalEle = $("#" + id + "_total"),
+            total;
         if (this.value != "") {
-            PD_CALC.additionalFeesObj.lotGrading = rate * parseFloat(this.value);
-            $(totalEle).html(rate * parseFloat(this.value));
+            total = rate * parseFloat(this.value);
+            PD_CALC.additionalFeesObj.lotGrading = total;
+
+            if ($(this).attr("id") == "lot_grading2_input")
+                $(totalEle).html(parseFloat(total + parseFloat($(this).attr('data-extra'))).toFixed(2));
+            else $(totalEle).html(parseFloat(total).toFixed(2));
         } else {
             $(totalEle).html("")
             PD_CALC.additionalFeesObj.lotGrading = 0;
@@ -510,47 +602,7 @@ PD_CALC.events.init = function (type) {
             $(".step1-final-total").html(0)
     })
     $(document).on('change', '#units', function () {
-        console.log("units changed to :: " + this.value);
+        PD_CALC.methods.changeUnits(this.value, true);
+    });
 
-
-        if (this.value == "metric") {
-
-            $('.pmv').each(function () {
-
-                var dataFee = $(this).attr('data-feetype'),
-                    dataRate = $(this).attr('data-rate'),
-                    ele = document.getElementById(dataFee);
-                if (!dataFee.includes("Fireplace")) {
-                    var convRate = PD_CALC.methods.fTom(dataRate);
-                    $(this).attr('data-rate', convRate);
-                    $(ele).html('');
-                    $(ele).html(convRate);
-                }
-            })
-            $('.feet').each(function () {
-                $(this).hide();
-            })
-            $('.metres').each(function () {
-                $(this).show();
-            })
-        } else {
-            $('.pmv').each(function () {
-                var dataFee = $(this).attr('data-feetype'),
-                    dataRate = $(this).attr('data-rate'),
-                    ele = document.getElementById(dataFee),
-                    convRate =PD_CALC.methods.mToF(dataRate);
-                if (!dataFee.includes("Fireplace")) {
-                    $(this).attr('data-rate', convRate);
-                    $(ele).html('');
-                    $(ele).html(convRate);
-                }
-            })
-            $('.metres').each(function () {
-                $(this).hide();
-            })
-            $('.feet').each(function () {
-                $(this).show();
-            })
-        }
-    })
 }

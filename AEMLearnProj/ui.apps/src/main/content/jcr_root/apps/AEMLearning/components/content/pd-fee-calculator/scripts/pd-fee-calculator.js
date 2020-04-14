@@ -6,6 +6,11 @@ use(["main.js"], function (json) {
         spacing: properties.get('spacing', 'mb-responsive'),
         formValues: {}
     };
+    function numberWithCommas (x) {
+        if(x != undefined )
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        else return x;
+    }
     if (controller.pdFormType == "commercial") {
 
         formValues = {};
@@ -21,7 +26,7 @@ use(["main.js"], function (json) {
         controller.formValues.feeTypeDesc = json.step2[0].title;
         controller.formValues.feeInputDesc = json.step2[0].label;
         controller.formValues.ratePercent = json.step2[0].value;
-        controller.formValues.ratePerPrice = json.step2[0].per;
+        controller.formValues.ratePerPrice2 = json.step2[0].per;
         controller.formValues.totalDesc = "N/A if PMV is $1000 or less.";
 
         controller.formValues.R2feeTypeDesc = json.step2[1].title;
@@ -62,7 +67,7 @@ use(["main.js"], function (json) {
 
 
     } else if (controller.pdFormType == "new_home") {
-
+        log.debug("inside new homes")
         formValues = {};
 
 
@@ -81,12 +86,11 @@ use(["main.js"], function (json) {
             pmvArr.push({
                 Subhead: json.step1[i].header,
                 feeType: json.step1[i].title,
-                rate: json.step1[i].value,
+                rate: numberWithCommas(json.step1[i].value),
                 quantityDesc: json.step1[i].label,
                 borderval: "Yes",
                 otherstitle: json.step1[i].customDescription
             });
-            log.debug(pmvArr.feeType);
         }
 
         controller.formValues.pmvArr = pmvArr;
@@ -102,7 +106,8 @@ use(["main.js"], function (json) {
         controller.formValues.feeTypeDesc = json.step2[0].title;
         controller.formValues.feeInputDesc = json.step2[0].label;
         controller.formValues.ratePercent = json.step2[0].value;
-        controller.formValues.ratePerPrice = json.step2[0].per;
+        controller.formValues.ratePerPrice2 = json.step2[0].per;
+        log.debug("the value of per here is :: "+controller.formValues.ratePerPrice);
         controller.formValues.totalDesc = "N/A if PMV is $1000 or less.";
         controller.formValues.round = json.step2[0].round;
 
@@ -140,7 +145,7 @@ use(["main.js"], function (json) {
 
         controller.formValues.feeTypeTitle = json.step3[2].title;
         controller.formValues.inputDesc = json.step3[2].label;
-        controller.formValues.ratePerPrice = json.step3[2].value;
+        controller.formValues.ratePerPrice3 = json.step3[2].value;
 
         controller.formValues.s3typeDesc = json.step3[3].title;
         controller.formValues.s3rateDesc = json.step3[3].value;
@@ -157,14 +162,15 @@ use(["main.js"], function (json) {
         formValues = {};
 
         controller.formValues.step1Title = json.config.step1_title,
-            controller.formValues.step2Title = json.config.step2_title,
-            controller.formValues.step3Title = json.config.step3_title,
+        controller.formValues.step2Title = json.config.step2_title,
+        controller.formValues.step3Title = json.config.step3_title,
 
             //step 1 
-            controller.formValues.C1S1title = "Construction Type";
+        controller.formValues.C1S1title = "Construction Type";
         controller.formValues.C2S1title = "Area / Quantity";
         controller.formValues.C3S1title = "Rate";
         controller.formValues.C4S1title = "Total";
+        
 
         var pmvArr = [];
         for (var i = 0; i < json.step1.length; i++) {
@@ -173,7 +179,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "",
                     otherstitle: json.step1[i].customDescription,
@@ -184,7 +190,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "Yes",
                     otherstitle: json.step1[i].customDescription,
@@ -195,7 +201,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "",
                     otherstitle: json.step1[i].customDescription,
@@ -206,7 +212,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "Yes",
                     otherstitle: json.step1[i].customDescription,
@@ -226,7 +232,8 @@ use(["main.js"], function (json) {
         controller.formValues.feeTypeDesc = json.step2[0].title;
         controller.formValues.feeInputDesc = json.step2[0].label;
         controller.formValues.ratePercent = json.step2[0].value;
-        controller.formValues.ratePerPrice = json.step2[0].per;
+        controller.formValues.ratePerPrice2 = json.step2[0].per;
+        controller.formValues.round = json.step2[0].round;
 
 
         controller.formValues.R2feeTypeDesc = json.step2[1].title;
@@ -283,7 +290,7 @@ use(["main.js"], function (json) {
     } else if (controller.pdFormType == "high_rise") {
 
         formValues = {};
-
+        controller.formValues.unit = json.config.units;
         controller.formValues.step1Title = json.config.step1_title;
         controller.formValues.step2Title = json.config.step2_title;
         controller.formValues.step3Title = json.config.step3_title;
@@ -301,7 +308,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "Yes",
                     otherstitle: json.step1[i].customDescription,
@@ -312,7 +319,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "",
                     otherstitle: json.step1[i].customDescription,
@@ -335,7 +342,7 @@ use(["main.js"], function (json) {
         controller.formValues.feeTypeDesc = json.step2[0].title;
         controller.formValues.feeInputDesc = json.step2[0].label;
         controller.formValues.ratePercent = json.step2[0].value;
-        controller.formValues.ratePerPrice = json.step2[0].per;
+        controller.formValues.ratePerPrice2 = json.step2[0].per;
         controller.formValues.round = json.step2[0].round;
 
         controller.formValues.R2feeTypeDesc = json.step2[1].title;
@@ -438,7 +445,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "",
                     otherstitle: json.step1[i].customDescription,
@@ -449,7 +456,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "Yes",
                     otherstitle: json.step1[i].customDescription,
@@ -474,7 +481,7 @@ use(["main.js"], function (json) {
         controller.formValues.feeTypeDesc = json.step2[0].title;
         controller.formValues.feeInputDesc = json.step2[0].label;
         controller.formValues.ratePercent = json.step2[0].value;
-        controller.formValues.ratePerPrice = json.step2[0].per;
+        controller.formValues.ratePerPrice2 = json.step2[0].per;
         controller.formValues.round = json.step2[0].round;
 
 
@@ -538,7 +545,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "",
                     otherstitle: json.step1[i].customDescription,
@@ -549,7 +556,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "Yes",
                     otherstitle: json.step1[i].customDescription,
@@ -560,7 +567,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "",
                     otherstitle: json.step1[i].customDescription,
@@ -583,7 +590,7 @@ use(["main.js"], function (json) {
         controller.formValues.feeTypeDesc = json.step2[0].title;
         controller.formValues.feeInputDesc = json.step2[0].label;
         controller.formValues.ratePercent = json.step2[0].value;
-        controller.formValues.ratePerPrice = json.step2[0].per;
+        controller.formValues.ratePerPrice2 = json.step2[0].per;
         controller.formValues.round = json.step2[0].round;
 
         controller.formValues.R2feeTypeDesc = json.step2[1].title;
@@ -645,7 +652,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "",
                     otherstitle: json.step1[i].customDescription,
@@ -656,7 +663,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "Yes",
                     otherstitle: json.step1[i].customDescription,
@@ -667,7 +674,7 @@ use(["main.js"], function (json) {
                 pmvArr.push({
                     Subhead: json.step1[i].header,
                     feeType: json.step1[i].title,
-                    rate: json.step1[i].value,
+                    rate: numberWithCommas(json.step1[i].value),
                     quantityDesc: json.step1[i].label,
                     borderval: "",
                     otherstitle: json.step1[i].customDescription,
@@ -690,7 +697,7 @@ use(["main.js"], function (json) {
         controller.formValues.feeTypeDesc = json.step2[0].title;
         controller.formValues.feeInputDesc = json.step2[0].label;
         controller.formValues.ratePercent = json.step2[0].value;
-        controller.formValues.ratePerPrice = json.step2[0].per;
+        controller.formValues.ratePerPrice2 = json.step2[0].per;
         controller.formValues.round = json.step2[0].round;
 
 
