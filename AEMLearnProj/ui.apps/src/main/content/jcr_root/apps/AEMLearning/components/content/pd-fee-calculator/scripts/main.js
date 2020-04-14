@@ -1,7 +1,6 @@
 "use strict";
 use(["structure-content.js", "planning-app.js"], function (formsJson, planningAppJson) {
-    log.debug("value from planning app is ::" + planningAppJson.DP.dates["draft_available"])
-    var formType = properties.get("formType", ""),
+    var formType = properties.get("formType", "") == '' ? 'commercial' : properties.get("formType", ""),
         calcJson,
         view = {},
         isLive;

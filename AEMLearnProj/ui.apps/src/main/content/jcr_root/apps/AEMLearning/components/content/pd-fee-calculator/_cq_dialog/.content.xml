@@ -65,9 +65,9 @@
                                         text="Multi Fammily Low Rise"
                                         value="low_rise"/>
                                     <multiFammilyHighRise
-                                        jcr:primaryType="nily High Rise"
-                                        value="high_rist:unstructured"
-                                        text="Multi Famme"/>
+                                        jcr:primaryType="nt:unstructured"
+                                        value="high_rise"
+                                        text="Multi Fammily high Rise"/>
                                     <demolition
                                         jcr:primaryType="nt:unstructured"
                                         text="Demolition"

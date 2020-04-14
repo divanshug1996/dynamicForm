@@ -520,7 +520,7 @@ use(function () {
             "draft_effective": "2019-01-01"
           },
           "step2_title": "Step 1: calculate base permit fee",
-          "step3_title": "Step 2: add additional fees and surcharges"
+          "step3_title": "Step 2: add additional fees and surcharges",
         },
         "live": {
           "step2": [{
