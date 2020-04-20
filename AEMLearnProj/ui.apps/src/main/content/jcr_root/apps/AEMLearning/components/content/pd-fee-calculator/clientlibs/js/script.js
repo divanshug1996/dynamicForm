@@ -1,6 +1,7 @@
-var input_ele, rate_ele, pf_ele, pfTotal_ele, baseFee_ele, PMVTotal_ele, Ftype, PartialP_ele, ground_checkbox = 0, temp_checkbox = 0, hydronic_heat = 0, other = 0, round = 0,gst=0;
+var input_ele, rate_ele, pf_ele, pfTotal_ele, baseFee_ele, PMVTotal_ele, Ftype, PartialP_ele, ground_checkbox = 0, temp_checkbox = 0, hydronic_heat = 0, other = 0, round = 0, gst = 0;
 const PD_CALC = {};
 PD_CALC.constants = {};
+PD_CALC.constants.nodePath = "/root/pd_fee_calculator";
 PD_CALC.glob = {};
 PD_CALC.methods = {};
 PD_CALC.events = {};
@@ -9,6 +10,23 @@ PD_CALC.methods.utils = {};
 PD_CALC.glob.formName = "";
 PD_CALC.constants.CLASS_getFormType = '.pd-formType';
 PD_CALC.constants.ATTR_getFormType = "data-form-name";
+PD_CALC.methods.callajax = function(path,view){
+    $.ajax({
+        url : path,
+        type: 'POST',
+        data : {
+            switchView : view
+        },
+        success: function(doc){
+            console.log("in success");
+            console.log(doc);
+            window.location.reload();
+        },
+        failure: function(err){
+            console.log(err)
+        }
+    })
+}
 PD_CALC.methods.changeUnits = function (val, changeVal) {
     if (val == "metric") {
         $('.pmv').each(function () {
@@ -75,18 +93,25 @@ PD_CALC.methods.getAddonResult = function (array) {
     }
     return sum == "NaN" ? 0 : sum;
 }
+$.fn.hasAttr = function (name) {
+    return this.attr(name) !== undefined;
+};
 PD_CALC.methods.setBaseTotal = function () {
     var sum = 0,
-        highest = 0
-    $('.totals').each(function () {
-        var input = $(this).html(),
-            repInput = input.replace(/,/g, '');
-        if (isNaN(parseFloat(repInput)))
-            sum = sum + 0;
-        else
-            sum = sum + parseFloat(repInput);
-    })
-    $("#final-fee-x").html(PD_CALC.methods.numberWithCommas(sum));
+        highest = 0,
+        totalEle, calcVal, finalBaseTotal;
+    $('.fees').each(function () {
+            totalEle = $(this).find('.totals');
+            calcVal = $(totalEle).html() == ""? 0 : parseFloat(PD_CALC.methods.getNum($(totalEle).html())) ;
+           if($(this).hasAttr('data-total-highest-value')){
+                if (calcVal > highest) 
+                highest = calcVal;
+            }else{
+                sum = sum + calcVal;
+            }
+    });
+    finalBaseTotal = sum+highest;
+    $("#final-fee-x").html(PD_CALC.methods.numberWithCommas(parseFloat(finalBaseTotal).toFixed(2)));
 }
 PD_CALC.methods.getBasePermitFeeStd = function (PMV, rfactor, rate, dFactor = 0) {
     var roundOff = Math.ceil(PMV / rfactor) * rfactor;
@@ -114,6 +139,7 @@ PD_CALC.methods.calcCheckBox = function (num, ele, totalEle) {
         dcpFee = $("#dcp-fee" + num).attr("data-value"),
         adFee = $("#ad-fee" + num).attr("data-value"),
         arr = [];
+        console.log(baseFee,dcpFee,adFee)
     arr.push(parseFloat(baseFee));
     arr.push(parseFloat(dcpFee));
     arr.push(parseFloat(adFee));
@@ -150,7 +176,7 @@ PD_CALC.methods.getAddedResult = function (num, value) {
         if (num == 2)
             total = total + parseFloat($("#grade_fee_max2").attr("data-value"));
     }
-    $("#total0" + num).html(PD_CALC.methods.numberWithCommas(total));
+    $("#total0" + num).html(PD_CALC.methods.numberWithCommas(parseInt(total).toFixed(2)));
 }
 PD_CALC.methods.minMaxCalc = function (area, rate, min, max) {
     var calc;
@@ -228,6 +254,7 @@ PD_CALC.methods.changeTotal = function (additionalFeesObj) {
         $(".step3-final-total").html("");
     if (Ftype == "new_home") {
         $("#gst").html(parseFloat(gst).toFixed(2));
+        sum = sum + gst;
         $("#total-fee-inc-gst").html(PD_CALC.methods.numberWithCommas(sum.toFixed(2)));
     }
 }
@@ -241,7 +268,6 @@ PD_CALC.methods.calcBasePermitStep = function (num, type) {
         max = $("#bldg_demo_max").attr("data-value"),
         numMult,
         total;
-
     if (type == "demolition") {
         total = PD_CALC.methods.getBasePermitFeeDemolition(parseFloat(num), parseFloat(rate), parseFloat(min), parseFloat(max));
         if (isNaN(total)) total = 0
@@ -249,10 +275,8 @@ PD_CALC.methods.calcBasePermitStep = function (num, type) {
         $(PMVTotal_ele).html(isNaN(total) ? 0.00 : PD_CALC.methods.numberWithCommas(parseFloat(total).toFixed(2)));
     }
     else if (type == "new_home") {
-        console.log("inside here ")
         numMult = parseFloat(PD_CALC.methods.getBasePermitFeeStd(parseFloat(num), parseFloat(round), parseFloat(rate), dFactor));
         total = numMult + parseFloat(ground_checkbox) + parseFloat(temp_checkbox) + parseFloat(hydronic_heat);
-        console.log(total)
         $(PMVTotal_ele).html(isNaN(total) ? 0.00 : PD_CALC.methods.numberWithCommas(parseFloat(numMult).toFixed(2)));
     }
     else {
@@ -278,7 +302,6 @@ PD_CALC.methods.caclStep1Total = function () {
     sum = sum + other
     $(".step1-final-total").html(PD_CALC.methods.numberWithCommas(sum.toFixed(2)));
 }
-
 PD_CALC.events.init = function (type, unit) {
     input_ele = '#' + type + '_input',
         rate_ele = '#' + type + '_rate',
@@ -293,8 +316,6 @@ PD_CALC.events.init = function (type, unit) {
         $("#units").val(unit);
         PD_CALC.methods.changeUnits(unit, false);
     }
-
-
     $('input').keypress(function (e) {
         PD_CALC.methods.isNumeric(e);
     });
@@ -346,7 +367,7 @@ PD_CALC.events.init = function (type, unit) {
         if (this.value == "") {
             $("#input03_totals").html("");
         } else {
-            $("#input03_totals").html(PD_CALC.methods.numberWithCommas(total));
+            $("#input03_totals").html(PD_CALC.methods.numberWithCommas(parseFloat(total).toFixed(2)));
         }
         PD_CALC.methods.setBaseTotal();
     })
@@ -361,7 +382,7 @@ PD_CALC.events.init = function (type, unit) {
         if (this.value == "") {
             $("#input04_totals").html("");
         } else {
-            $("#input04_totals").html(PD_CALC.methods.numberWithCommas(total));
+            $("#input04_totals").html(PD_CALC.methods.numberWithCommas(parseFloat(total).toFixed(2)));
         }
         PD_CALC.methods.setBaseTotal();
     })
@@ -447,8 +468,8 @@ PD_CALC.events.init = function (type, unit) {
             if ($(input_ele).val() == "")
                 PD_CALC.methods.calcBasePermitStep("0.00", type);
         } else {
-            if($('.step1-final-total').html()=="")
-            $('.step1-final-total').html("0.00");
+            if ($('.step1-final-total').html() == "")
+                $('.step1-final-total').html("0.00");
         }
         var ppfInput = isNaN(this.value) ? 0 : this.value,
             rate = isNaN($("#" + type + "_partial_permit_rate").attr("data-value")) ? 0 : $("#" + type + "_partial_permit_rate").attr("data-value"),
@@ -476,19 +497,15 @@ PD_CALC.events.init = function (type, unit) {
             if ($(input_ele).val() == "")
                 PD_CALC.methods.calcBasePermitStep("0.00", type);
         } else {
-            if($('.step1-final-total').html()=="")
-            $('.step1-final-total').html("0.00");
+            if ($('.step1-final-total').html() == "")
+                $('.step1-final-total').html("0.00");
         }
         var lotInput = parseFloat(this.value),
             rate = parseFloat($("#lot_grading_rate_value").attr("data-value"));
-            console.log(lotInput,rate)
         total = lotInput * rate;
-        console.log(total)
-        console.log(this.value);
-        if (this.value != ""){
-            console.log("inside this")
+        if (this.value != "") {
             $("#lot_grading_total_value").html(PD_CALC.methods.numberWithCommas(parseFloat(total).toFixed(2)));
-        }else{
+        } else {
             $("#lot_grading_total_value").html("")
         }
         PD_CALC.additionalFeesObj.lotGrading = total;
@@ -501,8 +518,8 @@ PD_CALC.events.init = function (type, unit) {
             $(this).attr("checked", true);
         checked = $(this).is(':checked');
         if (checked) {
-            if(step1Val == "")
-            $('.step1-final-total').html("0.00")
+            if (step1Val == "")
+                $('.step1-final-total').html("0.00")
             $("#partial_permit_totalF2").html(PD_CALC.methods.numberWithCommas(parseFloat(partialPermit).toFixed(2)));
             PD_CALC.additionalFeesObj.partialPermit = parseFloat(partialPermit);
             PD_CALC.additionalFeesObj.water = parseFloat($("#water_fee").attr("data-value")).toFixed(2)
@@ -547,30 +564,30 @@ PD_CALC.events.init = function (type, unit) {
         if (checked) {
             if (id.includes("ground")) {
                 ground_checkbox = PD_CALC.methods.getNum($("#" + id + "_rate").html());
-                gst = gst + parseFloat(ground_checkbox).toFixed(2)*0.05;
+                gst = gst + parseFloat(ground_checkbox).toFixed(2) * 0.05;
                 $("#" + id + "_total").html(ground_checkbox);
             } else if (id.includes("temp_heat")) {
                 temp_checkbox = PD_CALC.methods.getNum($("#" + id + "_rate").html());
-                gst = gst + parseFloat(ground_checkbox).toFixed(2)*0.05;
+                gst = gst + parseFloat(ground_checkbox).toFixed(2) * 0.05;
                 $("#" + id + "_total").html(temp_checkbox);
             } else {
                 hydronic_heat = PD_CALC.methods.getNum($("#" + id + "_rate").html());
-                gst = gst + parseFloat(ground_checkbox).toFixed(2)*0.05;
+                gst = gst + parseFloat(ground_checkbox).toFixed(2) * 0.05;
                 $("#" + id + "_total").html(hydronic_heat);
             }
         } else {
             if (id.includes("ground")) {
-                gst = gst- (ground_checkbox*0.05) ;
+                gst = gst - (ground_checkbox * 0.05);
                 ground_checkbox = 0;
-                
+
             } else if (id.includes("temp_heat")) {
-                gst = gst- (temp_checkbox*0.05) ;
+                gst = gst - (temp_checkbox * 0.05);
                 temp_checkbox = 0;
-                
+
             } else {
-                gst = gst - (temp_checkbox*0.05);
+                gst = gst - (temp_checkbox * 0.05);
                 hydronic_heat = 0
-               
+
             }
             $("#" + id + "_total").html("");
         }
@@ -604,5 +621,13 @@ PD_CALC.events.init = function (type, unit) {
     $(document).on('change', '#units', function () {
         PD_CALC.methods.changeUnits(this.value, true);
     });
+    $(".switch-view-draft").click(function(){
+        var pagePath = $(this).attr("data-pagePath")+PD_CALC.constants.nodePath;
+        PD_CALC.methods.callajax(pagePath,"draft");
+    })
+    $(".switch-view-live").click(function(){
+        var pagePath = $(this).attr("data-pagePath")+PD_CALC.constants.nodePath;
+        PD_CALC.methods.callajax(pagePath,"live");
+    })
 
 }

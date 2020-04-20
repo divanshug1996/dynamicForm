@@ -9,10 +9,12 @@
     <div class="cq-placeholder" data-emptytext="${component.title}"></div>
 </div>
 <div>
-    ${Controller.pdFormType}
     <sly data-sly-test="${Controller.pdFormType}">
-
-        <div class="${controller.spacing}" id="calculator-init" data-units="${Controller.formValues.unit ? Controller.formValues.unit : 'imperial'}" data-formType="${Controller.pdFormType}">
+        <sly data-sly-test="${Controller.showButton == 'true'}">
+            <button class="switch-view-draft" data-pagePath="${currentPage.contentResource.path}">${controller.buttonText}</button>
+             <button class="switch-view-live" data-pagePath="${currentPage.contentResource.path}">Current Calculator</button>
+            </sly>
+        <div class="${controller.spacing}" data-button="true" id="calculator-init" data-units="${Controller.formValues.unit ? Controller.formValues.unit : 'imperial'}" data-formType="${Controller.pdFormType}">
             <div id="calculator">
                 <span id="units-container">
                     <label class="sr-only" for="units">Select which units you prefer for measurements</label>

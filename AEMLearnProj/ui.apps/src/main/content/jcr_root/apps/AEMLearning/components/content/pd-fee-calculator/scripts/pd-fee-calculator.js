@@ -4,6 +4,8 @@ use(["main.js"], function (json) {
     var controller = {
         pdFormType: properties.get("formType", ""),
         spacing: properties.get('spacing', 'mb-responsive'),
+        showButton : json.config.showButton,
+        buttonText : json.config.buttonText,
         formValues: {}
     };
     function numberWithCommas (x) {
@@ -27,6 +29,7 @@ use(["main.js"], function (json) {
         controller.formValues.feeInputDesc = json.step2[0].label;
         controller.formValues.ratePercent = json.step2[0].value;
         controller.formValues.ratePerPrice2 = json.step2[0].per;
+        controller.formValues.round = json.step2[0].round;
         controller.formValues.totalDesc = "N/A if PMV is $1000 or less.";
 
         controller.formValues.R2feeTypeDesc = json.step2[1].title;
