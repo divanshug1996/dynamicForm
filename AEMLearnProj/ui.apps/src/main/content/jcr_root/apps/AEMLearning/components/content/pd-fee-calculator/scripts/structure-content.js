@@ -4,7 +4,7 @@ use(function () {
       "alterations": {
         "config": {
           "dates": {
-            "draft_available": "2018-11-29",
+            "draft_available": "2020-11-29",
             "draft_effective": "2018-11-29"
           },
           "units": "imperial"
@@ -400,8 +400,8 @@ use(function () {
       "commercial": {
         "config": {
           "dates": {
-            "draft_available": "2018-12-01",
-            "draft_effective": "2019-01-01"
+            "draft_available": "2020-01-01",
+            "draft_effective": "2021-01-01"
           },
           "step2_title": "Step 1: calculate base permit fee",
           "step3_title": "Step 2: add additional fees and surcharges"
@@ -410,7 +410,7 @@ use(function () {
           "step2": [{
             "id": "permit_rate",
             "title": "Permit Rate",
-            "value": 11.11,
+            "value": 12.11,
             "customValue": true,
             "previousTotal": true,
             "label": "Prevailing market value (PMV) rounded up to the next $100",
