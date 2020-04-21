@@ -1,5 +1,5 @@
 var input_ele, rate_ele, pf_ele, pfTotal_ele, baseFee_ele, PMVTotal_ele, Ftype, PartialP_ele, ground_checkbox = 0, temp_checkbox = 0, hydronic_heat = 0, other = 0, round = 0, gst = 0;
-const PD_CALC = {};
+var PD_CALC = {};
 PD_CALC.constants = {};
 PD_CALC.constants.nodePath = "/root/pd_fee_calculator";
 PD_CALC.glob = {};
@@ -35,7 +35,7 @@ PD_CALC.methods.changeUnits = function (val, changeVal) {
                     dataRate = PD_CALC.methods.getNum($(this).attr('data-rate')),
                     ele = document.getElementById(dataFee);
 
-                if (!dataFee.includes("Fireplace") && changeVal == true) {
+                if (dataFee.search("Fireplace") == -1 && changeVal == true) {
                     var convRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.fTom(dataRate));
                     $(this).attr('data-rate', convRate);
                     $(ele).html('');
@@ -57,7 +57,7 @@ PD_CALC.methods.changeUnits = function (val, changeVal) {
                     dataRate = PD_CALC.methods.getNum($(this).attr('data-rate')),
                     ele = document.getElementById(dataFee),
                     convRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.mToF(PD_CALC.methods.getNum(dataRate)));
-                if (!dataFee.includes("Fireplace") && changeVal === true) {
+                if (dataFee.search("Fireplace") == -1 && changeVal === true) {
                     $(this).attr('data-rate', convRate);
                     $(ele).html('');
                     $(ele).html(convRate);
@@ -113,7 +113,10 @@ PD_CALC.methods.setBaseTotal = function () {
     finalBaseTotal = sum+highest;
     $("#final-fee-x").html(PD_CALC.methods.numberWithCommas(parseFloat(finalBaseTotal).toFixed(2)));
 }
-PD_CALC.methods.getBasePermitFeeStd = function (PMV, rfactor, rate, dFactor = 0) {
+PD_CALC.methods.getBasePermitFeeStd = function (PMV, rfactor, rate, dFactor) {
+    if(!dFactor) {
+        dFactor = 0;
+    }
     var roundOff = Math.ceil(PMV / rfactor) * rfactor;
     if (roundOff <= dFactor) {
         return 0;
@@ -244,7 +247,7 @@ PD_CALC.additionalFeesObj = {
 };
 PD_CALC.methods.changeTotal = function (additionalFeesObj) {
     var sum = 0;
-    for (const property in additionalFeesObj) {
+    for (let property in additionalFeesObj) {
         if (additionalFeesObj[property] != undefined)
             sum = sum + parseFloat(additionalFeesObj[property]);
     }
@@ -562,11 +565,11 @@ PD_CALC.events.init = function (type, unit) {
             $(this).attr("checked", true);
         checked = $(this).is(':checked');
         if (checked) {
-            if (id.includes("ground")) {
+            if (id.search("ground")) {
                 ground_checkbox = PD_CALC.methods.getNum($("#" + id + "_rate").html());
                 gst = gst + parseFloat(ground_checkbox).toFixed(2) * 0.05;
                 $("#" + id + "_total").html(ground_checkbox);
-            } else if (id.includes("temp_heat")) {
+            } else if (id.search("temp_heat")) {
                 temp_checkbox = PD_CALC.methods.getNum($("#" + id + "_rate").html());
                 gst = gst + parseFloat(ground_checkbox).toFixed(2) * 0.05;
                 $("#" + id + "_total").html(temp_checkbox);
@@ -576,11 +579,11 @@ PD_CALC.events.init = function (type, unit) {
                 $("#" + id + "_total").html(hydronic_heat);
             }
         } else {
-            if (id.includes("ground")) {
+            if (id.search("ground")) {
                 gst = gst - (ground_checkbox * 0.05);
                 ground_checkbox = 0;
 
-            } else if (id.includes("temp_heat")) {
+            } else if (id.search("temp_heat")) {
                 gst = gst - (temp_checkbox * 0.05);
                 temp_checkbox = 0;
 
