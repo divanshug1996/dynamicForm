@@ -560,16 +560,16 @@ PD_CALC.events.init = function (type, unit) {
     $(".type3").change(function () {
         var checked = false,
             id = $(this).attr("id"),
-            PMVele = $(".baseFeePrevTotal");
+            PMVele = $(".step1-final-total");
         if ($(this).is(":checked"))
             $(this).attr("checked", true);
         checked = $(this).is(':checked');
         if (checked) {
-            if (id.search("ground")) {
+            if (id.indexOf("ground") > -1) {
                 ground_checkbox = PD_CALC.methods.getNum($("#" + id + "_rate").html());
                 gst = gst + parseFloat(ground_checkbox).toFixed(2) * 0.05;
                 $("#" + id + "_total").html(ground_checkbox);
-            } else if (id.search("temp_heat")) {
+            } else if (id.indexOf("temp_heat") > -1) {
                 temp_checkbox = PD_CALC.methods.getNum($("#" + id + "_rate").html());
                 gst = gst + parseFloat(ground_checkbox).toFixed(2) * 0.05;
                 $("#" + id + "_total").html(temp_checkbox);
@@ -579,11 +579,11 @@ PD_CALC.events.init = function (type, unit) {
                 $("#" + id + "_total").html(hydronic_heat);
             }
         } else {
-            if (id.search("ground")) {
+            if (id.indexOf("ground") > -1) {
                 gst = gst - (ground_checkbox * 0.05);
                 ground_checkbox = 0;
 
-            } else if (id.search("temp_heat")) {
+            } else if (id.indexOf("temp_heat") > -1) {
                 gst = gst - (temp_checkbox * 0.05);
                 temp_checkbox = 0;
 
