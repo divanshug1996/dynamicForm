@@ -37,9 +37,15 @@ PD_CALC.methods.changeUnits = function (val, changeVal) {
 
                 if (dataFee.search("Fireplace") == -1 && changeVal == true) {
                     var convRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.fTom(dataRate));
-                    $(this).attr('data-rate', convRate);
-                    $(ele).html('');
-                    $(ele).html(convRate);
+                    
+                    if($(this).hasClass("changed")) {
+                        $(ele).html($(this).attr('data-rate'));
+                    } else {
+                        $(this).attr('data-rate', convRate);
+                        $(ele).html('');
+                        $(ele).html(convRate);
+                    }
+                    
                 }
             }
 
@@ -58,7 +64,8 @@ PD_CALC.methods.changeUnits = function (val, changeVal) {
                     ele = document.getElementById(dataFee),
                     convRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.mToF(PD_CALC.methods.getNum(dataRate)));
                 if (dataFee.search("Fireplace") == -1 && changeVal === true) {
-                    $(this).attr('data-rate', convRate);
+                    $(this).attr('changed-data-rate', convRate);
+                    $(this).addClass("changed");
                     $(ele).html('');
                     $(ele).html(convRate);
                 }
@@ -540,9 +547,15 @@ PD_CALC.events.init = function (type, unit) {
             $('#other_total').html(parseFloat(other).toFixed(2));
             PD_CALC.methods.caclStep1Total();
         } else {
-            var input = PD_CALC.methods.getNum(this.value),
-                rate = PD_CALC.methods.getNum($(this).attr("data-rate")),
-                totalEle = document.getElementById($(this).attr("data-feeType") + "_total");
+            var input = PD_CALC.methods.getNum(this.value);
+            var rate;
+            if($(this).hasClass("changed")) {
+                rate = PD_CALC.methods.getNum($(this).attr("changed-data-rate"));
+            } else {
+                rate = PD_CALC.methods.getNum($(this).attr("data-rate"));
+            }
+            
+            var totalEle = document.getElementById($(this).attr("data-feeType") + "_total");
             if (this.value == "")
                 $(totalEle).html("");
             else
