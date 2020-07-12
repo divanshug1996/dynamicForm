@@ -39,20 +39,25 @@ PD_CALC.methods.changeUnits = function (val, changeVal) {
              
                 if (dataFee.search("Fireplace") == -1 && changeVal == true) {
                     var convRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.fTom(dataRate));
-                    var convTolatRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.numberWithoutCommas(convRate) * pmvVal);
+                   
                     if($(this).hasClass("changed")){
+                        convRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.fTom(PD_CALC.methods.getNum($(this).attr('old-data-rate'))));
                         $(ele).html($(this).attr('data-rate'));
-                        $(totalEle).html("");
-                        if(convTolatRate)
-                        $(totalEle).html(convTolatRate);
-                        PD_CALC.methods.caclStep1Total();
+                        var convTolatRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.multiply(PD_CALC.methods.numberWithoutCommas(convRate),pmvVal));
+                        if(convTolatRate != "" && convTolatRate != "0") {
+                            $(totalEle).html("");
+                            $(totalEle).html(convTolatRate);
+                        }
                     }else{
-                    	$(this).attr('data-rate', convRate);
+                        $(this).attr('data-rate', convRate);
+                        $(this).attr('old-data-rate', dataRate);
                     	$(ele).html('');
                         $(ele).html(convRate);
-                        $(totalEle).html("");
-                        $(totalEle).html(convTolatRate);
-                        PD_CALC.methods.caclStep1Total();
+                        var convTolatRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.multiply(PD_CALC.methods.numberWithoutCommas(convRate),pmvVal));
+                        if(convTolatRate != "" && convTolatRate != "0") {
+                            $(totalEle).html("");
+                            $(totalEle).html(convTolatRate);
+                        }
                     }
                 }
             }
@@ -72,16 +77,17 @@ PD_CALC.methods.changeUnits = function (val, changeVal) {
                     ele = document.getElementById(dataFee),
                     totalEle = document.getElementById(dataFee + "_total"),
                     pmvVal = $(this).val(),
-                    convRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.mToF(PD_CALC.methods.getNum(dataRate))),
-                    convTolatRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.numberWithoutCommas(convRate) * pmvVal);
+                    convRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.mToF(PD_CALC.methods.getNum(dataRate)));
                 if (dataFee.search("Fireplace") == -1 && changeVal === true) {
                 	$(this).attr('changed-data-rate', convRate);
                 	$(this).addClass("changed");
                     $(ele).html('');
                     $(ele).html(convRate);
-                    $(totalEle).html("");
-                    $(totalEle).html(convTolatRate);
-                    PD_CALC.methods.caclStep1Total();
+                    var convTolatRate = PD_CALC.methods.numberWithCommas(PD_CALC.methods.multiply(PD_CALC.methods.numberWithoutCommas(convRate),pmvVal));
+                    if(convTolatRate != "" && convTolatRate != "0") {
+                        $(totalEle).html("");
+                        $(totalEle).html(convTolatRate);
+                    }
                 }
             }
         });
@@ -92,12 +98,16 @@ PD_CALC.methods.changeUnits = function (val, changeVal) {
             $(this).show();
         })
     }
+    PD_CALC.methods.caclStep1Total();
 }
 PD_CALC.methods.numberWithCommas = function (x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 PD_CALC.methods.numberWithoutCommas = function (x) {
     return x.toString().replace(",","");
+}
+PD_CALC.methods.multiply = function (x,y) {
+    return x * y;
 }
 PD_CALC.methods.fTom = function (dollars) {
     return parseFloat(dollars * 10.7639).toFixed(2);
